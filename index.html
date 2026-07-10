@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>에코델타시티 푸르지오 트레파크 입주예정자협의회</title>
+<!-- © 2026 법무법인 제이엘(JL Law) — 무단 복제·재배포 금지. 본 코드는 제이엘의 지적재산입니다. -->
+<meta property="og:title" content="에코델타시티 푸르지오 트레파크 입주예정자협의회">
+<meta property="og:description" content="위임장 접수 · 투표 · 공지 · 일정을 한 곳에서. 입주예정자협의회 공식 운영 플랫폼">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root{
+  --brand:#0D5C30; --brand2:#1A7A42; --brand3:#2EA055;
+  --brand-soft:#E8F5ED; --brand-mid:#C2E0CC;
+  --gold:#C49A3C; --gold-soft:#FBF4E3;
+  --ink:#0A1A10; --ink2:#2D4535; --ink3:#5A7060; --ink4:#93AC9D; --ink5:#DCE8E0;
+  --bg:#EDF3EF; --surface:#FFFFFF; --surface2:#F5FAF7;
+  --border:#E4EDE8;
+  --red:#C0392B; --red-soft:#FDEEEC;
+  --amber:#B07D00; --amber-soft:#FFF8E6;
+  --blue:#1A5A9E; --blue-soft:#EBF2FC;
+  --sidebar:#0A1A10; --sidebar-w:232px;
+  --r:11px; --r-sm:8px; --r-lg:16px;
+  --sh:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  --sh-md:0 6px 20px rgba(10,40,25,.10);
+  --font:'Pretendard',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --tr:.18s cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;display:flex;min-height:100vh;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+button,input,select,textarea{font-family:var(--font);font-size:14px}
+button{cursor:pointer;border:none;background:none}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:var(--ink5);border-radius:4px}
+
+/* ===== 레이아웃 ===== */
+#sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--sidebar);position:fixed;left:0;top:0;bottom:0;z-index:300;display:flex;flex-direction:column;transition:transform var(--tr)}
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);height:58px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
+.content{padding:22px 24px 90px;flex:1;max-width:1180px;width:100%}
+.app-footer{text-align:center;font-size:11px;color:var(--ink4);padding:18px 0 4px;margin-top:6px}
+.app-footer b{color:var(--ink3);font-weight:700}
+.view{display:none;animation:fade .3s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:250}
+#overlay.on{display:block}
+
+/* ===== 사이드바 ===== */
+.sb-top{padding:20px 16px 16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sb-logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand3));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;flex-shrink:0;letter-spacing:-.03em;box-shadow:0 3px 10px rgba(46,160,85,.3)}
+.sb-title{font-size:12px;font-weight:800;color:#fff;line-height:1.35}
+.sb-title small{display:block;font-weight:400;color:rgba(255,255,255,.4);font-size:10px;margin-top:2px}
+.sb-rate{background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:var(--r);padding:12px 14px;position:relative;overflow:hidden}
+.sb-rate::after{content:"";position:absolute;right:-14px;top:-14px;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.08)}
+.sb-rate-lb{font-size:9.5px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.07em;text-transform:uppercase}
+.sb-rate-v{font-size:26px;font-weight:900;color:#fff;line-height:1;margin:4px 0;letter-spacing:-.03em}
+.sb-rate-bar{height:4px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden;margin-top:8px}
+.sb-rate-bar i{display:block;height:100%;background:var(--gold);border-radius:2px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.sb-nav{flex:1;overflow-y:auto;padding:10px}
+.sb-glabel{font-size:9px;font-weight:800;color:rgba(255,255,255,.22);letter-spacing:.13em;text-transform:uppercase;padding:14px 8px 5px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:10px 10px;border-radius:var(--r-sm);font-size:13px;font-weight:500;color:rgba(255,255,255,.55);cursor:pointer;transition:var(--tr);margin-bottom:2px}
+.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.9)}
+.nav-item.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:700;box-shadow:0 3px 10px rgba(13,92,48,.35)}
+.nav-ico{width:22px;text-align:center;font-size:15px;flex-shrink:0}
+.sb-foot{padding:12px;border-top:1px solid rgba(255,255,255,.06)}
+.sb-user{display:flex;align-items:center;gap:9px}
+.sb-av{width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-un{font-size:12.5px;font-weight:700;color:#fff}
+.sb-ur{font-size:10.5px;color:rgba(255,255,255,.4)}
+
+/* ===== 탑바 ===== */
+.tb-title{font-size:15.5px;font-weight:800;letter-spacing:-.02em}
+.tb-right{display:flex;align-items:center;gap:10px}
+.tb-date{font-size:12px;color:var(--ink3);font-weight:500}
+.menu-btn{display:none;width:36px;height:36px;border-radius:var(--r-sm);background:var(--surface2);border:1px solid var(--border);align-items:center;justify-content:center;font-size:17px}
+.cafe-link{display:inline-flex;align-items:center;gap:6px;background:#03C75A;color:#fff;border-radius:20px;padding:6px 13px;font-size:12px;font-weight:700;transition:var(--tr)}
+.cafe-link:hover{filter:brightness(.93);transform:translateY(-1px)}
+.gh-chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--ink3);background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 11px}
+.gh-dot{width:7px;height:7px;border-radius:50%;background:var(--ink4);flex-shrink:0}
+.gh-dot.ok{background:#22c55e}
+.gh-dot.err{background:var(--red)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.gh-dot.ok{animation:pulse 2.5s infinite}
+
+/* ===== 카드 ===== */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh)}
+.card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:10px}
+
+/* 임원전용 입장 게이트 */
+#entryGate{position:fixed;inset:0;background:linear-gradient(160deg,var(--bg,#F4F9F6) 0%,var(--surface2,#EAF3EE) 100%);z-index:2000;display:flex;align-items:center;justify-content:center;padding:24px}
+.eg-card{max-width:360px;width:100%;background:var(--surface);border-radius:22px;padding:38px 30px;box-shadow:0 20px 50px rgba(13,92,48,.16);text-align:center}
+.eg-emblem{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--brand),var(--brand3));color:#fff;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 8px 20px rgba(13,92,48,.3)}
+.eg-apt{font-size:17px;font-weight:900;color:var(--ink);letter-spacing:-.02em;line-height:1.3}
+.eg-sub{font-size:12.5px;color:var(--ink3);font-weight:700;margin-top:5px;margin-bottom:26px}
+.eg-input{width:100%;padding:14px;border:1.5px solid var(--ink5);border-radius:11px;text-align:center;letter-spacing:.35em;font-size:19px;font-weight:700;margin-bottom:12px}
+.eg-input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft,rgba(13,92,48,.15))}
+.eg-btn{width:100%;padding:14px;border-radius:11px;background:var(--brand);color:#fff;font-weight:800;font-size:15px;cursor:pointer;border:none}
+.eg-btn:hover{background:var(--brand2)}
+.eg-err{color:#C0392B;font-size:12.5px;font-weight:700;margin-top:10px;min-height:16px}
+
+
+/* 공정율표 - 대형 히어로 스타일 */
+.prog-hero-card{background:linear-gradient(160deg,var(--surface) 60%,var(--brand-soft) 150%);border:1px solid rgba(13,92,48,.1);padding:26px 22px 22px}
+.prog-hero-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px;gap:14px}
+.prog-hero-t{font-size:18px;font-weight:900;letter-spacing:-.02em;color:var(--ink)}
+.prog-hero-sub{font-size:12.5px;color:var(--ink3);font-weight:600;margin-top:4px}
+.prog-hero-badge{background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:16px;padding:10px 18px;text-align:center;box-shadow:0 8px 20px rgba(13,92,48,.28);flex-shrink:0}
+.prog-hero-badge-v{font-size:26px;font-weight:900;color:#fff;line-height:1.1}
+.prog-hero-badge-l{font-size:10px;font-weight:700;color:rgba(255,255,255,.8);margin-top:2px}
+
+.prog-track-wrap{padding:10px 6px 4px}
+.prog-track{position:relative;height:16px;background:var(--ink5);border-radius:10px;margin:0 20px;overflow:hidden;box-shadow:inset 0 2px 4px rgba(0,0,0,.06)}
+.prog-track-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand3),#4CC776);border-radius:10px;width:0%;transition:width 1.8s cubic-bezier(.16,1,.3,1);overflow:hidden}
+.prog-track-glow{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);width:60%;animation:progShimmer 2.2s ease-in-out infinite;animation-delay:1.6s}
+@keyframes progShimmer{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
+
+.prog-dots{display:flex;justify-content:space-between;margin-top:2px;padding:0 4px}
+.prog-dot-btn{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 2px;flex:1;transition:transform .15s}
+.prog-dot-btn:active{transform:scale(.92)}
+.prog-dot{width:24px;height:24px;border-radius:50%;background:var(--surface);border:3.5px solid var(--ink5);transition:.35s;position:relative;z-index:2;box-shadow:0 2px 5px rgba(0,0,0,.08)}
+.prog-dot.passed{border-color:var(--brand);background:linear-gradient(135deg,var(--brand),var(--brand3))}
+.prog-dot.current{border-color:var(--brand);background:#fff;box-shadow:0 0 0 6px rgba(13,92,48,.16),0 2px 8px rgba(13,92,48,.25);animation:progPulse 1.8s ease-in-out infinite}
+@keyframes progPulse{0%,100%{box-shadow:0 0 0 6px rgba(13,92,48,.16),0 2px 8px rgba(13,92,48,.25)}50%{box-shadow:0 0 0 10px rgba(13,92,48,.06),0 2px 8px rgba(13,92,48,.25)}}
+.prog-dot-lb{font-size:11.5px;font-weight:800;color:var(--ink4);transition:.3s}
+.prog-dot-btn:has(.prog-dot.passed) .prog-dot-lb{color:var(--brand)}
+.prog-dot-btn:has(.prog-dot.current) .prog-dot-lb{color:var(--brand);font-size:12.5px}
+
+.prog-modal-bg{display:none;position:fixed;inset:0;background:rgba(6,16,10,.72);backdrop-filter:blur(2px);z-index:950;align-items:flex-end;justify-content:center}
+.prog-modal-bg.on{display:flex}
+.prog-modal{background:var(--surface);width:100%;max-width:520px;border-radius:22px 22px 0 0;max-height:80vh;display:flex;flex-direction:column;animation:progUp .28s cubic-bezier(.2,.8,.2,1);box-shadow:0 -10px 40px rgba(0,0,0,.3)}
+@keyframes progUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.prog-modal-hd{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 18px;background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:22px 22px 0 0}
+.prog-modal-pct{font-size:26px;font-weight:900;color:#fff}
+.prog-modal-x{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.2);border:none;font-size:15px;color:#fff;cursor:pointer}
+.prog-modal-body{padding:20px 22px 30px;overflow-y:auto}
+.prog-sec{margin-bottom:18px}
+.prog-sec:last-child{margin-bottom:0}
+.prog-sec-t{font-size:12.5px;font-weight:800;color:var(--ink3);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.prog-sec-list{display:flex;flex-direction:column;gap:6px}
+.prog-item{font-size:13.5px;color:var(--ink2);line-height:1.5;padding-left:14px;position:relative}
+.prog-item::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--brand3)}
+
+.card-t{font-size:13.5px;font-weight:800;display:flex;align-items:center;gap:8px;letter-spacing:-.02em}
+.card-t .b{width:3px;height:15px;background:var(--brand);border-radius:2px}
+.card-m{font-size:11.5px;color:var(--ink4);font-weight:500}
+
+/* ===== 통계 그리드 ===== */
+.home-hero{display:flex;align-items:center;gap:13px;margin-bottom:16px;padding:16px 18px;background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:var(--r-lg);box-shadow:var(--sh)}
+.home-hero-emblem{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.18);color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.home-hero-title{font-size:16px;font-weight:900;color:#fff;letter-spacing:-.02em;line-height:1.3}
+.home-hero-sub{font-size:12px;color:rgba(255,255,255,.75);margin-top:2px;font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:17px 18px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.stat.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);border-color:transparent}
+.stat::after{content:"";position:absolute;right:-18px;top:-18px;width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.05)}
+.stat.hero::after{background:rgba(255,255,255,.08)}
+.stat-lb{font-size:10.5px;font-weight:700;color:var(--ink4);letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+.stat.hero .stat-lb{color:rgba(255,255,255,.6)}
+.stat-v{font-size:28px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.stat.hero .stat-v{color:#fff}
+.stat-v .u{font-size:14px;font-weight:600;color:var(--ink4)}
+.stat.hero .stat-v .u{color:rgba(255,255,255,.65)}
+.stat-sub{font-size:11.5px;color:var(--ink4);margin-top:9px;font-weight:500}
+.stat.hero .stat-sub{color:rgba(255,255,255,.65)}
+.stat-bar{height:4px;border-radius:2px;background:var(--ink5);overflow:hidden;margin-top:10px}
+.stat-bar i{display:block;height:100%;border-radius:2px;background:var(--brand);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.stat.hero .stat-bar{background:rgba(255,255,255,.2)}
+.stat.hero .stat-bar i{background:var(--gold)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+
+/* ===== 도넛 ===== */
+.rate-wrap{display:flex;align-items:center;gap:22px}
+.donut{position:relative;flex-shrink:0}
+.donut-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut-p{font-size:23px;font-weight:900;color:var(--brand);letter-spacing:-.03em;line-height:1}
+.donut-l{font-size:9.5px;font-weight:700;color:var(--ink4);letter-spacing:.05em;margin-top:2px}
+.rate-legend{flex:1;display:flex;flex-direction:column;gap:11px}
+.rl-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px}
+.rl-left{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink2);font-weight:500}
+.rl-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.rl-val{font-size:14px;font-weight:900;letter-spacing:-.02em}
+.rl-prog{height:5px;background:var(--ink5);border-radius:3px;overflow:hidden}
+.rl-prog i{display:block;height:100%;border-radius:3px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+
+/* ===== 채널 버튼 ===== */
+.ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ch-btn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 10px;border:1px solid var(--border);border-radius:var(--r);transition:var(--tr);cursor:pointer}
+.ch-btn:hover{border-color:var(--brand);background:var(--brand-soft);transform:translateY(-2px)}
+.ch-ico{font-size:26px}
+.ch-t{font-size:12.5px;font-weight:700}
+.ch-s{font-size:10.5px;color:var(--ink4)}
+
+/* ===== 폼 ===== */
+.fg{margin-bottom:14px}
+.fl{display:block;font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:6px}
+.fl .rq{color:var(--red)}
+.fc{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:var(--font);font-size:13.5px;color:var(--ink);background:var(--surface);transition:var(--tr)}
+.fc:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.fc::placeholder{color:var(--ink4)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.radio-g{display:flex;gap:8px;flex-wrap:wrap}
+.radio-o{flex:1;min-width:120px;padding:11px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;cursor:pointer;background:var(--surface);transition:var(--tr);color:var(--ink2)}
+.radio-o:has(input:checked){border-color:var(--brand);background:var(--brand-soft);color:var(--brand)}
+.radio-o input{accent-color:var(--brand)}
+
+/* ===== 버튼 ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 19px;border-radius:var(--r-sm);font-family:var(--font);font-size:13.5px;font-weight:700;cursor:pointer;transition:var(--tr);border:none;white-space:nowrap}
+.btn-p{background:var(--brand);color:#fff}
+.btn-p:hover{background:var(--brand2);transform:translateY(-1px)}
+.btn-p:active{transform:translateY(0)}
+.btn-p:disabled{opacity:.6;pointer-events:none}
+.btn-g{background:transparent;border:1.5px solid var(--border);color:var(--ink2)}
+.btn-g:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+.btn-d{background:transparent;border:1.5px solid var(--red);color:var(--red)}
+.btn-sm{padding:6px 12px;font-size:12.5px}
+.btn-full{width:100%;padding:14px}
+
+/* ===== 서명 ===== */
+.sig-wrap{border:2px dashed var(--border);border-radius:var(--r);background:var(--surface2);position:relative;transition:var(--tr)}
+.sig-wrap.active{border-color:var(--brand);border-style:solid;background:#fff}
+#sigCanvas{width:100%;height:160px;display:block;touch-action:none;border-radius:calc(var(--r) - 2px)}
+#jointSigCanvas{width:100%;height:160px;display:block;touch-action:none;border-radius:calc(var(--r) - 2px)}
+.sig-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:var(--ink4);gap:7px;font-size:13px;font-weight:500}
+.sig-ph svg{opacity:.3}
+.sig-bar{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+
+/* ===== 완료 ===== */
+.done{text-align:center;padding:38px 18px}
+.done-mk{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand3));color:#fff;font-size:32px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;animation:pop .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 24px rgba(46,160,85,.35)}
+@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.done-t{font-size:20px;font-weight:900;margin-bottom:8px;letter-spacing:-.02em}
+.done-d{font-size:13.5px;color:var(--ink3);line-height:1.7;margin-bottom:22px;white-space:pre-line}
+.done-note{background:var(--amber-soft);border:1px solid #E6C766;border-radius:var(--r-sm);padding:13px 15px;font-size:12.5px;color:var(--amber);text-align:left;margin-bottom:22px;line-height:1.6}
+
+/* ===== 투표 ===== */
+.vote-c{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;margin-bottom:14px;box-shadow:var(--sh);transition:var(--tr)}
+.vote-c:hover{box-shadow:var(--sh-md)}
+.vote-badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:11px;display:inline-flex;align-items:center;gap:4px}
+.vb-live{background:#DCFCE7;color:#15803D}
+.vb-end{background:var(--ink5);color:var(--ink3)}
+.vote-t{font-size:15.5px;font-weight:800;margin:10px 0 5px;letter-spacing:-.02em}
+.vote-pd{font-size:11.5px;color:var(--ink4);margin-bottom:15px}
+.vote-dong{display:flex;gap:8px;margin-bottom:12px}
+.vote-opts{display:flex;flex-direction:column;gap:8px}
+.vote-o{position:relative;border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px 15px;cursor:pointer;transition:var(--tr);overflow:hidden;display:flex;align-items:center;justify-content:space-between}
+.vote-o:hover{border-color:var(--brand)}
+.vote-o.sel{border-color:var(--brand);background:var(--brand-soft)}
+.vote-o.done{cursor:default}
+.vote-o-bar{position:absolute;left:0;top:0;bottom:0;background:var(--brand-soft);border-radius:6px 0 0 6px;transition:width .6s cubic-bezier(.2,.8,.2,1);z-index:0}
+.vote-o-t{font-size:13.5px;font-weight:600;position:relative;z-index:1}
+.vote-o-p{font-size:12px;font-weight:800;color:var(--brand);position:relative;z-index:1}
+.vote-foot{margin-top:12px;display:flex;align-items:center;justify-content:space-between}
+.vote-cnt{font-size:12px;color:var(--ink4)}
+
+/* ===== 타임라인 ===== */
+.tl{position:relative;padding-left:24px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--ink5);border-radius:1px}
+.tl-i{position:relative;margin-bottom:16px}
+.tl-i:last-child{margin-bottom:0}
+.tl-d{position:absolute;left:-20px;top:3px;width:12px;height:12px;border-radius:50%;border:2px solid var(--brand2);background:var(--surface)}
+.tl-i.done .tl-d{background:var(--brand2)}
+.tl-i.now .tl-d{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-soft)}
+.tl-dt{font-size:10.5px;color:var(--ink4);font-weight:500;margin-bottom:2px}
+.tl-tx{font-size:13px;font-weight:700;color:var(--ink2)}
+.tl-i.done .tl-tx{color:var(--ink4);font-weight:500;text-decoration:line-through;text-decoration-color:var(--ink5)}
+.tl-i.now .tl-tx{color:var(--brand);font-weight:800}
+.tl-chip{display:inline-block;font-size:9.5px;font-weight:700;padding:1px 7px;border-radius:5px;margin-left:6px;vertical-align:1px}
+.tl-chip.now{background:var(--gold-soft);color:var(--gold)}
+.tl-chip.done{background:var(--brand-soft);color:var(--brand2)}
+
+/* ===== 공지 ===== */
+.nt-i{display:flex;align-items:flex-start;gap:11px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:var(--tr)}
+.nt-i:last-child{border:none}
+.nt-i:hover{margin:0 -20px;padding:12px 20px;background:var(--brand-soft);border-radius:var(--r-sm)}
+.nt-cat{flex-shrink:0;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:800}
+.ntc-imp{background:var(--red-soft);color:var(--red)}
+.ntc-nor{background:var(--brand-soft);color:var(--brand)}
+.ntc-sch{background:var(--amber-soft);color:var(--amber)}
+.nt-t{font-size:13px;font-weight:700;margin-bottom:2px}
+.nt-dt{font-size:11px;color:var(--ink4)}
+
+/* ===== 단지정보 ===== */
+.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.ai-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px}
+.ai-lb{font-size:10px;font-weight:700;color:var(--ink4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.ai-v{font-size:18px;font-weight:900;color:var(--brand);letter-spacing:-.02em}
+.ai-u{font-size:11px;color:var(--ink4);font-weight:500;margin-left:2px}
+.tbars{display:flex;flex-direction:column;gap:10px}
+.tb-row .m{display:flex;justify-content:space-between;margin-bottom:4px}
+.tb-n{font-size:12.5px;font-weight:700}
+.tb-c{font-size:11.5px;color:var(--ink4)}
+.tb-tr{height:7px;background:var(--ink5);border-radius:4px;overflow:hidden}
+.tb-f{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--brand),var(--brand3));transition:width .6s cubic-bezier(.2,.8,.2,1)}
+
+/* ===== FAQ ===== */
+.qa{border:1px solid var(--border);border-radius:var(--r-sm);margin-bottom:8px;overflow:hidden}
+.qa-q{display:flex;align-items:center;gap:9px;padding:13px 15px;cursor:pointer;transition:var(--tr)}
+.qa-q:hover{background:var(--brand-soft)}
+.qa-n{width:21px;height:21px;border-radius:50%;background:var(--brand);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qa-t{font-size:13px;font-weight:700;flex:1}
+.qa-ar{color:var(--ink4);font-size:10px;transition:.2s}
+.qa-a{display:none;padding:12px 15px;background:var(--surface2);border-top:1px solid var(--border);font-size:12.5px;color:var(--ink2);line-height:1.75}
+.qa.open .qa-ar{transform:rotate(180deg)}
+.qa.open .qa-a{display:block}
+
+/* ===== 조직 ===== */
+.org-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:11px}
+.org-c{border:1px solid var(--border);border-radius:var(--r);padding:17px 12px;text-align:center;transition:var(--tr)}
+.org-c:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:var(--sh-md)}
+.org-av{width:46px;height:46px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-size:21px;display:flex;align-items:center;justify-content:center;margin:0 auto 9px}
+.org-p{font-size:10px;font-weight:700;color:var(--ink4);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.org-n{font-size:13.5px;font-weight:800}
+
+/* ===== 회비 ===== */
+.bg-i{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.bg-i:last-child{border:none}
+.bg-ic{width:37px;height:37px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.bg-ic.in{background:var(--brand-soft)}
+.bg-ic.out{background:var(--red-soft)}
+.bg-n{font-size:13px;font-weight:700}
+.bg-m{font-size:11px;color:var(--ink4);margin-top:1px}
+.bg-a{margin-left:auto;font-size:14.5px;font-weight:900;white-space:nowrap}
+.bg-a.in{color:var(--brand)}
+.bg-a.out{color:var(--red)}
+
+/* ===== 관리자 ===== */
+.lock{max-width:380px;margin:50px auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:34px;box-shadow:var(--sh-md);text-align:center}
+.lock-ic{width:58px;height:58px;border-radius:15px;background:var(--brand-soft);color:var(--brand);font-size:25px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.lock-t{font-size:17px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px}
+.lock-s{font-size:12.5px;color:var(--ink3);margin-bottom:22px;line-height:1.5}
+.atabs{display:flex;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden;margin-bottom:16px;flex-wrap:wrap}
+.atab{flex:1;min-width:70px;padding:10px 5px;font-size:12px;font-weight:600;color:var(--ink3);text-align:center;cursor:pointer;transition:var(--tr)}
+.atab.on{background:var(--brand);color:#fff;font-weight:700}
+.atab:not(.on):hover{color:var(--brand);background:var(--brand-soft)}
+.tbl-w{overflow-x:auto}
+table.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+table.tbl th{padding:9px 11px;text-align:left;font-size:10.5px;font-weight:700;color:var(--ink4);border-bottom:1px solid var(--border);background:var(--surface2);white-space:nowrap;letter-spacing:.03em;text-transform:uppercase}
+table.tbl td{padding:10px 11px;border-bottom:1px solid var(--border);white-space:nowrap}
+table.tbl tbody tr:hover td{background:var(--brand-soft)}
+table.tbl tbody tr:last-child td{border:none}
+.tag{display:inline-flex;align-items:center;border-radius:5px;padding:2px 8px;font-size:11px;font-weight:700}
+.tag-g{background:var(--brand-soft);color:var(--brand)}
+.tag-r{background:var(--red-soft);color:var(--red)}
+.tag-a{background:var(--amber-soft);color:var(--amber)}
+.tag-b{background:var(--blue-soft);color:var(--blue)}
+.racts button{padding:4px 10px;font-size:11.5px;font-weight:600;border-radius:5px;border:1px solid var(--border);background:var(--surface);color:var(--ink3);cursor:pointer;transition:.12s;margin-right:4px}
+.racts button:hover{border-color:var(--brand);color:var(--brand)}
+.racts button.del:hover{border-color:var(--red);color:var(--red)}
+.set-t{font-size:10px;font-weight:800;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;padding-bottom:9px;border-bottom:1px solid var(--border);margin-bottom:13px}
+input[type=color]{width:48px;height:40px;padding:2px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--surface);cursor:pointer}
+.jl-banner{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:12px 16px;background:linear-gradient(135deg,#0A1A10,#16342180);border-radius:var(--r-sm);color:#fff}
+.jl-banner .t{font-size:12.5px;font-weight:700}
+.jl-banner .s{font-size:11px;color:rgba(255,255,255,.6)}
+
+/* ===== 갤러리 ===== */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gal-i{aspect-ratio:4/3;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+
+/* ===== 인쇄 위임장 ===== */
+#printLayer{display:none}
+@media print{
+  #sidebar,#main,#overlay,.toast{display:none!important}
+  html,body{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;background:#fff!important}
+  #printLayer{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:#fff!important}
+  .pl-page{page-break-after:always;width:100%}
+  .pl-page:last-child{page-break-after:auto}
+  @page{size:A4;margin:15mm 15mm}
+}
+#printLayer{font-family:"Batang","바탕","Noto Serif CJK KR",serif;font-size:10.8pt;color:#000;line-height:1.5;word-break:keep-all;overflow-wrap:break-word}
+.pl-t{text-align:center;font-size:16pt;font-weight:900;letter-spacing:.01em;margin-bottom:8px;word-break:keep-all}
+.pl-s{text-align:center;font-size:9.3pt;color:#444;margin-bottom:22px}
+.pl-hr{border:none;border-top:1.5px solid #000;margin:18px 0}
+.pl-sec{font-size:10pt;font-weight:800;margin:22px 0 9px}
+.pl-tb{width:100%;border-collapse:collapse;margin-bottom:11px}
+.pl-tb th,.pl-tb td{border:1px solid #000;padding:10px 12px;font-size:10.3pt;vertical-align:middle;line-height:1.35}
+.pl-tb th{background:#f0f0f0;font-weight:700;text-align:center;width:22%}
+.pl-terms{border:1px solid #000;padding:16px 18px;font-size:9.5pt;page-break-inside:avoid}
+.pl-terms ol{padding-left:16px;display:grid;gap:8px;line-height:1.4}
+.pl-note{font-size:8.8pt;margin-top:16px;color:#333;line-height:1.45}
+.pl-priv{border:1px solid #000;padding:14px 18px;font-size:9.5pt;margin-top:16px;page-break-inside:avoid}
+.pl-priv b{display:block;text-align:center;font-size:10.3pt;margin-bottom:6px}
+.pl-date{text-align:center;font-size:11.3pt;margin:34px 0 12px}
+.pl-sign-block{margin-top:4px}
+.pl-sign-row{display:grid;grid-template-columns:1fr 95px 46px;align-items:center;gap:10px;margin-top:16px;page-break-inside:avoid}
+.pl-sign-row .pl-sign-label{font-size:11.5pt;font-weight:700;text-align:right}
+.pl-sign-row .pl-sign-imgbox{display:flex;justify-content:center;align-items:center;height:46px}
+.pl-sign-row .pl-sign-imgbox img{height:46px;max-width:100%}
+/* 공동명의(내용 추가분) 있을 때만 자동 압축 — 1페이지 안전 보장 */
+.pl-compact .pl-t{margin-bottom:4px}
+.pl-compact .pl-s{margin-bottom:11px}
+.pl-compact .pl-hr{margin:8px 0}
+.pl-compact .pl-sec{margin:10px 0 4px}
+.pl-compact .pl-tb{margin-bottom:5px}
+.pl-compact .pl-tb th,.pl-compact .pl-tb td{padding:6px 9px}
+.pl-compact .pl-terms{padding:8px 11px}
+.pl-compact .pl-terms ol{gap:3px;line-height:1.35}
+.pl-compact .pl-note{margin-top:6px}
+.pl-compact .pl-priv{padding:7px 11px;margin-top:7px}
+.pl-compact .pl-priv b{margin-bottom:4px}
+.pl-compact .pl-date{margin:15px 0 5px}
+.pl-compact .pl-sign-row{margin-top:7px}
+.pl-compact .pl-foot{margin-top:18px}
+.pl-sign-row .pl-sign-suffix{font-size:9.5pt;text-align:left}
+.pl-foot{text-align:center;font-size:13pt;font-weight:900;margin-top:18px;letter-spacing:.03em}
+.cbx{font-family:sans-serif}
+
+/* ===== 토스트 ===== */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(14px);background:var(--ink);color:#fff;padding:11px 22px;border-radius:9px;font-size:13px;font-weight:500;opacity:0;pointer-events:none;z-index:9999;transition:all .24s;box-shadow:var(--sh-md);white-space:nowrap}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ===== 반응형 ===== */
+@media(max-width:860px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  .menu-btn{display:flex}
+  .stats{grid-template-columns:1fr 1fr}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .content{padding:16px 14px 90px}
+  .ai-grid{grid-template-columns:1fr 1fr}
+  .cafe-link span.full{display:none}
+  .tb-date{display:none}
+}
+@media(max-width:520px){
+  .org-grid{grid-template-columns:1fr 1fr 1fr}
+  .gal{grid-template-columns:1fr 1fr}
+  .rate-wrap{flex-direction:column;gap:16px}
+  .frow{grid-template-columns:1fr}
+  .radio-g{flex-direction:column}
+  .radio-o{min-width:0}
+  .home-hero{padding:14px 15px}
+  .home-hero-title{font-size:14.5px}
+  .vote-dong{flex-direction:column}
+}
+@media(max-width:600px){
+  .fc,select.fc,input.fc,textarea.fc{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div id="entryGate">
+  <div class="eg-card">
+    <div class="eg-emblem">P</div>
+    <div class="eg-apt" id="egAptName">에코델타시티 푸르지오 트레파크</div>
+    <div class="eg-sub">입주예정자협의회 임원 전용</div>
+    <input type="password" id="egPin" class="eg-input" placeholder="비밀번호" maxlength="10" onkeydown="if(event.key==='Enter')checkEntryGate()">
+    <button class="eg-btn" onclick="checkEntryGate()">입장하기</button>
+    <div class="eg-err" id="egErr"></div>
+  </div>
+</div>
+
+<div id="mainAppWrap" style="display:none">
+<div id="overlay" onclick="closeSb()"></div>
+
+<!-- 사이드바 -->
+<aside id="sidebar">
+  <div class="sb-top">
+    <div class="sb-brand">
+      <div class="sb-logo">P</div>
+      <div class="sb-title">푸르지오 트레파크<small>입주예정자협의회</small></div>
+    </div>
+    <div class="sb-rate">
+      <div class="sb-rate-lb">위임장 접수율</div>
+      <div class="sb-rate-v"><span id="sbRate">0</span>%</div>
+      <div class="sb-rate-bar"><i id="sbRateBar" style="width:0%"></i></div>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-glabel">입주민</div>
+    <div class="nav-item on" id="ni-home" onclick="go('home')"><span class="nav-ico">🏠</span>홈</div>
+    <div class="nav-item" id="ni-delegate" onclick="go('delegate')"><span class="nav-ico">📋</span>위임장 제출</div>
+    <div class="nav-item" id="ni-vote" onclick="go('vote')"><span class="nav-ico">🗳️</span>투표·설문</div>
+    <div class="nav-item" id="ni-notice" onclick="go('notice')"><span class="nav-ico">📢</span>공지사항</div>
+    <div class="nav-item" id="ni-schedule" onclick="go('schedule')"><span class="nav-ico">📅</span>일정 타임라인</div>
+    <div class="nav-item" id="ni-gallery" onclick="go('gallery')"><span class="nav-ico">📸</span>현장 사진</div>
+    <div class="sb-glabel">단지 정보</div>
+    <div class="nav-item" id="ni-aptinfo" onclick="go('aptinfo')"><span class="nav-ico">🏗️</span>단지 개요</div>
+    <div class="nav-item" id="ni-org" onclick="go('org')"><span class="nav-ico">👥</span>임원진</div>
+    <div class="nav-item" id="ni-budget" onclick="go('budget')"><span class="nav-ico">💰</span>회비·지출</div>
+    <div class="sb-glabel">운영</div>
+    <div class="nav-item" id="ni-admin" onclick="go('admin')"><span class="nav-ico">⚙️</span>관리자</div>
+  </nav>
+  <div class="sb-foot">
+    <div class="sb-user">
+      <div class="sb-av">협</div>
+      <div><div class="sb-un">입주예정자협의회</div><div class="sb-ur">공식 운영 플랫폼</div></div>
+    </div>
+  </div>
+</aside>
+
+<div id="main">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:10px">
+      <button class="menu-btn" onclick="toggleSb()">☰</button>
+      <span class="tb-title" id="tbTitle">홈</span>
+    </div>
+    <div class="tb-right">
+      <a class="cafe-link" href="https://cafe.naver.com/redp2ygz" target="_blank">💚<span class="full">입예협 카페</span></a>
+      <div class="gh-chip"><div class="gh-dot" id="ghDot"></div><span id="ghStatus">연결 중…</span></div>
+      <div class="tb-date" id="tbDate"></div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ===== 홈 ===== -->
+    <div id="view-home" class="view on">
+      <div class="home-hero">
+        <div class="home-hero-emblem">P</div>
+        <div>
+          <div class="home-hero-title" id="homeAptName">에코델타시티 푸르지오 트레파크</div>
+          <div class="home-hero-sub">입주예정자협의회 공식 운영 플랫폼</div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat hero">
+          <div class="stat-lb">위임장 접수율</div>
+          <div class="stat-v"><span id="stRate">0</span><span class="u">%</span></div>
+          <div class="stat-bar"><i id="stRateBar" style="width:0%"></i></div>
+          <div class="stat-sub">총 1,370세대 중 <span id="stDone">0</span>세대</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lb">총 세대수</div>
+          <div class="stat-v">1,370<span class="u">세대</span></div>
+          <div class="stat-sub">13개동 · 지상 24층</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lb">동의 접수</div>
+          <div class="stat-v" id="stAgree">0</div>
+          <div class="stat-sub">위임 동의 세대</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lb">미접수</div>
+          <div class="stat-v" id="stLeft">1,370</div>
+          <div class="stat-sub">접수 대기 세대</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>동의 현황</div><div class="card-m" id="homeRateMeta">0 / 1,370 세대</div></div>
+            <div class="rate-wrap">
+              <div class="donut">
+                <svg width="106" height="106" viewBox="0 0 106 106">
+                  <circle cx="53" cy="53" r="40" fill="none" stroke="#DCE8E0" stroke-width="12" transform="rotate(-90 53 53)"/>
+                  <circle id="donutC" cx="53" cy="53" r="40" fill="none" stroke="#0D5C30" stroke-width="12" stroke-dasharray="0 251" stroke-linecap="round" transform="rotate(-90 53 53)" style="transition:stroke-dasharray .7s cubic-bezier(.2,.8,.2,1)"/>
+                </svg>
+                <div class="donut-c"><div class="donut-p" id="donutP">0%</div><div class="donut-l">접수율</div></div>
+              </div>
+              <div class="rate-legend">
+                <div><div class="rl-row"><span class="rl-left"><span class="rl-dot" style="background:var(--brand)"></span>동의</span><span class="rl-val" id="rlAgree">0세대</span></div><div class="rl-prog"><i id="rpAgree" style="width:0%;background:var(--brand)"></i></div></div>
+                <div><div class="rl-row"><span class="rl-left"><span class="rl-dot" style="background:var(--red)"></span>미동의</span><span class="rl-val" id="rlDeny">0세대</span></div><div class="rl-prog"><i id="rpDeny" style="width:0%;background:var(--red)"></i></div></div>
+                <div><div class="rl-row"><span class="rl-left"><span class="rl-dot" style="background:var(--ink5)"></span>미접수</span><span class="rl-val" id="rlLeft">1,370세대</span></div><div class="rl-prog"><i id="rpLeft" style="width:100%;background:var(--ink5)"></i></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>채널 바로가기</div></div>
+            <div class="ch-grid">
+              <a class="ch-btn" href="https://cafe.naver.com/redp2ygz" target="_blank"><span class="ch-ico">💚</span><span class="ch-t">네이버 카페</span><span class="ch-s">공식 커뮤니티</span></a>
+              <a class="ch-btn" href="https://open.kakao.com/" target="_blank"><span class="ch-ico">💬</span><span class="ch-t">카카오 오픈톡</span><span class="ch-s">입주민 소통방</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>진행 중인 투표</div><button class="btn btn-g btn-sm" onclick="go('vote')">전체보기</button></div>
+          <div id="homeVote"></div>
+        </div>
+      </div>
+
+      <div class="card prog-hero-card">
+        <div class="prog-hero-hd">
+          <div>
+            <div class="prog-hero-t">🏗️ 공사 진행 현황</div>
+            <div class="prog-hero-sub">항목을 눌러 진행 단계별 안내를 확인하세요</div>
+          </div>
+          <div class="prog-hero-badge">
+            <div class="prog-hero-badge-v" id="progHeroPct">2%</div>
+            <div class="prog-hero-badge-l">현재 공정률</div>
+          </div>
+        </div>
+
+        <div class="prog-track-wrap">
+          <div class="prog-track"><div class="prog-track-fill" id="progTrackFill"><span class="prog-track-glow"></span></div></div>
+          <div class="prog-dots" id="progDots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 공정율 상세 팝업 -->
+    <div class="prog-modal-bg" id="progModalBg" onclick="if(event.target===this)closeProgressPopup()">
+      <div class="prog-modal">
+        <div class="prog-modal-hd">
+          <div class="prog-modal-pct" id="progModalPct">10%</div>
+          <button class="prog-modal-x" onclick="closeProgressPopup()">✕</button>
+        </div>
+        <div class="prog-modal-body" id="progModalBody"></div>
+      </div>
+    </div>
+
+    <!-- ===== 위임장 ===== -->
+    <div id="view-delegate" class="view">
+      <div id="dForm">
+        <div class="card" style="margin-bottom:12px">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>계약자 정보</div><div class="card-m">반드시 계약자명으로 작성</div></div>
+          <div class="frow">
+            <div class="fg"><label class="fl">성명 <span class="rq">*</span></label><input id="fName" class="fc" placeholder="계약자 성명" autocomplete="name"></div>
+            <div class="fg"><label class="fl">생년월일 <span class="rq">*</span></label><input id="fBirth" class="fc" placeholder="1985-03-21" inputmode="numeric" maxlength="10"></div>
+            <div class="fg"><label class="fl">계약 동 <span class="rq">*</span></label><select id="fDong" class="fc"></select></div>
+            <div class="fg"><label class="fl">계약 호수 <span class="rq">*</span></label><input id="fHo" class="fc" placeholder="예: 1503" inputmode="numeric" maxlength="5"></div>
+          </div>
+          <div class="fg"><label class="fl">연락처 <span class="rq">*</span></label><input id="fPhone" class="fc" placeholder="010-0000-0000" inputmode="tel" maxlength="13"></div>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;margin-top:6px;padding:10px 12px;background:var(--surface2);border-radius:var(--r-sm)">
+            <input type="checkbox" id="fJoint" onchange="toggleJoint(this.checked)" style="accent-color:var(--brand);width:16px;height:16px">
+            공동명의 (부부공동명의 등) 여부
+          </label>
+          <div id="jointFields" style="display:none;margin-top:12px;padding:14px;background:var(--surface2);border:1px dashed var(--border);border-radius:var(--r-sm)">
+            <div style="font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:10px">공동명의자 정보</div>
+            <div class="frow">
+              <div class="fg" style="margin-bottom:8px"><label class="fl">공동명의자 성명 <span class="rq">*</span></label><input id="fJointName" class="fc" placeholder="공동명의자 성명"></div>
+              <div class="fg" style="margin-bottom:8px"><label class="fl">공동명의자 생년월일 <span class="rq">*</span></label><input id="fJointBirth" class="fc" placeholder="1985-03-21" inputmode="numeric" maxlength="10"></div>
+            </div>
+            <div class="fg" style="margin-bottom:12px"><label class="fl">공동명의자 연락처</label><input id="fJointPhone" class="fc" placeholder="010-0000-0000 (선택)" inputmode="tel" maxlength="13"></div>
+            <div class="fg" style="margin-bottom:0">
+              <label class="fl">공동명의자 자필 서명 <span class="rq">*</span></label>
+              <div class="sig-wrap" id="jointSigWrap" style="margin:0 -14px;width:auto">
+                <canvas id="jointSigCanvas"></canvas>
+                <div class="sig-ph" id="jointSigPh"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>공동명의자 서명</div>
+              </div>
+              <div class="sig-bar" style="margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px"><span style="font-size:11px;color:var(--ink4)">공동명의자 본인이 직접 서명해 주세요</span><button type="button" class="btn btn-g btn-sm" onclick="clearJointSig()">지우기</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:12px">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>위임사항 확인</div></div>
+          <div style="border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface2);padding:14px 16px;max-height:200px;overflow-y:auto;font-size:12.5px;line-height:1.7;color:var(--ink2)">
+            <ol id="termsList" style="padding-left:16px;display:grid;gap:5px"></ol>
+            <p style="margin-top:10px;font-size:11.5px;color:var(--ink4)">상기 위임 사항에 대하여 임원진들은 주택법 시행령 및 관련 법령을 준수하고 투명하게 운영합니다.</p>
+          </div>
+          <div class="fg" style="margin-top:14px"><label class="fl">위임 동의 여부 <span class="rq">*</span></label>
+            <div class="radio-g">
+              <label class="radio-o"><input type="radio" name="fAgree" value="동의" checked> ☑ 동의합니다</label>
+              <label class="radio-o"><input type="radio" name="fAgree" value="미동의"> ☐ 미동의합니다</label>
+            </div>
+          </div>
+          <div class="fg"><label class="fl">개인정보 수집·이용·제공 동의 <span class="rq">*</span></label>
+            <div class="radio-g">
+              <label class="radio-o"><input type="radio" name="fPriv" value="동의"> 동의합니다</label>
+              <label class="radio-o"><input type="radio" name="fPriv" value="미동의"> 동의하지 않습니다</label>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:16px">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>자필 서명</div><div class="card-m">손가락·마우스로 직접 서명</div></div>
+          <div class="sig-wrap" id="sigWrap">
+            <canvas id="sigCanvas"></canvas>
+            <div class="sig-ph" id="sigPh"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>여기에 서명하세요</div>
+          </div>
+          <div class="sig-bar"><span style="font-size:11.5px;color:var(--ink4)">서명은 위임장에 포함됩니다</span><button class="btn btn-g btn-sm" onclick="clearSig()">지우기</button></div>
+        </div>
+        <button class="btn btn-p btn-full" id="submitBtn" onclick="submitDelegate()">위임장 제출하기 →</button>
+      </div>
+      <div id="dDone" class="card done" style="display:none">
+        <div class="done-mk">✓</div>
+        <div class="done-t">위임장이 접수되었습니다</div>
+        <div class="done-d" id="doneMsg"></div>
+        <div class="done-note">📌 위임장 출력(PDF)이 필요하신 경우 <b>운영진 또는 법무법인 제이엘</b>에 문의해 주세요.</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-p" onclick="go('home')">🏠 홈으로 가기</button>
+          <button class="btn btn-g" onclick="resetDelegate()">새 위임장 작성하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 투표 ===== -->
+    <div id="view-vote" class="view">
+      <div id="voteList"></div>
+      <div id="voteEmpty" class="card" style="text-align:center;padding:44px;display:none">
+        <div style="font-size:34px;margin-bottom:10px">🗳️</div>
+        <div style="font-weight:800;font-size:15px;margin-bottom:6px">진행 중인 투표가 없습니다</div>
+        <div style="font-size:13px;color:var(--ink4)">운영진이 투표를 등록하면 여기에 표시됩니다.</div>
+      </div>
+    </div>
+
+    <!-- ===== 공지 ===== -->
+    <div id="view-notice" class="view">
+      <div class="card">
+        <div class="card-hd"><div class="card-t"><span class="b"></span>공지사항</div></div>
+        <div id="noticeList"></div>
+        <div id="noticeEmpty" style="text-align:center;padding:24px;color:var(--ink4);display:none">등록된 공지가 없습니다.</div>
+      </div>
+      <div class="card" id="noticeDetail" style="display:none;margin-top:12px">
+        <div class="card-hd"><div class="card-t" id="ndTitle"></div><button class="btn btn-g btn-sm" onclick="document.getElementById('noticeDetail').style.display='none'">목록</button></div>
+        <div style="font-size:11.5px;color:var(--ink4);margin-bottom:12px" id="ndMeta"></div>
+        <div style="font-size:13.5px;line-height:1.75;white-space:pre-wrap" id="ndBody"></div>
+      </div>
+    </div>
+
+    <!-- ===== 일정 ===== -->
+    <div id="view-schedule" class="view">
+      <div class="card"><div class="card-hd"><div class="card-t"><span class="b"></span>입주를 향한 여정</div><div class="card-m">푸르지오 트레파크</div></div><div class="tl" id="tlEl"></div></div>
+    </div>
+
+    <!-- ===== 갤러리 ===== -->
+    <div id="view-gallery" class="view">
+      <div class="card">
+        <div class="card-hd"><div class="card-t"><span class="b"></span>현장 사진 갤러리</div><div class="card-m">공정 현황</div></div>
+        <div class="gal">
+          <div class="gal-i" style="background:#E8F5ED;color:#0D5C30">2024.07 기초공사</div>
+          <div class="gal-i" style="background:#dceee2;color:#166b3b">2024.11 골조공사</div>
+          <div class="gal-i" style="background:#cce6d3;color:#125e2e">2025.03 외벽공사</div>
+          <div class="gal-i" style="background:#bcdecc;color:#0d5128">2025.05 마감공사</div>
+          <div class="gal-i" style="background:#aad7c5;color:#094522">2025.06 조경공사</div>
+          <div class="gal-i" style="background:#98cfbe;color:#06381b">2025.07 현장 전경</div>
+        </div>
+        <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--ink4)">실제 공사 사진은 추후 업데이트됩니다.</div>
+      </div>
+    </div>
+
+    <!-- ===== 단지 개요 ===== -->
+    <div id="view-aptinfo" class="view">
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-hd"><div class="card-t"><span class="b"></span>단지 개요</div></div>
+        <div class="ai-grid">
+          <div class="ai-box"><div class="ai-lb">총 세대수</div><div class="ai-v">1,370<span class="ai-u">세대</span></div></div>
+          <div class="ai-box"><div class="ai-lb">개동 수</div><div class="ai-v">13<span class="ai-u">개동</span></div></div>
+          <div class="ai-box"><div class="ai-lb">최고 층수</div><div class="ai-v">24<span class="ai-u">층</span></div></div>
+          <div class="ai-box"><div class="ai-lb">지하</div><div class="ai-v">B2<span class="ai-u">층</span></div></div>
+          <div class="ai-box"><div class="ai-lb">주택형</div><div class="ai-v" style="font-size:14px">59·84㎡</div></div>
+          <div class="ai-box"><div class="ai-lb">위치</div><div class="ai-v" style="font-size:12px;line-height:1.35">부산 강서구<br>에코델타 11BL</div></div>
+        </div>
+        <div style="margin-top:12px;padding:12px 14px;background:var(--surface2);border-radius:var(--r-sm);font-size:12px;color:var(--ink2);line-height:1.75">
+          <b>시행</b> 부산도시공사 (민간참여 공공주택건설사업)<br>
+          <b>시공</b> ㈜대우건설 · ㈜HJ중공업 · ㈜삼미건설 · ㈜한창이엔씨 · 지원건설㈜
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>타입별 세대</div><div class="card-m">총 1,370세대</div></div>
+          <div class="tbars" id="tbars"></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>자주 묻는 질문</div></div>
+          <div id="qaEl"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 조직 ===== -->
+    <div id="view-org" class="view">
+      <div class="card"><div class="card-hd"><div class="card-t"><span class="b"></span>임원진 소개</div></div><div class="org-grid" id="orgEl"></div></div>
+    </div>
+
+    <!-- ===== 회비 ===== -->
+    <div id="view-budget" class="view">
+      <div class="grid2">
+        <div class="stat"><div class="stat-lb">총 수입</div><div class="stat-v" id="bIn" style="font-size:23px">0<span class="u">원</span></div></div>
+        <div class="stat"><div class="stat-lb">총 지출</div><div class="stat-v" id="bOut" style="font-size:23px">0<span class="u">원</span></div></div>
+      </div>
+      <div class="card"><div class="card-hd"><div class="card-t"><span class="b"></span>회비·지출 내역</div><div class="card-m">투명 공개</div></div><div id="budgetEl"></div><div id="budgetEmpty" style="text-align:center;padding:24px;color:var(--ink4);display:none">등록된 내역이 없습니다.</div></div>
+    </div>
+
+    <!-- ===== 관리자 ===== -->
+    <div id="view-admin" class="view">
+      <div id="lock" class="lock">
+        <div class="lock-ic">🔐</div>
+        <div class="lock-t">운영진 인증</div>
+        <div class="lock-s">관리자 접속 코드를 입력하세요<br><span style="font-size:11px;color:var(--ink4)">운영진 코드 또는 제이엘 마스터 코드</span></div>
+        <div class="fg"><input id="pinInput" class="fc" type="password" placeholder="접속 코드" maxlength="16" style="text-align:center;letter-spacing:.25em;font-size:17px" onkeydown="if(event.key==='Enter')unlock()"></div>
+        <button class="btn btn-p btn-full" onclick="unlock()">접속하기</button>
+      </div>
+
+      <div id="adminPanel" style="display:none">
+        <div class="jl-banner">
+          <div class="gh-dot ok"></div>
+          <div style="flex:1"><div class="t" id="jlBannerT">운영진 모드</div><div class="s">위임장 데이터 서버 자동 저장 중</div></div>
+        </div>
+
+        <div class="atabs" id="atabs">
+          <div class="atab on" id="at-map" onclick="aTab('map')">배치도</div>
+          <div class="atab" id="at-list" onclick="aTab('list')">접수목록</div>
+          <div class="atab" id="at-vote" onclick="aTab('vote')">🗳️ 투표</div>
+          <div class="atab" id="at-notice" onclick="aTab('notice')">공지</div>
+          <div class="atab" id="at-sched" onclick="aTab('sched')">일정</div>
+          <div class="atab" id="at-budget" onclick="aTab('budget')">회비</div>
+          <div class="atab" id="at-org" onclick="aTab('org')">조직</div>
+          <div class="atab" id="at-cfg" onclick="aTab('cfg')" style="display:none">⚙️ 설정</div>
+        </div>
+
+        <!-- 배치도 -->
+        <div id="ap-map">
+          <div class="stats" style="margin-bottom:14px">
+            <div class="stat hero"><div class="stat-lb">접수율</div><div class="stat-v"><span id="aRate">0</span><span class="u">%</span></div><div class="stat-bar"><i id="aRateBar" style="width:0%"></i></div></div>
+            <div class="stat"><div class="stat-lb">총 세대</div><div class="stat-v" id="aTotal">1,370</div></div>
+            <div class="stat"><div class="stat-lb">접수 완료</div><div class="stat-v" id="aDone">0</div></div>
+            <div class="stat"><div class="stat-lb">미접수</div><div class="stat-v" id="aLeft">1,370</div></div>
+          </div>
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>세대별 배치도</div><div class="card-m">세대 클릭 → 상세·PDF 출력</div></div>
+            <div class="dong-tabs" id="dongTabs" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px"></div>
+            <div style="overflow-x:auto;padding-bottom:4px"><div id="unitGrid" style="display:grid;gap:3px;min-width:max-content"></div></div>
+            <div style="display:flex;gap:14px;margin-top:11px;font-size:11.5px;color:var(--ink3);flex-wrap:wrap">
+              <span><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--brand);margin-right:4px;vertical-align:-1px"></i>동의</span>
+              <span><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--red);margin-right:4px;vertical-align:-1px"></i>미동의</span>
+              <span><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--surface2);border:1px solid var(--border);margin-right:4px;vertical-align:-1px"></i>미접수</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 접수목록 -->
+        <div id="ap-list" style="display:none">
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>위임장 접수 목록</div>
+              <div style="display:flex;gap:7px">
+                <button class="btn btn-g btn-sm" onclick="exportCSV()">CSV</button>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);flex-wrap:wrap">
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;cursor:pointer">
+                <input type="checkbox" id="selectAllChk" onchange="toggleSelectAll(this.checked)"> 전체선택
+              </label>
+              <span id="selCount" style="font-size:12.5px;color:var(--ink4)">0건 선택됨</span>
+              <div style="margin-left:auto;display:flex;gap:7px">
+                <button class="btn btn-p btn-sm" onclick="printSelectedFromCheckbox()">🖨️ 선택 항목 PDF 출력</button>
+                <button class="btn btn-g btn-sm" onclick="printAllVisible()">전체 PDF 출력</button>
+              </div>
+            </div>
+            <div class="tbl-w"><table class="tbl"><thead><tr><th style="width:32px"><input type="checkbox" id="selectAllChk2" onchange="toggleSelectAll(this.checked)"></th><th>접수일시</th><th>동/호수</th><th>성명</th><th>연락처</th><th>위임</th><th>개인정보</th><th>PDF</th></tr></thead><tbody id="listBody"></tbody></table></div>
+            <div id="listEmpty" style="text-align:center;padding:24px;color:var(--ink4)">접수된 위임장이 없습니다.</div>
+          </div>
+        </div>
+
+        <!-- 투표 관리 -->
+        <div id="ap-vote" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>투표 등록</div>
+            <div class="fg"><label class="fl">투표 제목 <span class="rq">*</span></label><input id="vtTitle" class="fc" placeholder="예: 법무법인 선정에 관한 투표"></div>
+            <div class="frow">
+              <div class="fg"><label class="fl">시작일</label><input id="vtStart" class="fc" type="date"></div>
+              <div class="fg"><label class="fl">종료일</label><input id="vtEnd" class="fc" type="date"></div>
+            </div>
+            <div class="fg"><label class="fl">선택지 (줄바꿈 구분) <span class="rq">*</span></label><textarea id="vtOpts" class="fc" rows="4" placeholder="법무법인 제이엘&#10;기타 법무법인&#10;반대합니다"></textarea></div>
+            <button class="btn btn-p btn-full" onclick="addVote()">투표 등록</button>
+          </div>
+          <div class="card"><div class="card-t" style="margin-bottom:14px"><span class="b"></span>등록된 투표</div><div id="voteMgmt"></div></div>
+        </div>
+
+        <!-- 공지 관리 -->
+        <div id="ap-notice" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>공지 등록</div>
+            <div class="fg"><label class="fl">제목 <span class="rq">*</span></label><input id="nTitle" class="fc" placeholder="공지 제목"></div>
+            <div class="frow">
+              <div class="fg"><label class="fl">분류</label><select id="nCat" class="fc"><option>공지</option><option>중요</option><option>일정</option><option>기타</option></select></div>
+              <div class="fg"><label class="fl">날짜</label><input id="nDate" class="fc" type="date"></div>
+            </div>
+            <div class="fg"><label class="fl">내용 <span class="rq">*</span></label><textarea id="nBody" class="fc" rows="4"></textarea></div>
+            <button class="btn btn-p btn-full" onclick="addNotice()">공지 등록</button>
+          </div>
+          <div class="card"><div class="card-t" style="margin-bottom:14px"><span class="b"></span>등록된 공지</div><div id="noticeMgmt"></div></div>
+        </div>
+
+        <!-- 일정 관리 -->
+        <div id="ap-sched" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>일정 등록</div>
+            <div class="frow">
+              <div class="fg"><label class="fl">일정명 <span class="rq">*</span></label><input id="scTitle" class="fc" placeholder="중도금 1차 납부"></div>
+              <div class="fg"><label class="fl">날짜 <span class="rq">*</span></label><input id="scDate" class="fc" type="date"></div>
+            </div>
+            <div class="fg"><label class="fl">상태</label><select id="scStat" class="fc"><option value="done">완료</option><option value="now">진행중</option><option value="">예정</option></select></div>
+            <button class="btn btn-p btn-full" onclick="addSched()">일정 등록</button>
+          </div>
+          <div class="card"><div class="card-t" style="margin-bottom:14px"><span class="b"></span>등록된 일정</div><div id="schedMgmt"></div></div>
+        </div>
+
+        <!-- 회비 관리 -->
+        <div id="ap-budget" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>내역 등록</div>
+            <div class="frow">
+              <div class="fg"><label class="fl">구분</label><select id="bType" class="fc"><option value="in">수입</option><option value="out">지출</option></select></div>
+              <div class="fg"><label class="fl">날짜</label><input id="bDate" class="fc" type="date"></div>
+              <div class="fg"><label class="fl">항목명 <span class="rq">*</span></label><input id="bName" class="fc" placeholder="회비 수금"></div>
+              <div class="fg"><label class="fl">금액(원) <span class="rq">*</span></label><input id="bAmt" class="fc" placeholder="500000" inputmode="numeric"></div>
+            </div>
+            <div class="fg"><label class="fl">비고</label><input id="bNote" class="fc" placeholder="메모"></div>
+            <button class="btn btn-p btn-full" onclick="addBudget()">등록</button>
+          </div>
+        </div>
+
+        <!-- 조직 관리 -->
+        <div id="ap-org" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>임원 등록</div>
+            <div class="frow">
+              <div class="fg"><label class="fl">직책 <span class="rq">*</span></label><input id="oPos" class="fc" placeholder="회장"></div>
+              <div class="fg"><label class="fl">이름 <span class="rq">*</span></label><input id="oName" class="fc" placeholder="홍길동"></div>
+            </div>
+            <div class="fg"><label class="fl">이모지</label><input id="oEmoji" class="fc" placeholder="👤" maxlength="2"></div>
+            <button class="btn btn-p btn-full" onclick="addOrg()">임원 등록</button>
+          </div>
+          <div class="card"><div class="card-t" style="margin-bottom:14px"><span class="b"></span>현재 임원진</div><div id="orgMgmt"></div></div>
+        </div>
+
+        <!-- 설정 (제이엘 전용) -->
+        <div id="ap-cfg" style="display:none">
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>플랫폼 설정</div><span class="tag tag-a">제이엘 전용</span></div>
+            <div class="set-t">기본 정보</div>
+            <div class="fg"><label class="fl">아파트명</label><input id="cfgName" class="fc"></div>
+            <div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:14px">
+              <div class="fg" style="margin-bottom:0"><label class="fl">테마 색상</label><input id="cfgColor" type="color"></div>
+              <div style="font-size:12px;color:var(--ink4);padding-bottom:5px">아파트별 브랜드 색상</div>
+            </div>
+            <div class="fg"><label class="fl">수임 단체명</label><input id="cfgOrg" class="fc"></div>
+            <div class="fg"><label class="fl">카페 주소</label><input id="cfgCafe" class="fc"></div>
+            <div class="set-t" style="margin-top:16px">동·호수 배치도</div>
+            <div style="font-size:12px;color:var(--ink4);margin-bottom:8px">한 줄에 하나: 동이름, 층수, 라인수 (예: 101, 24, 4)</div>
+            <div class="fg"><textarea id="cfgDongs" class="fc" rows="9" style="font-family:monospace;font-size:12.5px"></textarea></div>
+            <div style="display:flex;gap:8px;margin-bottom:18px">
+              <button class="btn btn-p" onclick="saveCfg()">설정 저장</button>
+              <button class="btn btn-g" onclick="loadCfgForm()">초기화</button>
+            </div>
+            <div class="set-t">접속 코드</div>
+            <div style="display:flex;gap:8px;margin-bottom:8px">
+              <input id="cfgPin" class="fc" maxlength="16" placeholder="새 운영진 코드" style="flex:1">
+              <button class="btn btn-g" onclick="savePin()">변경</button>
+            </div>
+            <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+              <button class="btn btn-d btn-sm" onclick="wipeData()">로컬 접수 데이터 초기화</button>
+              <div style="font-size:11.5px;color:var(--ink4);margin-top:6px">⚠️ 로컬 표시 데이터만 삭제됩니다. GitHub Issues 원본은 별도 삭제가 필요합니다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-footer">
+      <span>본 플랫폼은</span> <b>법무법인 제이엘</b> <span>이 입주예정자협의회를 위해 제공합니다</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- 인쇄 위임장 -->
+<div id="printLayer"></div>
+
+<div class="toast" id="toast"></div>
+<script>
+const a0_0x2a861e=a0_0x30f7;(function(_0x101cd2,_0x2b3573){const _0x48094d=a0_0x30f7,_0x4057b9=_0x101cd2();while(!![]){try{const _0x42dfaf=-parseInt(_0x48094d(0x2ea))/0x1*(parseInt(_0x48094d(0x257))/0x2)+-parseInt(_0x48094d(0x21c))/0x3*(-parseInt(_0x48094d(0x35a))/0x4)+parseInt(_0x48094d(0x375))/0x5*(-parseInt(_0x48094d(0x2e9))/0x6)+parseInt(_0x48094d(0x366))/0x7*(-parseInt(_0x48094d(0x1ed))/0x8)+parseInt(_0x48094d(0x225))/0x9+-parseInt(_0x48094d(0x17b))/0xa*(parseInt(_0x48094d(0x25c))/0xb)+parseInt(_0x48094d(0x2be))/0xc*(parseInt(_0x48094d(0x179))/0xd);if(_0x42dfaf===_0x2b3573)break;else _0x4057b9['push'](_0x4057b9['shift']());}catch(_0xb2b33e){_0x4057b9['push'](_0x4057b9['shift']());}}}(a0_0x4cbf,0x67e04));const GH_OWNER=a0_0x2a861e(0x342),GH_REPO=a0_0x2a861e(0x194),GH_TOKEN='',GH_API='https://api.github.com/repos/'+GH_OWNER+'/'+GH_REPO,JL_MASTER='jl2025',TOTAL=0x55a,TERMS=[a0_0x2a861e(0x3ab),a0_0x2a861e(0x161),a0_0x2a861e(0x3c4),a0_0x2a861e(0x3c6),'입주예정자협의회\x20대내외\x20홍보\x20활동\x20및\x20소통,\x20전화,\x20문자에\x20대한\x20수신\x20동의',a0_0x2a861e(0x14d),a0_0x2a861e(0x20a)],TYPES=[{'t':'59㎡A','u':0x85},{'t':a0_0x2a861e(0x3b6),'u':0x5f},{'t':a0_0x2a861e(0x23d),'u':0x110},{'t':a0_0x2a861e(0x34d),'u':0xea},{'t':'59㎡E','u':0x70},{'t':'84㎡A','u':0x29},{'t':a0_0x2a861e(0x2f5),'u':0x12e},{'t':a0_0x2a861e(0x274),'u':0xb5}],QA=[{'q':a0_0x2a861e(0x3e9),'a':'미동의\x20세대는\x20협의회\x20활동의\x20법적\x20효력에서\x20제외될\x20수\x20있습니다.\x20많은\x20세대가\x20참여할수록\x20협의회\x20협상력이\x20강화됩니다.'},{'q':'온라인\x20위임장도\x20법적\x20효력이\x20있나요?','a':a0_0x2a861e(0x22a)},{'q':'법무대리인\x20안내는\x20언제\x20오나요?','a':a0_0x2a861e(0x3fc)},{'q':'위임장\x20출력(PDF)은\x20어떻게\x20하나요?','a':a0_0x2a861e(0x37c)}],DEFAULT_CFG={'aptName':a0_0x2a861e(0x39c),'themeColor':a0_0x2a861e(0x2ff),'pin':a0_0x2a861e(0x242),'orgName':'에코델타시티\x20푸르지오\x20트레파크\x20입주예정자협의회','cafeAddr':a0_0x2a861e(0x218),'dongs':[{'n':a0_0x2a861e(0x1e6),'f':0x18,'l':0x4},{'n':a0_0x2a861e(0x2d4),'f':0x18,'l':0x4},{'n':a0_0x2a861e(0x331),'f':0x18,'l':0x3},{'n':a0_0x2a861e(0x39f),'f':0x18,'l':0x3},{'n':a0_0x2a861e(0x1ae),'f':0x18,'l':0x4},{'n':a0_0x2a861e(0x1f8),'f':0x18,'l':0x3},{'n':a0_0x2a861e(0x28f),'f':0x18,'l':0x3},{'n':'108','f':0x18,'l':0x3},{'n':'109','f':0x18,'l':0x3},{'n':'110','f':0x18,'l':0x4},{'n':'111','f':0x18,'l':0x4},{'n':'112','f':0x18,'l':0x3},{'n':a0_0x2a861e(0x2d3),'f':0x18,'l':0x3}]},DEFAULT_SCHED=[{'t':a0_0x2a861e(0x3e0),'d':a0_0x2a861e(0x3b0),'s':a0_0x2a861e(0x2e5)},{'t':a0_0x2a861e(0x290),'d':a0_0x2a861e(0x18c),'s':a0_0x2a861e(0x2e5)},{'t':a0_0x2a861e(0x2a3),'d':a0_0x2a861e(0x17d),'s':a0_0x2a861e(0x2e5)},{'t':a0_0x2a861e(0x191),'d':a0_0x2a861e(0x355),'s':'done'},{'t':'중도금\x202차\x20납부','d':a0_0x2a861e(0x2e3),'s':a0_0x2a861e(0x2e5)},{'t':a0_0x2a861e(0x1fc),'d':a0_0x2a861e(0x253),'s':a0_0x2a861e(0x2e5)},{'t':'사전점검\x20예약\x20접수','d':a0_0x2a861e(0x2e8),'s':'now'},{'t':a0_0x2a861e(0x1d7),'d':a0_0x2a861e(0x362),'s':''},{'t':a0_0x2a861e(0x2fe),'d':a0_0x2a861e(0x390),'s':''}],CURRENT_PROGRESS=0x2,PROGRESS_DATA={0xa:{'sections':[{'t':a0_0x2a861e(0x25f),'items':[a0_0x2a861e(0x3c8),a0_0x2a861e(0x195),'카페\x20활성화\x20및\x20위임장\x20징구',a0_0x2a861e(0x33e),a0_0x2a861e(0x2b9)]},{'t':a0_0x2a861e(0x22f),'items':[a0_0x2a861e(0x152),'지반보강작업']}]},0x14:{'sections':[{'t':a0_0x2a861e(0x344),'items':[a0_0x2a861e(0x15c),a0_0x2a861e(0x39b),a0_0x2a861e(0x367)]},{'t':a0_0x2a861e(0x25f),'items':['도면분석',a0_0x2a861e(0x155),a0_0x2a861e(0x165),a0_0x2a861e(0x279),a0_0x2a861e(0x2b9)]},{'t':a0_0x2a861e(0x22f),'items':[a0_0x2a861e(0x270),'다지기\x20및\x20지반보강공사,\x20되메우기\x20작업']}]},0x1e:{'sections':[{'t':a0_0x2a861e(0x344),'items':[a0_0x2a861e(0x292),a0_0x2a861e(0x14c),'공용부\x20창호']},{'t':a0_0x2a861e(0x22f),'items':[a0_0x2a861e(0x1f9),a0_0x2a861e(0x3a5),'최하층\x20단열공사',a0_0x2a861e(0x3a3),a0_0x2a861e(0x30e)]}]},0x28:{'sections':[{'t':'공정별\x20체크사항','items':[a0_0x2a861e(0x3dc),a0_0x2a861e(0x3da),a0_0x2a861e(0x1d8)]},{'t':'협의회','items':['감리보고서\x20분석(분기별)',a0_0x2a861e(0x164)]},{'t':a0_0x2a861e(0x22f),'items':[a0_0x2a861e(0x1ee),a0_0x2a861e(0x31b),a0_0x2a861e(0x2c0),'부지정리',a0_0x2a861e(0x267)]}]},0x32:{'sections':[{'t':a0_0x2a861e(0x344),'items':[a0_0x2a861e(0x3fa),a0_0x2a861e(0x2cf)]},{'t':a0_0x2a861e(0x22f),'items':[a0_0x2a861e(0x20e),'유리공사',a0_0x2a861e(0x1f1),a0_0x2a861e(0x174),a0_0x2a861e(0x360)]}]},0x3c:{'sections':[{'t':a0_0x2a861e(0x344),'items':[a0_0x2a861e(0x212),'문주\x20디자인\x20검토',a0_0x2a861e(0x320)]},{'t':a0_0x2a861e(0x25f),'items':[a0_0x2a861e(0x1a3),a0_0x2a861e(0x261)]},{'t':'공사현황','items':[a0_0x2a861e(0x1df),a0_0x2a861e(0x1d0)]}]},0x46:{'sections':[{'t':a0_0x2a861e(0x344),'items':[a0_0x2a861e(0x3e4),'외부마감재\x20검토',a0_0x2a861e(0x334),a0_0x2a861e(0x34e)]},{'t':a0_0x2a861e(0x25f),'items':[a0_0x2a861e(0x2dc),a0_0x2a861e(0x314),a0_0x2a861e(0x2a4)]},{'t':'공사현황','items':['골조\x20마감공사',a0_0x2a861e(0x391),a0_0x2a861e(0x1c1),a0_0x2a861e(0x219),a0_0x2a861e(0x1d6),'조경특화계획']}]},0x50:{'sections':[{'t':a0_0x2a861e(0x344),'items':[a0_0x2a861e(0x2b6),a0_0x2a861e(0x3aa)]},{'t':'협의회','items':[a0_0x2a861e(0x303),a0_0x2a861e(0x240),a0_0x2a861e(0x2d0)]},{'t':a0_0x2a861e(0x22f),'items':[a0_0x2a861e(0x1c2),a0_0x2a861e(0x1d4)]}]},0x5a:{'sections':[{'t':a0_0x2a861e(0x344),'items':[a0_0x2a861e(0x37a),a0_0x2a861e(0x15b),a0_0x2a861e(0x333),a0_0x2a861e(0x332)]},{'t':a0_0x2a861e(0x25f),'items':[a0_0x2a861e(0x26e)]},{'t':a0_0x2a861e(0x22f),'items':[a0_0x2a861e(0x259),a0_0x2a861e(0x1db),'시설물공사']}]},0x64:{'sections':[{'t':a0_0x2a861e(0x25f),'items':['품질점검\x20준비',a0_0x2a861e(0x3b9),a0_0x2a861e(0x3a9),a0_0x2a861e(0x310),'관리소장\x20미팅']},{'t':a0_0x2a861e(0x22f),'items':[a0_0x2a861e(0x388),a0_0x2a861e(0x209),a0_0x2a861e(0x361)]}]}},_mem={},S={async 'g'(_0x579c21){const _0x54e3ac=a0_0x2a861e;try{if(window['storage']){const _0x46e747=await window[_0x54e3ac(0x358)][_0x54e3ac(0x1ef)](_0x579c21);return _0x46e747?JSON[_0x54e3ac(0x22d)](_0x46e747[_0x54e3ac(0x2f0)]):null;}}catch(_0x3d5ce7){}try{const _0x45c9cc=localStorage[_0x54e3ac(0x2b3)](_0x579c21);if(_0x45c9cc)return JSON[_0x54e3ac(0x22d)](_0x45c9cc);}catch(_0x275190){}return _mem[_0x579c21]??null;},async 's'(_0x23a93d,_0x541aac){const _0x1ca2ea=a0_0x2a861e;try{window[_0x1ca2ea(0x358)]&&await window[_0x1ca2ea(0x358)][_0x1ca2ea(0x340)](_0x23a93d,JSON[_0x1ca2ea(0x1aa)](_0x541aac));}catch(_0x1f88fa){}try{localStorage['setItem'](_0x23a93d,JSON[_0x1ca2ea(0x1aa)](_0x541aac));}catch(_0x29db63){}_mem[_0x23a93d]=_0x541aac;}};let CFG=JSON[a0_0x2a861e(0x22d)](JSON[a0_0x2a861e(0x1aa)](DEFAULT_CFG)),DATA={},NOTICES=[],SCHEDS=[],BUDGETS=[],ORGS=[],VOTES=[],STATS={'done':0x0,'agree':0x0},SUBMITTED_KEYS=[],curDong=null,curTab=a0_0x2a861e(0x229),unlocked=![],jlMode=![],lastRec=null,dataLoaded=![];async function init(){const _0x397c80=a0_0x2a861e,_0x13ac64=await S['g'](_0x397c80(0x33b));if(_0x13ac64)CFG={...DEFAULT_CFG,..._0x13ac64,'dongs':_0x13ac64[_0x397c80(0x1a2)]&&_0x13ac64['dongs'][_0x397c80(0x19e)]?_0x13ac64[_0x397c80(0x1a2)]:DEFAULT_CFG[_0x397c80(0x1a2)]};const _0x35aa85=await S['g'](_0x397c80(0x204));if(_0x35aa85)STATS=_0x35aa85;const _0x4ff8fb=await S['g'](_0x397c80(0x33f));if(_0x4ff8fb)SUBMITTED_KEYS=_0x4ff8fb;const _0xa01552=await S['g'](_0x397c80(0x173));if(_0xa01552)NOTICES=_0xa01552;const _0x3f8017=await S['g']('tp_scheds');SCHEDS=_0x3f8017&&_0x3f8017[_0x397c80(0x19e)]?_0x3f8017:[...DEFAULT_SCHED];const _0x5710ff=await S['g'](_0x397c80(0x1e5));if(_0x5710ff)BUDGETS=_0x5710ff;const _0x2ba70c=await S['g'](_0x397c80(0x24e));if(_0x2ba70c)ORGS=_0x2ba70c;const _0x3983f2=await S['g'](_0x397c80(0x3bf));if(_0x3983f2)VOTES=_0x3983f2;applyTheme(),document[_0x397c80(0x365)](_0x397c80(0x352))[_0x397c80(0x246)]=TERMS[_0x397c80(0x229)](_0x125020=>_0x397c80(0x169)+esc(_0x125020)+_0x397c80(0x264))[_0x397c80(0x231)](''),setDate(),renderDongSel(),bindMasks(),initSig(),initJointSig(),curDong=CFG['dongs'][0x0]?.['n']||'101',renderAll(),checkGH(),guardDevtools();}function esc(_0x29c4fd){const _0x2a8390=a0_0x2a861e;return String(_0x29c4fd??'')[_0x2a8390(0x29d)](/[&<>"]/g,_0xf922d2=>({'&':_0x2a8390(0x389),'<':_0x2a8390(0x38a),'>':'&gt;','\x22':_0x2a8390(0x17e)}[_0xf922d2]));}function gv(_0x420ea4){const _0x5c203c=a0_0x2a861e,_0x155b42=document['getElementById'](_0x420ea4);return _0x155b42?_0x155b42[_0x5c203c(0x2f0)][_0x5c203c(0x16b)]():'';}function rv(_0x297831){const _0x1c1e5f=a0_0x2a861e,_0x2ada68=document[_0x1c1e5f(0x2ed)](_0x1c1e5f(0x3ca)+_0x297831+']:checked');return _0x2ada68?_0x2ada68[_0x1c1e5f(0x2f0)]:'';}function fmtTs(_0x4f5c3c){const _0x5c6e8b=a0_0x2a861e,_0x20e541=new Date(_0x4f5c3c);return _0x20e541[_0x5c6e8b(0x2dd)]()+'.'+String(_0x20e541[_0x5c6e8b(0x3fd)]()+0x1)[_0x5c6e8b(0x1b7)](0x2,'0')+'.'+String(_0x20e541[_0x5c6e8b(0x3af)]())[_0x5c6e8b(0x1b7)](0x2,'0')+'\x20'+String(_0x20e541[_0x5c6e8b(0x1dc)]())[_0x5c6e8b(0x1b7)](0x2,'0')+':'+String(_0x20e541['getMinutes']())[_0x5c6e8b(0x1b7)](0x2,'0');}function fmtDate(_0x3b5bde){const _0x5c38d9=a0_0x2a861e;return _0x3b5bde[_0x5c38d9(0x2dd)]()+'-'+String(_0x3b5bde[_0x5c38d9(0x3fd)]()+0x1)[_0x5c38d9(0x1b7)](0x2,'0')+'-'+String(_0x3b5bde[_0x5c38d9(0x3af)]())[_0x5c38d9(0x1b7)](0x2,'0');}let toastT;function toast(_0x312d76){const _0xcbba49=a0_0x2a861e,_0x1e72b5=document[_0xcbba49(0x365)](_0xcbba49(0x3f0));_0x1e72b5[_0xcbba49(0x299)]=_0x312d76,_0x1e72b5['classList'][_0xcbba49(0x1f4)]('on'),clearTimeout(toastT),toastT=setTimeout(()=>_0x1e72b5[_0xcbba49(0x199)][_0xcbba49(0x3f1)]('on'),0xaf0);}function applyTheme(){const _0x3aef88=a0_0x2a861e,_0x5881ac=CFG[_0x3aef88(0x3ec)];document[_0x3aef88(0x339)][_0x3aef88(0x382)][_0x3aef88(0x1c8)](_0x3aef88(0x300),_0x5881ac),document[_0x3aef88(0x339)][_0x3aef88(0x382)][_0x3aef88(0x1c8)]('--brand2',shade(_0x5881ac,0x14)),document[_0x3aef88(0x339)][_0x3aef88(0x382)][_0x3aef88(0x1c8)](_0x3aef88(0x186),shade(_0x5881ac,0x28)),document[_0x3aef88(0x339)][_0x3aef88(0x382)][_0x3aef88(0x1c8)](_0x3aef88(0x319),_0x5881ac+'16'),document['documentElement']['style'][_0x3aef88(0x1c8)](_0x3aef88(0x3c5),_0x5881ac+'33'),document[_0x3aef88(0x3f3)]=CFG[_0x3aef88(0x26f)]+_0x3aef88(0x27f);const _0x2f7f27=document['getElementById'](_0x3aef88(0x1c9));if(_0x2f7f27)_0x2f7f27[_0x3aef88(0x299)]=CFG[_0x3aef88(0x26f)];const _0x29c75b=document['getElementById'](_0x3aef88(0x18a));if(_0x29c75b)_0x29c75b[_0x3aef88(0x299)]=CFG[_0x3aef88(0x26f)];}function shade(_0xac0219,_0x46dfd1){const _0x23de44=a0_0x2a861e;let _0x2e2ac3=parseInt(_0xac0219[_0x23de44(0x29d)]('#',''),0x10),_0x5b549a=Math['min'](0xff,(_0x2e2ac3>>0x10&0xff)+_0x46dfd1),_0x34cbdb=Math[_0x23de44(0x1a5)](0xff,(_0x2e2ac3>>0x8&0xff)+_0x46dfd1),_0x4908d8=Math[_0x23de44(0x1a5)](0xff,(_0x2e2ac3&0xff)+_0x46dfd1);return'#'+[_0x5b549a,_0x34cbdb,_0x4908d8][_0x23de44(0x229)](_0x146fb2=>_0x146fb2[_0x23de44(0x1a8)](0x10)[_0x23de44(0x1b7)](0x2,'0'))[_0x23de44(0x231)]('');}function setDate(){const _0x2d47c5=a0_0x2a861e,_0x48bd3e=new Date();document[_0x2d47c5(0x365)](_0x2d47c5(0x3e8))[_0x2d47c5(0x299)]=_0x48bd3e[_0x2d47c5(0x2dd)]()+'년\x20'+(_0x48bd3e[_0x2d47c5(0x3fd)]()+0x1)+'월\x20'+_0x48bd3e['getDate']()+'일';}const WORKER_URL=a0_0x2a861e(0x285);async function checkGH(){const _0x1ee7a8=a0_0x2a861e,_0xfa3ce4=document[_0x1ee7a8(0x365)](_0x1ee7a8(0x1ec)),_0x3c7a90=document['getElementById'](_0x1ee7a8(0x217));try{const _0x25fb61=await fetch(GH_API+'/issues?per_page=1');if(_0x25fb61['ok'])_0xfa3ce4[_0x1ee7a8(0x29e)]=_0x1ee7a8(0x324),_0x3c7a90[_0x1ee7a8(0x299)]=_0x1ee7a8(0x2ae);else throw 0x0;}catch{_0xfa3ce4[_0x1ee7a8(0x29e)]=_0x1ee7a8(0x371),_0x3c7a90[_0x1ee7a8(0x299)]=_0x1ee7a8(0x239);}}async function saveToGH(_0x39e10b){const _0x380728=a0_0x2a861e;if(!WORKER_URL)throw new Error(_0x380728(0x3fb));const _0x291170=await fetch(WORKER_URL,{'method':'POST','headers':{'Content-Type':_0x380728(0x230)},'body':JSON[_0x380728(0x1aa)]({'type':'delegate','rec':_0x39e10b})});if(!_0x291170['ok'])throw new Error('save\x20failed');return _0x291170[_0x380728(0x213)]();}async function voteToGH(_0x5bcb64,_0xb13012,_0x2b5534,_0x2f6570){const _0x1cf210=a0_0x2a861e;if(!WORKER_URL)return;try{await fetch(WORKER_URL,{'method':_0x1cf210(0x1c7),'headers':{'Content-Type':_0x1cf210(0x230)},'body':JSON[_0x1cf210(0x1aa)]({'type':_0x1cf210(0x3bd),'title':_0x5bcb64[_0x1cf210(0x3f3)],'option':_0x5bcb64[_0x1cf210(0x31e)][_0xb13012],'dong':_0x2b5534,'ho':_0x2f6570})});}catch(_0x4e7d84){console[_0x1cf210(0x3ef)](_0x1cf210(0x235),_0x4e7d84);}}async function loadFullDataForAdmin(){const _0x2ea3e7=a0_0x2a861e,_0x4627fb=document[_0x2ea3e7(0x365)](_0x2ea3e7(0x3a6));if(_0x4627fb)_0x4627fb['innerHTML']=_0x2ea3e7(0x160);DATA={};let _0xb168d5=0x0;try{let _0x57c9ec=0x1,_0x50e20e=[];while(_0x57c9ec<=0x5){const _0x2ef15d=await fetch(GH_API+_0x2ea3e7(0x262)+_0x57c9ec);if(!_0x2ef15d['ok'])break;const _0x45425e=await _0x2ef15d['json']();_0x50e20e=_0x50e20e[_0x2ea3e7(0x197)](_0x45425e);if(_0x45425e['length']<0x64)break;_0x57c9ec++;}for(const _0x1b9c6d of _0x50e20e){const _0x4b70cb=parseIssueBody(_0x1b9c6d['body']);_0x4b70cb&&(DATA[_0x4b70cb[_0x2ea3e7(0x1b6)]+'-'+_0x4b70cb['ho']]=_0x4b70cb,_0xb168d5++);}}catch(_0x453800){console[_0x2ea3e7(0x3ef)](_0x2ea3e7(0x2f4),_0x453800);}const _0x589f70=await S['g'](_0x2ea3e7(0x396))||{};let _0x51943e=0x0;for(const _0x46bf41 in _0x589f70){!DATA[_0x46bf41]&&(DATA[_0x46bf41]={..._0x589f70[_0x46bf41],'_pending':!![]},_0x51943e++);}dataLoaded=!![],toast(_0x2ea3e7(0x1e4)+_0xb168d5+'건'+(_0x51943e?_0x2ea3e7(0x3f2)+_0x51943e+'건':'')+'\x20불러왔습니다');}function parseIssueBody(_0x50c65e){const _0x1c5279=a0_0x2a861e;try{const _0x5ebf83=_0x3aeb16=>{const _0x16178e=a0_0x30f7,_0x253e74=_0x50c65e[_0x16178e(0x386)](new RegExp(_0x16178e(0x1f2)+_0x3aeb16+'\x5cs*\x5c|\x5cs*([^|]+)\x5c|'));return _0x253e74?_0x253e74[0x1]['trim']():'';},_0x2db539=_0x5ebf83(_0x1c5279(0x313)),_0x403a5d=_0x2db539['match'](/(\d+)동\s*(\d+)호/);if(!_0x403a5d)return null;const _0x3a4f2c=_0x50c65e[_0x1c5279(0x386)](/!\[서명\]\(([^)]+)\)/),_0x3ee7d8=_0x3a4f2c?_0x3a4f2c[0x1]:'',_0x1e768c=_0x50c65e[_0x1c5279(0x386)](/!\[공동명의자서명\]\(([^)]+)\)/),_0x1af00e=_0x5ebf83('공동명의자');let _0x2535cc=null;if(_0x1af00e){const _0x34494a=_0x1af00e['match'](/^(.+?)\s*\(([^)]+)\)/);_0x2535cc={'name':_0x34494a?_0x34494a[0x1][_0x1c5279(0x16b)]():_0x1af00e,'birth':_0x34494a?_0x34494a[0x2]['trim']():'','phone':_0x5ebf83(_0x1c5279(0x2d1)),'sig':_0x1e768c?_0x1e768c[0x1]:''};}return{'dong':_0x403a5d[0x1],'ho':_0x403a5d[0x2],'name':_0x5ebf83('성명'),'birth':_0x5ebf83(_0x1c5279(0x305)),'phone':_0x5ebf83(_0x1c5279(0x23f)),'agree':_0x5ebf83(_0x1c5279(0x3d9)),'priv':_0x5ebf83('개인정보\x20동의'),'ts':_0x5ebf83(_0x1c5279(0x3de)),'sig':_0x3ee7d8,'joint':_0x2535cc};}catch(_0x3d1427){return null;}}const PAGES=[a0_0x2a861e(0x162),a0_0x2a861e(0x28c),a0_0x2a861e(0x3bd),a0_0x2a861e(0x35b),a0_0x2a861e(0x1af),'gallery',a0_0x2a861e(0x3b5),a0_0x2a861e(0x37b),a0_0x2a861e(0x238),a0_0x2a861e(0x2c7)],NAMES={'home':'홈','delegate':'위임장\x20제출','vote':a0_0x2a861e(0x1e7),'notice':a0_0x2a861e(0x379),'schedule':'일정\x20타임라인','gallery':a0_0x2a861e(0x247),'aptinfo':a0_0x2a861e(0x278),'org':a0_0x2a861e(0x27e),'budget':a0_0x2a861e(0x3bc),'admin':a0_0x2a861e(0x38b)};let curPage=a0_0x2a861e(0x162);function go(_0x59308d){const _0x59bdef=a0_0x2a861e;curPage=_0x59308d,PAGES[_0x59bdef(0x271)](_0x1691dd=>{const _0x71f9e7=_0x59bdef;document[_0x71f9e7(0x365)]('view-'+_0x1691dd)?.[_0x71f9e7(0x199)][_0x71f9e7(0x163)]('on',_0x1691dd===_0x59308d),document[_0x71f9e7(0x365)](_0x71f9e7(0x297)+_0x1691dd)?.[_0x71f9e7(0x199)][_0x71f9e7(0x163)]('on',_0x1691dd===_0x59308d);}),document[_0x59bdef(0x365)]('tbTitle')['textContent']=NAMES[_0x59308d]||_0x59308d;_0x59308d===_0x59bdef(0x28c)&&(setTimeout(resizeSig,0x32),setTimeout(resizeSig,0xfa),document['getElementById'](_0x59bdef(0x2aa))[_0x59bdef(0x3e6)]&&(setTimeout(resizeJointSig,0x32),setTimeout(resizeJointSig,0xfa)));if(_0x59308d==='admin'&&unlocked)refreshAdmin();_0x59308d===_0x59bdef(0x162)&&(renderHome(),fetchVoteTallies()[_0x59bdef(0x2f8)](_0x5b0039=>{applyTalliesToVotes(_0x5b0039),renderHome();})),_0x59308d===_0x59bdef(0x3bd)&&(renderVotes(),fetchVoteTallies()[_0x59bdef(0x2f8)](_0x588640=>{applyTalliesToVotes(_0x588640),renderVotes();})),window[_0x59bdef(0x171)]({'top':0x0}),closeSb();}function toggleSb(){const _0x2d89b7=a0_0x2a861e;document['getElementById'](_0x2d89b7(0x1e1))['classList']['toggle'](_0x2d89b7(0x387)),document['getElementById']('overlay')[_0x2d89b7(0x199)][_0x2d89b7(0x163)]('on');}function closeSb(){const _0x22de82=a0_0x2a861e;document[_0x22de82(0x365)]('sidebar')[_0x22de82(0x199)][_0x22de82(0x3f1)](_0x22de82(0x387)),document['getElementById'](_0x22de82(0x1a1))[_0x22de82(0x199)]['remove']('on');}function calcStats(){const _0x2d2f26=a0_0x2a861e,_0x223435=dataLoaded?Object[_0x2d2f26(0x3a0)](DATA)[_0x2d2f26(0x19e)]:STATS['done'],_0x34aceb=dataLoaded?Object[_0x2d2f26(0x397)](DATA)['filter'](_0x233752=>_0x233752['agree']==='동의')[_0x2d2f26(0x19e)]:STATS['agree'];return{'done':_0x223435,'agree':_0x34aceb,'deny':_0x223435-_0x34aceb,'rate':Math['round'](_0x223435/TOTAL*0x3e8)/0xa,'left':TOTAL-_0x223435};}function updateStats(){const _0x41d664=a0_0x2a861e,_0x3d1279=calcStats(),_0x489e2b=(_0xb20064,_0x425860)=>{const _0x357a2d=a0_0x30f7,_0xa61526=document[_0x357a2d(0x365)](_0xb20064);if(_0xa61526)_0xa61526['textContent']=_0x425860;};_0x489e2b(_0x41d664(0x39a),_0x3d1279[_0x41d664(0x2bd)]),document['getElementById'](_0x41d664(0x2ad))[_0x41d664(0x382)][_0x41d664(0x167)]=Math[_0x41d664(0x1a5)](_0x3d1279[_0x41d664(0x2bd)],0x64)+'%',_0x489e2b(_0x41d664(0x327),_0x3d1279['rate']),document[_0x41d664(0x365)](_0x41d664(0x19f))[_0x41d664(0x382)][_0x41d664(0x167)]=Math[_0x41d664(0x1a5)](_0x3d1279[_0x41d664(0x2bd)],0x64)+'%',_0x489e2b(_0x41d664(0x36c),_0x3d1279[_0x41d664(0x2e5)]),_0x489e2b(_0x41d664(0x36b),_0x3d1279[_0x41d664(0x1b0)]),_0x489e2b('stLeft',_0x3d1279[_0x41d664(0x370)][_0x41d664(0x36d)]());const _0x449111=0xfb,_0x1e5428=_0x449111*(_0x3d1279[_0x41d664(0x2bd)]/0x64);document[_0x41d664(0x365)](_0x41d664(0x302))[_0x41d664(0x35f)](_0x41d664(0x177),_0x1e5428+'\x20'+(_0x449111-_0x1e5428)),_0x489e2b(_0x41d664(0x27c),_0x3d1279[_0x41d664(0x2bd)]+'%'),_0x489e2b(_0x41d664(0x399),_0x3d1279['done'][_0x41d664(0x36d)]()+_0x41d664(0x27b)+TOTAL['toLocaleString']()+_0x41d664(0x193)),_0x489e2b('rlAgree',_0x3d1279[_0x41d664(0x1b0)]['toLocaleString']()+'세대'),_0x489e2b(_0x41d664(0x30f),_0x3d1279['deny'][_0x41d664(0x36d)]()+'세대'),_0x489e2b(_0x41d664(0x35e),_0x3d1279[_0x41d664(0x370)][_0x41d664(0x36d)]()+'세대'),document[_0x41d664(0x365)](_0x41d664(0x1cb))['style'][_0x41d664(0x167)]=(_0x3d1279['done']?_0x3d1279[_0x41d664(0x1b0)]/_0x3d1279['done']*0x64:0x0)+'%',document['getElementById'](_0x41d664(0x2f9))[_0x41d664(0x382)][_0x41d664(0x167)]=(_0x3d1279[_0x41d664(0x2e5)]?_0x3d1279[_0x41d664(0x308)]/_0x3d1279['done']*0x64:0x0)+'%',document[_0x41d664(0x365)](_0x41d664(0x2f3))[_0x41d664(0x382)][_0x41d664(0x167)]=_0x3d1279[_0x41d664(0x370)]/TOTAL*0x64+'%',_0x489e2b(_0x41d664(0x322),_0x3d1279[_0x41d664(0x2bd)]);const _0x303286=document[_0x41d664(0x365)](_0x41d664(0x185));if(_0x303286)_0x303286['style'][_0x41d664(0x167)]=Math[_0x41d664(0x1a5)](_0x3d1279[_0x41d664(0x2bd)],0x64)+'%';_0x489e2b(_0x41d664(0x311),_0x3d1279['done']),_0x489e2b('aLeft',_0x3d1279[_0x41d664(0x370)]['toLocaleString']()),_0x489e2b('aTotal',TOTAL[_0x41d664(0x36d)]());}function renderAll(){updateStats(),renderHome(),renderNotice(),renderSchedule(),renderAptInfo(),renderOrg(),renderBudget(),renderVotes();}function renderHome(){const _0x13e03d=a0_0x2a861e;updateStats();const _0x232eb2=document[_0x13e03d(0x365)]('homeVote'),_0x4d57a1=VOTES[_0x13e03d(0x2a8)](_0x2c4231=>_0x2c4231[_0x13e03d(0x3f7)]===_0x13e03d(0x37e))[_0x13e03d(0x26b)](0x0,0x2);_0x232eb2[_0x13e03d(0x246)]=_0x4d57a1['length']?_0x4d57a1[_0x13e03d(0x229)](_0x344751=>{const _0x318578=_0x13e03d,_0x1eaee7=Object[_0x318578(0x397)](_0x344751[_0x318578(0x18e)]||{})[_0x318578(0x1c6)]((_0x3a4929,_0x57212e)=>_0x3a4929+_0x57212e,0x0);return _0x318578(0x318)+esc(_0x344751[_0x318578(0x3f3)])+_0x318578(0x210)+_0x344751[_0x318578(0x39d)]+_0x318578(0x2b8)+_0x1eaee7+_0x318578(0x23b);})[_0x13e03d(0x231)](''):_0x13e03d(0x23a),renderProgressTrack();}function renderProgressTrack(){const _0x933612=a0_0x2a861e,_0x2dc71a=[0xa,0x14,0x1e,0x28,0x32,0x3c,0x46,0x50,0x5a,0x64],_0x58d0e0=document['getElementById']('progDots');if(!_0x58d0e0)return;_0x58d0e0['innerHTML']=_0x2dc71a[_0x933612(0x229)](_0x3d0005=>{const _0x2fdb8e=_0x933612,_0xb2d5c5=_0x3d0005<=CURRENT_PROGRESS?_0x2fdb8e(0x384):nearestMilestone(CURRENT_PROGRESS)===_0x3d0005?_0x2fdb8e(0x296):'';return _0x2fdb8e(0x22b)+_0x3d0005+_0x2fdb8e(0x3d8)+_0xb2d5c5+_0x2fdb8e(0x244)+_0x3d0005+_0x2fdb8e(0x1d1);})[_0x933612(0x231)](''),document['getElementById'](_0x933612(0x286))[_0x933612(0x299)]=CURRENT_PROGRESS+'%',requestAnimationFrame(()=>{setTimeout(()=>{const _0xd523e6=a0_0x30f7;document[_0xd523e6(0x365)](_0xd523e6(0x2f2))[_0xd523e6(0x382)]['width']=Math['min'](0x64,CURRENT_PROGRESS)+'%';},0x96);});}function nearestMilestone(_0x5875d1){const _0x1de23e=[0xa,0x14,0x1e,0x28,0x32,0x3c,0x46,0x50,0x5a,0x64];for(const _0xf80f88 of _0x1de23e)if(_0x5875d1<=_0xf80f88)return _0xf80f88;return 0x64;}function a0_0x30f7(_0x52f6a2,_0x3cc050){_0x52f6a2=_0x52f6a2-0x14c;const _0x4cbf77=a0_0x4cbf();let _0x30f7e4=_0x4cbf77[_0x52f6a2];if(a0_0x30f7['gWSLkF']===undefined){var _0x366ff9=function(_0x13555e){const _0x14e029='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x579c21='',_0x46e747='';for(let _0x3d5ce7=0x0,_0x45c9cc,_0x275190,_0x23a93d=0x0;_0x275190=_0x13555e['charAt'](_0x23a93d++);~_0x275190&&(_0x45c9cc=_0x3d5ce7%0x4?_0x45c9cc*0x40+_0x275190:_0x275190,_0x3d5ce7++%0x4)?_0x579c21+=String['fromCharCode'](0xff&_0x45c9cc>>(-0x2*_0x3d5ce7&0x6)):0x0){_0x275190=_0x14e029['indexOf'](_0x275190);}for(let _0x541aac=0x0,_0x1f88fa=_0x579c21['length'];_0x541aac<_0x1f88fa;_0x541aac++){_0x46e747+='%'+('00'+_0x579c21['charCodeAt'](_0x541aac)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x46e747);};a0_0x30f7['AFWltW']=_0x366ff9,a0_0x30f7['oGvXLm']={},a0_0x30f7['gWSLkF']=!![];}const _0x4620d2=_0x4cbf77[0x0],_0x2ada5f=_0x52f6a2+_0x4620d2,_0x4a7441=a0_0x30f7['oGvXLm'][_0x2ada5f];return!_0x4a7441?(_0x30f7e4=a0_0x30f7['AFWltW'](_0x30f7e4),a0_0x30f7['oGvXLm'][_0x2ada5f]=_0x30f7e4):_0x30f7e4=_0x4a7441,_0x30f7e4;}function openProgressPopup(_0x4a65dc){const _0x2af190=a0_0x2a861e,_0x5bc8d5=PROGRESS_DATA[_0x4a65dc];document[_0x2af190(0x365)](_0x2af190(0x207))[_0x2af190(0x299)]=_0x4a65dc+'%';const _0x27eaf7=document['getElementById']('progModalBody');!_0x5bc8d5||!_0x5bc8d5[_0x2af190(0x2e4)]||!_0x5bc8d5[_0x2af190(0x2e4)][_0x2af190(0x19e)]?_0x27eaf7[_0x2af190(0x246)]='<div\x20style=\x22color:var(--ink4);font-size:13px\x22>등록된\x20안내가\x20없습니다.</div>':_0x27eaf7[_0x2af190(0x246)]=_0x5bc8d5['sections']['map'](_0xf74f12=>'\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22prog-sec\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22prog-sec-t\x22>'+esc(_0xf74f12['t'])+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22prog-sec-list\x22>'+_0xf74f12[_0x2af190(0x2bc)]['map'](_0x19401b=>_0x2af190(0x380)+esc(_0x19401b)+_0x2af190(0x1dd))['join']('')+_0x2af190(0x266))[_0x2af190(0x231)](''),document['getElementById'](_0x2af190(0x3d1))[_0x2af190(0x199)][_0x2af190(0x1f4)]('on');}function closeProgressPopup(){const _0xba548d=a0_0x2a861e;document[_0xba548d(0x365)](_0xba548d(0x3d1))[_0xba548d(0x199)][_0xba548d(0x3f1)]('on');}function renderNotice(){const _0x1c4c51=a0_0x2a861e,_0x36c5e5=document['getElementById'](_0x1c4c51(0x3ee)),_0xf0ce09=document[_0x1c4c51(0x365)](_0x1c4c51(0x3d5));if(!NOTICES[_0x1c4c51(0x19e)]){_0x36c5e5[_0x1c4c51(0x246)]='',_0xf0ce09[_0x1c4c51(0x382)][_0x1c4c51(0x1f3)]=_0x1c4c51(0x1bf);return;}_0xf0ce09[_0x1c4c51(0x382)][_0x1c4c51(0x1f3)]='none',_0x36c5e5[_0x1c4c51(0x246)]=[...NOTICES]['reverse']()[_0x1c4c51(0x229)]((_0x193b1e,_0x1c76c5)=>'<div\x20class=\x22nt-i\x22\x20onclick=\x22showNotice('+(NOTICES[_0x1c4c51(0x19e)]-0x1-_0x1c76c5)+_0x1c4c51(0x223)+(_0x193b1e[_0x1c4c51(0x34c)]==='중요'?_0x1c4c51(0x3f6):_0x193b1e[_0x1c4c51(0x34c)]==='일정'?_0x1c4c51(0x36e):'ntc-nor')+'\x22>'+esc(_0x193b1e['cat']||'공지')+_0x1c4c51(0x30c)+esc(_0x193b1e['title'])+_0x1c4c51(0x32d)+esc(_0x193b1e[_0x1c4c51(0x157)]||'')+_0x1c4c51(0x28e))[_0x1c4c51(0x231)]('');}function showNotice(_0xdf137e){const _0x32e568=a0_0x2a861e,_0x151d1d=NOTICES[_0xdf137e];document['getElementById']('ndTitle')['innerHTML']=_0x32e568(0x3c0)+esc(_0x151d1d[_0x32e568(0x3f3)]),document['getElementById'](_0x32e568(0x2f1))['textContent']=(_0x151d1d['cat']||'공지')+_0x32e568(0x349)+_0x151d1d[_0x32e568(0x157)],document[_0x32e568(0x365)](_0x32e568(0x19c))[_0x32e568(0x299)]=_0x151d1d[_0x32e568(0x3a4)],document[_0x32e568(0x365)](_0x32e568(0x241))[_0x32e568(0x382)][_0x32e568(0x1f3)]='block',document['getElementById'](_0x32e568(0x241))[_0x32e568(0x2fc)]({'behavior':_0x32e568(0x37d)});}function renderSchedule(){const _0x52ea93=a0_0x2a861e,_0xd746df=document[_0x52ea93(0x365)](_0x52ea93(0x168));_0xd746df['innerHTML']=SCHEDS['length']?SCHEDS[_0x52ea93(0x229)](_0x136a72=>_0x52ea93(0x17a)+(_0x136a72['s']||'')+'\x22><div\x20class=\x22tl-d\x22></div><div\x20class=\x22tl-dt\x22>'+esc(_0x136a72['d']||'')+_0x52ea93(0x2cc)+esc(_0x136a72['t'])+(_0x136a72['s']===_0x52ea93(0x3d3)?_0x52ea93(0x394):_0x136a72['s']===_0x52ea93(0x2e5)?_0x52ea93(0x2da):'')+'</div></div>')[_0x52ea93(0x231)](''):_0x52ea93(0x31f);}function renderAptInfo(){const _0x5a5c7b=a0_0x2a861e,_0x2d5338=Math[_0x5a5c7b(0x368)](...TYPES['map'](_0x36b605=>_0x36b605['u']));document[_0x5a5c7b(0x365)]('tbars')['innerHTML']=TYPES['map'](_0x499042=>_0x5a5c7b(0x24c)+_0x499042['t']+_0x5a5c7b(0x3cc)+_0x499042['u'][_0x5a5c7b(0x36d)]()+'세대</span></div><div\x20class=\x22tb-tr\x22><div\x20class=\x22tb-f\x22\x20style=\x22width:'+Math['round'](_0x499042['u']/_0x2d5338*0x64)+'%\x22></div></div></div>')[_0x5a5c7b(0x231)](''),document[_0x5a5c7b(0x365)](_0x5a5c7b(0x32a))[_0x5a5c7b(0x246)]=QA[_0x5a5c7b(0x229)]((_0x162b96,_0x49b791)=>_0x5a5c7b(0x224)+_0x49b791+_0x5a5c7b(0x2e2)+_0x49b791+_0x5a5c7b(0x3e3)+(_0x49b791+0x1)+_0x5a5c7b(0x32b)+esc(_0x162b96['q'])+_0x5a5c7b(0x16c)+esc(_0x162b96['a'])+_0x5a5c7b(0x2eb))[_0x5a5c7b(0x231)]('');}function renderOrg(){const _0x4f487e=a0_0x2a861e,_0x541a75=document['getElementById']('orgEl');_0x541a75[_0x4f487e(0x246)]=ORGS['length']?ORGS[_0x4f487e(0x229)](_0x40e524=>_0x4f487e(0x3dd)+esc(_0x40e524[_0x4f487e(0x304)]||_0x40e524[_0x4f487e(0x16a)][0x0]||'👤')+_0x4f487e(0x3be)+esc(_0x40e524['pos'])+_0x4f487e(0x29b)+esc(_0x40e524[_0x4f487e(0x16a)])+_0x4f487e(0x2eb))[_0x4f487e(0x231)](''):_0x4f487e(0x252);}function renderBudget(){const _0x481a4f=a0_0x2a861e,_0x82d630=document[_0x481a4f(0x365)](_0x481a4f(0x1ab)),_0x55237a=document[_0x481a4f(0x365)](_0x481a4f(0x18b)),_0x58e188=(_0x589b63,_0x56de49)=>document['getElementById'](_0x589b63)['innerHTML']=_0x56de49[_0x481a4f(0x36d)]()+_0x481a4f(0x2e7);if(!BUDGETS[_0x481a4f(0x19e)]){_0x82d630['innerHTML']='',_0x55237a[_0x481a4f(0x382)][_0x481a4f(0x1f3)]=_0x481a4f(0x1bf),_0x58e188(_0x481a4f(0x1ce),0x0),_0x58e188('bOut',0x0);return;}_0x55237a[_0x481a4f(0x382)][_0x481a4f(0x1f3)]=_0x481a4f(0x2b1),_0x58e188(_0x481a4f(0x1ce),BUDGETS[_0x481a4f(0x2a8)](_0x3f93a5=>_0x3f93a5[_0x481a4f(0x373)]==='in')['reduce']((_0xd08a8f,_0x55af4e)=>_0xd08a8f+ +_0x55af4e['amt'],0x0)),_0x58e188(_0x481a4f(0x38f),BUDGETS['filter'](_0x3e2ee1=>_0x3e2ee1[_0x481a4f(0x373)]==='out')['reduce']((_0x347a8b,_0x5a0594)=>_0x347a8b+ +_0x5a0594[_0x481a4f(0x29f)],0x0)),_0x82d630[_0x481a4f(0x246)]=[...BUDGETS][_0x481a4f(0x1bb)]()[_0x481a4f(0x229)](_0x50875a=>_0x481a4f(0x293)+_0x50875a[_0x481a4f(0x373)]+'\x22>'+(_0x50875a[_0x481a4f(0x373)]==='in'?'💚':'💸')+'</div><div\x20style=\x22flex:1\x22><div\x20class=\x22bg-n\x22>'+esc(_0x50875a[_0x481a4f(0x16a)])+_0x481a4f(0x25d)+(_0x50875a['date']||'')+(_0x50875a[_0x481a4f(0x277)]?_0x481a4f(0x349)+esc(_0x50875a['note']):'')+_0x481a4f(0x205)+_0x50875a[_0x481a4f(0x373)]+'\x22>'+(_0x50875a[_0x481a4f(0x373)]==='in'?'+':'-')+(+_0x50875a[_0x481a4f(0x29f)])[_0x481a4f(0x36d)]()+_0x481a4f(0x28d))['join']('');}function renderVotes(){const _0x1374f7=a0_0x2a861e,_0x50759f=document[_0x1374f7(0x365)]('voteList'),_0x190e88=document[_0x1374f7(0x365)](_0x1374f7(0x329));if(!VOTES[_0x1374f7(0x19e)]){_0x50759f[_0x1374f7(0x246)]='',_0x190e88[_0x1374f7(0x382)][_0x1374f7(0x1f3)]='block';return;}_0x190e88[_0x1374f7(0x382)][_0x1374f7(0x1f3)]='none';const _0x37a616=JSON['parse'](localStorage[_0x1374f7(0x2b3)](_0x1374f7(0x3ed))||'{}');_0x50759f[_0x1374f7(0x246)]=VOTES[_0x1374f7(0x229)]((_0x1aabfd,_0x10bc92)=>{const _0xaaef53=_0x1374f7,_0x599738=Object[_0xaaef53(0x397)](_0x1aabfd[_0xaaef53(0x18e)]||{})[_0xaaef53(0x1c6)]((_0x21fafd,_0xe3efee)=>_0x21fafd+_0xe3efee,0x0),_0x96e225=_0x37a616[_0x1aabfd['id']],_0x15d2e2=_0x1aabfd[_0xaaef53(0x3f7)]===_0xaaef53(0x37e),_0x31a86c=_0x96e225!==undefined||!_0x15d2e2;return _0xaaef53(0x3db)+(_0x15d2e2?_0xaaef53(0x3ce):_0xaaef53(0x206))+'\x22>'+(_0x15d2e2?_0xaaef53(0x29c):'종료')+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x96e225!==undefined?_0xaaef53(0x3e5):'')+_0xaaef53(0x1ca)+esc(_0x1aabfd[_0xaaef53(0x3f3)])+_0xaaef53(0x19d)+(_0x1aabfd['start']||'')+_0xaaef53(0x3b4)+(_0x1aabfd[_0xaaef53(0x39d)]||'')+_0xaaef53(0x21e)+(_0x15d2e2&&_0x96e225===undefined?_0xaaef53(0x3d7)+_0x10bc92+_0xaaef53(0x1e0)+_0x10bc92+'h\x22\x20placeholder=\x22호수\x20(예:\x201503)\x22\x20maxlength=\x225\x22\x20inputmode=\x22numeric\x22\x20style=\x22font-size:13px\x22></div>':'')+'\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22vote-opts\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20'+_0x1aabfd[_0xaaef53(0x31e)][_0xaaef53(0x229)]((_0x4e95bd,_0x5adc8e)=>{const _0x52ca8c=_0xaaef53,_0x4d23a6=_0x1aabfd[_0x52ca8c(0x18e)]?.[_0x5adc8e]||0x0,_0x1c81f5=_0x599738?Math[_0x52ca8c(0x38c)](_0x4d23a6/_0x599738*0x64):0x0;return'<div\x20class=\x22vote-o\x20'+(_0x96e225===_0x5adc8e?'sel':'')+'\x20'+(_0x31a86c?_0x52ca8c(0x2e5):'')+_0x52ca8c(0x1f5)+(_0x15d2e2&&_0x96e225===undefined?_0x52ca8c(0x16d)+_0x10bc92+','+_0x5adc8e+')':'')+'\x22>'+(_0x31a86c?'<div\x20class=\x22vote-o-bar\x22\x20style=\x22width:'+_0x1c81f5+_0x52ca8c(0x37f):'')+_0x52ca8c(0x295)+(_0x96e225===_0x5adc8e?'✅\x20':'')+esc(_0x4e95bd)+_0x52ca8c(0x354)+(_0x31a86c?'<span\x20class=\x22vote-o-p\x22>'+_0x1c81f5+'%\x20<span\x20style=\x22font-size:10px;color:var(--ink4)\x22>('+_0x4d23a6+')</span></span>':'')+_0x52ca8c(0x1dd);})[_0xaaef53(0x231)]('')+_0xaaef53(0x2ac)+_0x599738+_0xaaef53(0x255);})[_0x1374f7(0x231)]('');}async function castVote(_0x381657,_0x3ec741){const _0x3d6b75=a0_0x2a861e,_0x48b2b7=VOTES[_0x381657],_0x29acd3=gv('vd'+_0x381657+'d'),_0x31f224=gv('vd'+_0x381657+'h');if(!_0x29acd3||!_0x31f224)return toast(_0x3d6b75(0x2db));if(!confirm(_0x29acd3+'동\x20'+_0x31f224+'호로\x20\x22'+_0x48b2b7['options'][_0x3ec741]+_0x3d6b75(0x3fe)))return;if(!_0x48b2b7['votes'])_0x48b2b7[_0x3d6b75(0x18e)]={};_0x48b2b7[_0x3d6b75(0x18e)][_0x3ec741]=(_0x48b2b7[_0x3d6b75(0x18e)][_0x3ec741]||0x0)+0x1;const _0x5e8fc6=JSON[_0x3d6b75(0x22d)](localStorage['getItem'](_0x3d6b75(0x3ed))||'{}');_0x5e8fc6[_0x48b2b7['id']]=_0x3ec741,localStorage[_0x3d6b75(0x2fd)](_0x3d6b75(0x3ed),JSON[_0x3d6b75(0x1aa)](_0x5e8fc6)),await voteToGH(_0x48b2b7,_0x3ec741,_0x29acd3,_0x31f224),await S['s'](_0x3d6b75(0x3bf),VOTES),renderVotes(),renderHome(),toast(_0x3d6b75(0x2e6));}function renderDongSel(){const _0xd7dff4=a0_0x2a861e;document[_0xd7dff4(0x365)](_0xd7dff4(0x323))[_0xd7dff4(0x246)]=CFG[_0xd7dff4(0x1a2)][_0xd7dff4(0x229)](_0x36d50e=>'<option\x20value=\x22'+_0x36d50e['n']+'\x22>'+_0x36d50e['n']+_0xd7dff4(0x381))[_0xd7dff4(0x231)]('');}let sigCanvas,sigCtx,sigDraw=![],sigHas=![];function initSig(){const _0x4d3830=a0_0x2a861e;sigCanvas=document[_0x4d3830(0x365)]('sigCanvas'),sigCtx=sigCanvas[_0x4d3830(0x3c2)]('2d'),resizeSig(),window[_0x4d3830(0x359)]('resize',resizeSig),window[_0x4d3830(0x359)]('orientationchange',()=>setTimeout(resizeSig,0xc8));window[_0x4d3830(0x188)]&&new ResizeObserver(()=>resizeSig())[_0x4d3830(0x1e3)](document[_0x4d3830(0x365)](_0x4d3830(0x172)));const _0x1d6a14=_0x4bd903=>{const _0x2bd735=_0x4d3830;sigDraw=!![],sigHas=!![],document[_0x2bd735(0x365)]('sigPh')[_0x2bd735(0x382)]['display']=_0x2bd735(0x2b1),document[_0x2bd735(0x365)](_0x2bd735(0x172))[_0x2bd735(0x199)][_0x2bd735(0x1f4)](_0x2bd735(0x353));const _0x271eb6=pt(_0x4bd903);sigCtx[_0x2bd735(0x1ac)](),sigCtx[_0x2bd735(0x1b3)](_0x271eb6['x'],_0x271eb6['y']);if(_0x4bd903['pointerId']!==undefined)try{sigCanvas[_0x2bd735(0x325)](_0x4bd903[_0x2bd735(0x337)]);}catch(_0x18a665){}if(_0x4bd903['cancelable'])_0x4bd903['preventDefault']();},_0x19a450=_0x131400=>{const _0x39b9db=_0x4d3830;if(!sigDraw)return;const _0xaba4ea=pt(_0x131400);sigCtx[_0x39b9db(0x2c5)](_0xaba4ea['x'],_0xaba4ea['y']),sigCtx[_0x39b9db(0x3a7)]();if(_0x131400[_0x39b9db(0x150)])_0x131400[_0x39b9db(0x1a7)]();},_0x12fd23=()=>{sigDraw=![];};sigCanvas[_0x4d3830(0x359)]('pointerdown',_0x1d6a14,{'passive':![]}),sigCanvas[_0x4d3830(0x359)](_0x4d3830(0x183),_0x19a450,{'passive':![]}),sigCanvas[_0x4d3830(0x359)](_0x4d3830(0x263),_0x12fd23),sigCanvas[_0x4d3830(0x359)](_0x4d3830(0x2a6),_0x12fd23),sigCanvas['addEventListener']('touchstart',_0x396f93=>{const _0x3b342c=_0x4d3830;if(_0x396f93['touches'][0x0])_0x1d6a14(touchToPointer(_0x396f93[_0x3b342c(0x38d)][0x0],_0x396f93));},{'passive':![]}),sigCanvas[_0x4d3830(0x359)](_0x4d3830(0x348),_0x1d6377=>{const _0x569b32=_0x4d3830;if(_0x1d6377['touches'][0x0])_0x19a450(touchToPointer(_0x1d6377[_0x569b32(0x38d)][0x0],_0x1d6377));},{'passive':![]}),sigCanvas[_0x4d3830(0x359)](_0x4d3830(0x32f),_0x12fd23),sigCanvas[_0x4d3830(0x359)](_0x4d3830(0x3df),_0x12fd23);}function touchToPointer(_0x475606,_0x3a326b){const _0x40779d=a0_0x2a861e;return{'clientX':_0x475606[_0x40779d(0x192)],'clientY':_0x475606['clientY'],'cancelable':_0x3a326b[_0x40779d(0x150)],'preventDefault':()=>_0x3a326b['preventDefault']()};}function resizeSig(){const _0xe11958=a0_0x2a861e;if(!sigCanvas||sigDraw)return;const _0x45647a=sigCanvas[_0xe11958(0x18f)](),_0x24bdc7=window[_0xe11958(0x283)]||0x1;if(!_0x45647a[_0xe11958(0x167)]||_0x45647a[_0xe11958(0x167)]<0xa)return;const _0x32975a=sigCanvas['width'],_0x4c9062=sigCanvas['height'],_0x19ed8a=Math[_0xe11958(0x38c)](_0x45647a[_0xe11958(0x167)]*_0x24bdc7),_0x2ce7d1=Math[_0xe11958(0x38c)](0xa0*_0x24bdc7);if(_0x32975a===_0x19ed8a&&_0x4c9062===_0x2ce7d1)return;const _0x5e872f=sigHas?sigCanvas[_0xe11958(0x178)]():null;sigCanvas[_0xe11958(0x167)]=_0x19ed8a,sigCanvas[_0xe11958(0x16f)]=_0x2ce7d1,sigCtx[_0xe11958(0x335)](0x1,0x0,0x0,0x1,0x0,0x0),sigCtx[_0xe11958(0x2c3)](_0x24bdc7,_0x24bdc7),sigCtx[_0xe11958(0x343)]=2.4,sigCtx[_0xe11958(0x27d)]=_0xe11958(0x38c),sigCtx['lineJoin']='round',sigCtx[_0xe11958(0x2d7)]=_0xe11958(0x31a);if(_0x5e872f){const _0x10f32b=new Image();_0x10f32b['onload']=()=>sigCtx['drawImage'](_0x10f32b,0x0,0x0,_0x45647a[_0xe11958(0x167)],0xa0),_0x10f32b[_0xe11958(0x249)]=_0x5e872f;}}function pt(_0x492333){const _0x12bbc3=a0_0x2a861e,_0x4a1c0=sigCanvas[_0x12bbc3(0x18f)]();return{'x':_0x492333[_0x12bbc3(0x192)]-_0x4a1c0[_0x12bbc3(0x370)],'y':_0x492333[_0x12bbc3(0x2a9)]-_0x4a1c0['top']};}function clearSig(){const _0x2d24f2=a0_0x2a861e;sigCtx[_0x2d24f2(0x3ac)](0x0,0x0,sigCanvas['width'],sigCanvas['height']),sigHas=![],document['getElementById'](_0x2d24f2(0x1a9))[_0x2d24f2(0x382)][_0x2d24f2(0x1f3)]=_0x2d24f2(0x1b4),document['getElementById']('sigWrap')[_0x2d24f2(0x199)][_0x2d24f2(0x3f1)]('active');}function bindMasks(){const _0x2728ae=a0_0x2a861e,_0x19f110=_0x411aa4=>{const _0x17c124=a0_0x30f7;_0x411aa4=_0x411aa4['replace'](/\D/g,'')[_0x17c124(0x26b)](0x0,0xb);if(_0x411aa4['length']>0x7)_0x411aa4=_0x411aa4[_0x17c124(0x26b)](0x0,0x3)+'-'+_0x411aa4[_0x17c124(0x26b)](0x3,0x7)+'-'+_0x411aa4[_0x17c124(0x26b)](0x7);else{if(_0x411aa4['length']>0x3)_0x411aa4=_0x411aa4[_0x17c124(0x26b)](0x0,0x3)+'-'+_0x411aa4['slice'](0x3);}return _0x411aa4;},_0x22e0db=_0x1d6b00=>{const _0x7b8170=a0_0x30f7;_0x1d6b00=_0x1d6b00[_0x7b8170(0x29d)](/\D/g,'')[_0x7b8170(0x26b)](0x0,0x8);if(_0x1d6b00['length']>0x6)_0x1d6b00=_0x1d6b00[_0x7b8170(0x26b)](0x0,0x4)+'-'+_0x1d6b00[_0x7b8170(0x26b)](0x4,0x6)+'-'+_0x1d6b00[_0x7b8170(0x26b)](0x6);else{if(_0x1d6b00[_0x7b8170(0x19e)]>0x4)_0x1d6b00=_0x1d6b00[_0x7b8170(0x26b)](0x0,0x4)+'-'+_0x1d6b00['slice'](0x4);}return _0x1d6b00;};document[_0x2728ae(0x365)](_0x2728ae(0x1b5))[_0x2728ae(0x359)](_0x2728ae(0x3f5),_0x5bd7dd=>{const _0x15e58e=_0x2728ae;_0x5bd7dd[_0x15e58e(0x1cd)][_0x15e58e(0x2f0)]=_0x19f110(_0x5bd7dd[_0x15e58e(0x1cd)]['value']);}),document[_0x2728ae(0x365)]('fBirth')[_0x2728ae(0x359)](_0x2728ae(0x3f5),_0x5c2805=>{const _0x292e25=_0x2728ae;_0x5c2805[_0x292e25(0x1cd)]['value']=_0x22e0db(_0x5c2805['target']['value']);});const _0x14d11e=document['getElementById']('fJointPhone');if(_0x14d11e)_0x14d11e[_0x2728ae(0x359)]('input',_0x450731=>{const _0x3a18a3=_0x2728ae;_0x450731[_0x3a18a3(0x1cd)][_0x3a18a3(0x2f0)]=_0x19f110(_0x450731[_0x3a18a3(0x1cd)][_0x3a18a3(0x2f0)]);});const _0x397076=document[_0x2728ae(0x365)](_0x2728ae(0x3e2));if(_0x397076)_0x397076[_0x2728ae(0x359)](_0x2728ae(0x3f5),_0x3cf0c7=>{const _0x52a59e=_0x2728ae;_0x3cf0c7[_0x52a59e(0x1cd)][_0x52a59e(0x2f0)]=_0x22e0db(_0x3cf0c7[_0x52a59e(0x1cd)][_0x52a59e(0x2f0)]);});}function toggleJoint(_0x3380ee){const _0x23f125=a0_0x2a861e;document['getElementById'](_0x23f125(0x294))[_0x23f125(0x382)][_0x23f125(0x1f3)]=_0x3380ee?'block':'none';if(_0x3380ee)setTimeout(resizeJointSig,0x32);}let jointSigCanvas,jointSigCtx,jointSigDraw=![],jointSigHas=![];function initJointSig(){const _0x22f8f5=a0_0x2a861e;jointSigCanvas=document[_0x22f8f5(0x365)](_0x22f8f5(0x24b));if(!jointSigCanvas)return;jointSigCtx=jointSigCanvas[_0x22f8f5(0x3c2)]('2d'),resizeJointSig(),window[_0x22f8f5(0x359)](_0x22f8f5(0x248),resizeJointSig),window['addEventListener'](_0x22f8f5(0x1be),()=>setTimeout(resizeJointSig,0xc8));window[_0x22f8f5(0x188)]&&new ResizeObserver(()=>resizeJointSig())[_0x22f8f5(0x1e3)](document[_0x22f8f5(0x365)](_0x22f8f5(0x2d6)));const _0x2926f0=_0x44a5bc=>{const _0x4860ef=_0x22f8f5;jointSigDraw=!![],jointSigHas=!![],document[_0x4860ef(0x365)](_0x4860ef(0x30b))[_0x4860ef(0x382)]['display']=_0x4860ef(0x2b1),document['getElementById'](_0x4860ef(0x2d6))[_0x4860ef(0x199)][_0x4860ef(0x1f4)](_0x4860ef(0x353));const _0x1358f3=jpt(_0x44a5bc);jointSigCtx[_0x4860ef(0x1ac)](),jointSigCtx[_0x4860ef(0x1b3)](_0x1358f3['x'],_0x1358f3['y']);if(_0x44a5bc['pointerId']!==undefined)try{jointSigCanvas[_0x4860ef(0x325)](_0x44a5bc[_0x4860ef(0x337)]);}catch(_0x337877){}if(_0x44a5bc[_0x4860ef(0x150)])_0x44a5bc['preventDefault']();},_0xb43d39=_0x1fdd78=>{const _0x3ad291=_0x22f8f5;if(!jointSigDraw)return;const _0x10c0ec=jpt(_0x1fdd78);jointSigCtx[_0x3ad291(0x2c5)](_0x10c0ec['x'],_0x10c0ec['y']),jointSigCtx[_0x3ad291(0x3a7)]();if(_0x1fdd78['cancelable'])_0x1fdd78[_0x3ad291(0x1a7)]();},_0x56ae56=()=>{jointSigDraw=![];};jointSigCanvas[_0x22f8f5(0x359)](_0x22f8f5(0x307),_0x2926f0,{'passive':![]}),jointSigCanvas[_0x22f8f5(0x359)]('pointermove',_0xb43d39,{'passive':![]}),jointSigCanvas[_0x22f8f5(0x359)](_0x22f8f5(0x263),_0x56ae56),jointSigCanvas[_0x22f8f5(0x359)](_0x22f8f5(0x2a6),_0x56ae56),jointSigCanvas[_0x22f8f5(0x359)]('touchstart',_0x304a6f=>{const _0x565865=_0x22f8f5;if(_0x304a6f['touches'][0x0])_0x2926f0(touchToPointer(_0x304a6f[_0x565865(0x38d)][0x0],_0x304a6f));},{'passive':![]}),jointSigCanvas[_0x22f8f5(0x359)](_0x22f8f5(0x348),_0x2b8455=>{const _0x3846e1=_0x22f8f5;if(_0x2b8455[_0x3846e1(0x38d)][0x0])_0xb43d39(touchToPointer(_0x2b8455[_0x3846e1(0x38d)][0x0],_0x2b8455));},{'passive':![]}),jointSigCanvas['addEventListener']('touchend',_0x56ae56),jointSigCanvas[_0x22f8f5(0x359)](_0x22f8f5(0x3df),_0x56ae56);}function jpt(_0xd2fb26){const _0x4fba87=a0_0x2a861e,_0x39a332=jointSigCanvas['getBoundingClientRect']();return{'x':_0xd2fb26['clientX']-_0x39a332['left'],'y':_0xd2fb26[_0x4fba87(0x2a9)]-_0x39a332[_0x4fba87(0x312)]};}function resizeJointSig(){const _0x2ba788=a0_0x2a861e;if(!jointSigCanvas||jointSigDraw)return;const _0x5399e8=jointSigCanvas[_0x2ba788(0x18f)](),_0xca77c5=window[_0x2ba788(0x283)]||0x1;if(!_0x5399e8['width']||_0x5399e8[_0x2ba788(0x167)]<0xa)return;const _0x4109c4=jointSigCanvas['width'],_0x1d97d0=jointSigCanvas['height'],_0x1f3781=Math[_0x2ba788(0x38c)](_0x5399e8[_0x2ba788(0x167)]*_0xca77c5),_0x5b0118=Math['round'](0xa0*_0xca77c5);if(_0x4109c4===_0x1f3781&&_0x1d97d0===_0x5b0118)return;const _0x4c2b79=jointSigHas?jointSigCanvas[_0x2ba788(0x178)]():null;jointSigCanvas[_0x2ba788(0x167)]=_0x1f3781,jointSigCanvas[_0x2ba788(0x16f)]=_0x5b0118,jointSigCtx[_0x2ba788(0x335)](0x1,0x0,0x0,0x1,0x0,0x0),jointSigCtx[_0x2ba788(0x2c3)](_0xca77c5,_0xca77c5),jointSigCtx['lineWidth']=2.4,jointSigCtx[_0x2ba788(0x27d)]='round',jointSigCtx[_0x2ba788(0x395)]='round',jointSigCtx[_0x2ba788(0x2d7)]=_0x2ba788(0x31a);if(_0x4c2b79){const _0x438fd8=new Image();_0x438fd8[_0x2ba788(0x298)]=()=>jointSigCtx[_0x2ba788(0x2b5)](_0x438fd8,0x0,0x0,_0x5399e8[_0x2ba788(0x167)],0xa0),_0x438fd8[_0x2ba788(0x249)]=_0x4c2b79;}}function clearJointSig(){const _0x58d4f6=a0_0x2a861e;if(!jointSigCanvas)return;jointSigCtx[_0x58d4f6(0x3ac)](0x0,0x0,jointSigCanvas[_0x58d4f6(0x167)],jointSigCanvas['height']),jointSigHas=![],document[_0x58d4f6(0x365)](_0x58d4f6(0x30b))['style'][_0x58d4f6(0x1f3)]=_0x58d4f6(0x1b4),document[_0x58d4f6(0x365)](_0x58d4f6(0x2d6))[_0x58d4f6(0x199)]['remove']('active');}async function submitDelegate(){const _0x1caa19=a0_0x2a861e,_0x1e69cc=gv(_0x1caa19(0x3e1)),_0x423a8d=gv(_0x1caa19(0x378)),_0x4a1ba3=gv(_0x1caa19(0x323)),_0x2c682b=gv('fHo')[_0x1caa19(0x29d)](/\D/g,''),_0x5bcdba=gv(_0x1caa19(0x1b5)),_0x5ecf6e=rv(_0x1caa19(0x20b)),_0x112c12=rv(_0x1caa19(0x216));if(!_0x1e69cc)return toast(_0x1caa19(0x351));if(!_0x423a8d)return toast(_0x1caa19(0x3d6));if(!_0x2c682b)return toast(_0x1caa19(0x3c7));if(_0x5bcdba[_0x1caa19(0x19e)]<0xc)return toast(_0x1caa19(0x154));if(!_0x112c12)return toast(_0x1caa19(0x189));if(!sigHas)return toast(_0x1caa19(0x3ad));const _0x173464=document[_0x1caa19(0x365)](_0x1caa19(0x2aa))[_0x1caa19(0x3e6)];let _0x15876e=null;if(_0x173464){const _0x5c65db=gv(_0x1caa19(0x2af)),_0x1867e8=gv(_0x1caa19(0x3e2)),_0x3ddc7d=gv('fJointPhone');if(!_0x5c65db)return toast(_0x1caa19(0x182));if(!_0x1867e8)return toast('공동명의자\x20생년월일을\x20입력해\x20주세요');if(!jointSigHas)return toast(_0x1caa19(0x3a1));_0x15876e={'name':_0x5c65db,'birth':_0x1867e8,'phone':_0x3ddc7d,'sig':jointSigCanvas[_0x1caa19(0x178)](_0x1caa19(0x202))};}const _0x4bac8a=_0x4a1ba3+'-'+_0x2c682b,_0x385d92=document[_0x1caa19(0x365)](_0x1caa19(0x350));_0x385d92[_0x1caa19(0x1c5)]=!![],_0x385d92[_0x1caa19(0x299)]=_0x1caa19(0x215);const _0x37b3e0=await checkExistingSubmission(_0x4a1ba3,_0x2c682b);if(_0x37b3e0){_0x385d92[_0x1caa19(0x1c5)]=![],_0x385d92[_0x1caa19(0x299)]=_0x1caa19(0x2a5);const _0x22b001=confirm(_0x1caa19(0x24a)+_0x4a1ba3+'동\x20'+_0x2c682b+'호는\x20이미\x20접수\x20완료된\x20세대입니다.\x0a(접수자:\x20'+(_0x37b3e0[_0x1caa19(0x16a)]||_0x1caa19(0x1c3))+')\x0a\x0a다시\x20제출하여\x20교체하시겠습니까?');if(!_0x22b001)return;}else{if(SUBMITTED_KEYS[_0x1caa19(0x26a)](_0x4bac8a)&&!confirm(_0x4a1ba3+'동\x20'+_0x2c682b+_0x1caa19(0x15d))){_0x385d92['disabled']=![],_0x385d92['textContent']=_0x1caa19(0x2a5);return;}}const _0x397152={'name':_0x1e69cc,'birth':_0x423a8d,'dong':_0x4a1ba3,'ho':_0x2c682b,'phone':_0x5bcdba,'agree':_0x5ecf6e,'priv':_0x112c12,'joint':_0x15876e,'sig':sigCanvas['toDataURL'](_0x1caa19(0x202)),'ts':new Date()[_0x1caa19(0x234)]()};_0x385d92[_0x1caa19(0x1c5)]=!![],_0x385d92[_0x1caa19(0x299)]=_0x1caa19(0x341);let _0x14e621=![];try{await saveToGH(_0x397152),_0x14e621=!![];}catch(_0x5ea5e7){console[_0x1caa19(0x3ef)](_0x5ea5e7);}if(!_0x14e621){const _0x447eda=await S['g'](_0x1caa19(0x396))||{};_0x447eda[_0x4bac8a]=_0x397152,await S['s']('tp_pending',_0x447eda);}!SUBMITTED_KEYS[_0x1caa19(0x26a)](_0x4bac8a)&&(SUBMITTED_KEYS['push'](_0x4bac8a),STATS[_0x1caa19(0x2e5)]++);if(_0x5ecf6e==='동의')STATS['agree']++;await S['s'](_0x1caa19(0x33f),SUBMITTED_KEYS),await S['s']('tp_stats',STATS),lastRec=_0x397152,_0x385d92[_0x1caa19(0x1c5)]=![],_0x385d92[_0x1caa19(0x299)]='위임장\x20제출하기\x20→',document[_0x1caa19(0x365)]('dForm')[_0x1caa19(0x382)]['display']=_0x1caa19(0x2b1),document['getElementById'](_0x1caa19(0x3c9))[_0x1caa19(0x382)][_0x1caa19(0x1f3)]='block',document[_0x1caa19(0x365)](_0x1caa19(0x200))[_0x1caa19(0x299)]=CFG[_0x1caa19(0x26f)]+'\x0a'+_0x4a1ba3+'동\x20'+_0x2c682b+_0x1caa19(0x2c9)+_0x1e69cc+(_0x15876e?'\x20·\x20'+_0x15876e[_0x1caa19(0x16a)]+'\x20(공동명의)':'')+'\x20님의\x20위임장('+_0x5ecf6e+_0x1caa19(0x256)+(_0x14e621?'':_0x1caa19(0x1e9)),updateStats(),toast(_0x14e621?'✅\x20서버에\x20안전하게\x20저장되었습니다':_0x1caa19(0x1a0));}function resetDelegate(){const _0x4a2083=a0_0x2a861e;[_0x4a2083(0x3e1),_0x4a2083(0x378),'fHo',_0x4a2083(0x1b5),_0x4a2083(0x2af),'fJointBirth','fJointPhone'][_0x4a2083(0x271)](_0x535069=>document[_0x4a2083(0x365)](_0x535069)[_0x4a2083(0x2f0)]=''),document[_0x4a2083(0x2ed)](_0x4a2083(0x196))[_0x4a2083(0x3e6)]=!![],document['querySelectorAll'](_0x4a2083(0x3ea))['forEach'](_0x394540=>_0x394540[_0x4a2083(0x3e6)]=![]),document[_0x4a2083(0x365)](_0x4a2083(0x2aa))[_0x4a2083(0x3e6)]=![],toggleJoint(![]),clearSig(),clearJointSig(),document[_0x4a2083(0x365)](_0x4a2083(0x3c9))[_0x4a2083(0x382)]['display']=_0x4a2083(0x2b1),document[_0x4a2083(0x365)](_0x4a2083(0x175))[_0x4a2083(0x382)][_0x4a2083(0x1f3)]='block',window['scrollTo']({'top':0x0});}function buildPrintPage(_0x1ceb73){const _0x1f8a77=a0_0x2a861e,_0x183cb9=_0x1ceb73[_0x1f8a77(0x1b0)]==='동의'?_0x1f8a77(0x376):_0x1f8a77(0x288),_0x24208e=_0x1ceb73[_0x1f8a77(0x1b2)]==='동의'?_0x1f8a77(0x275):_0x1f8a77(0x3d4),_0x39edff=new Date(_0x1ceb73['ts']),_0x4b2329=isNaN(_0x39edff)?'':_0x39edff[_0x1f8a77(0x2dd)]()+_0x1f8a77(0x3b3)+(_0x39edff[_0x1f8a77(0x3fd)]()+0x1)+'월\x20\x20'+_0x39edff['getDate']()+'일',_0x18eacf=TERMS[_0x1f8a77(0x229)](_0x5adff6=>_0x1f8a77(0x169)+esc(_0x5adff6)+_0x1f8a77(0x264))[_0x1f8a77(0x231)](''),_0x100a30=_0x1ceb73[_0x1f8a77(0x180)]?_0x1f8a77(0x25b)+esc(_0x1ceb73[_0x1f8a77(0x180)]['name'])+'\x20('+esc(_0x1ceb73[_0x1f8a77(0x180)][_0x1f8a77(0x2b7)])+_0x1f8a77(0x31c)+esc(_0x1ceb73[_0x1f8a77(0x180)][_0x1f8a77(0x23e)]||'-')+_0x1f8a77(0x34b):'',_0x1307eb=_0x1ceb73['sig']?_0x1f8a77(0x282)+_0x1ceb73[_0x1f8a77(0x363)]+_0x1f8a77(0x181):'',_0x5c756d='<div\x20class=\x22pl-sign-row\x22><span\x20class=\x22pl-sign-label\x22>위임인\x20:\x20'+esc(_0x1ceb73[_0x1f8a77(0x16a)])+'</span><span\x20class=\x22pl-sign-imgbox\x22>'+_0x1307eb+_0x1f8a77(0x2cb),_0x500e27=_0x1ceb73['joint']&&_0x1ceb73[_0x1f8a77(0x180)][_0x1f8a77(0x363)]?_0x1f8a77(0x226)+esc(_0x1ceb73[_0x1f8a77(0x180)][_0x1f8a77(0x16a)])+_0x1f8a77(0x356)+_0x1ceb73['joint'][_0x1f8a77(0x363)]+_0x1f8a77(0x211):'';return _0x1f8a77(0x228)+esc(CFG[_0x1f8a77(0x26f)])+_0x1f8a77(0x35d)+esc(CFG[_0x1f8a77(0x26f)])+_0x1f8a77(0x280)+esc(_0x1ceb73['name'])+(_0x1ceb73[_0x1f8a77(0x180)]?_0x1f8a77(0x1bd):'')+_0x1f8a77(0x24d)+esc(_0x1ceb73[_0x1f8a77(0x1b6)])+'동\x20'+esc(_0x1ceb73['ho'])+_0x1f8a77(0x190)+esc(_0x1ceb73[_0x1f8a77(0x2b7)])+_0x1f8a77(0x315)+esc(_0x1ceb73[_0x1f8a77(0x23e)])+_0x1f8a77(0x3e7)+_0x100a30+'\x0a\x20\x20\x20\x20\x20\x20<tr><th>위임\x20동의</th><td\x20colspan=\x223\x22>'+_0x183cb9+_0x1f8a77(0x20c)+esc(CFG['orgName'])+_0x1f8a77(0x1fe)+esc(CFG['cafeAddr'])+_0x1f8a77(0x2bf)+_0x18eacf+_0x1f8a77(0x203)+_0x24208e+_0x1f8a77(0x250)+_0x4b2329+'</div>\x0a\x20\x20\x20\x20<div\x20class=\x22pl-sign-block\x22>\x0a\x20\x20\x20\x20\x20\x20'+_0x5c756d+'\x0a\x20\x20\x20\x20\x20\x20'+_0x500e27+_0x1f8a77(0x316)+esc(CFG[_0x1f8a77(0x17f)])+_0x1f8a77(0x1cc);}function printSelected(_0x55f6de){const _0x524ee6=a0_0x2a861e,_0x29e2fd=_0x55f6de[_0x524ee6(0x2a8)](_0x13002c=>DATA[_0x13002c]);if(!_0x29e2fd[_0x524ee6(0x19e)]){toast(_0x524ee6(0x2e1));return;}const _0x307c0a=document[_0x524ee6(0x365)](_0x524ee6(0x2c8));_0x307c0a['innerHTML']=_0x29e2fd['map'](_0x28f760=>{const _0x4498fd=_0x524ee6,_0x241025=DATA[_0x28f760],_0x17b6d3=_0x241025[_0x4498fd(0x180)]?_0x4498fd(0x3c3):'';return'<div\x20class=\x22pl-page'+_0x17b6d3+'\x22>'+buildPrintPage(_0x241025)+'</div>';})[_0x524ee6(0x231)](''),toast(_0x29e2fd[_0x524ee6(0x19e)]+_0x524ee6(0x1bc)),waitForImages(_0x307c0a)['then'](()=>{const _0x47427b=_0x524ee6;setTimeout(()=>window[_0x47427b(0x3b7)](),0x50);});}function waitForImages(_0x1bee73){const _0x24efab=a0_0x2a861e,_0x1fd9d0=Array['from'](_0x1bee73[_0x24efab(0x2ba)](_0x24efab(0x392)));if(!_0x1fd9d0[_0x24efab(0x19e)])return Promise[_0x24efab(0x336)]();const _0x30860b=0x1770,_0xdb522f=_0x1fd9d0[_0x24efab(0x229)](_0x2c586a=>{const _0x537382=_0x24efab;if(_0x2c586a['complete']&&_0x2c586a[_0x537382(0x3bb)]>0x0)return Promise[_0x537382(0x336)]();return new Promise(_0x5bd882=>{const _0x3a4860=_0x537382,_0x416f6f=()=>_0x5bd882();_0x2c586a[_0x3a4860(0x359)](_0x3a4860(0x2c4),_0x416f6f,{'once':!![]}),_0x2c586a[_0x3a4860(0x359)](_0x3a4860(0x3cf),_0x416f6f,{'once':!![]});});});return Promise[_0x24efab(0x159)]([Promise[_0x24efab(0x2ee)](_0xdb522f),new Promise(_0x5b8450=>setTimeout(_0x5b8450,_0x30860b))]);}function printRecord(_0x5f438b){printSelected([_0x5f438b]);}function printAllVisible(){const _0x2dbc03=a0_0x2a861e,_0x5ef493=Object[_0x2dbc03(0x3a0)](DATA);if(!_0x5ef493[_0x2dbc03(0x19e)]){toast(_0x2dbc03(0x14e));return;}if(!confirm('총\x20'+_0x5ef493[_0x2dbc03(0x19e)]+_0x2dbc03(0x328)))return;printSelected(_0x5ef493);}function printSelectedFromCheckbox(){printSelected([...SELECTED_KEYS]);}let SELECTED_KEYS=new Set();function toggleRowSelect(_0xad4b65,_0x5b6cbf){const _0x5d3085=a0_0x2a861e;if(_0x5b6cbf)SELECTED_KEYS[_0x5d3085(0x1f4)](_0xad4b65);else SELECTED_KEYS[_0x5d3085(0x15a)](_0xad4b65);updateSelCount();}function toggleSelectAll(_0x156acb){const _0x189830=a0_0x2a861e,_0x4392ef=Object[_0x189830(0x3a0)](DATA);SELECTED_KEYS=_0x156acb?new Set(_0x4392ef):new Set(),document['querySelectorAll'](_0x189830(0x36a))['forEach'](_0x2d2498=>_0x2d2498[_0x189830(0x3e6)]=_0x156acb);const _0x2860c9=document[_0x189830(0x365)]('selectAllChk'),_0x2fe595=document['getElementById'](_0x189830(0x3a2));if(_0x2860c9)_0x2860c9[_0x189830(0x3e6)]=_0x156acb;if(_0x2fe595)_0x2fe595[_0x189830(0x3e6)]=_0x156acb;updateSelCount();}function updateSelCount(){const _0x2e6b87=a0_0x2a861e,_0x22ae6e=document[_0x2e6b87(0x365)](_0x2e6b87(0x26d));if(_0x22ae6e)_0x22ae6e['textContent']=SELECTED_KEYS[_0x2e6b87(0x357)]+'건\x20선택됨';}let pinAttempts=0x0,pinLockUntil=0x0;async function unlock(){const _0x50fac7=a0_0x2a861e;if(Date['now']()<pinLockUntil){toast(_0x50fac7(0x2de));return;}const _0x257702=document['getElementById'](_0x50fac7(0x36f))[_0x50fac7(0x2f0)];if(_0x257702===JL_MASTER)unlocked=!![],jlMode=!![],pinAttempts=0x0,document[_0x50fac7(0x365)]('lock')['style'][_0x50fac7(0x1f3)]='none',document[_0x50fac7(0x365)](_0x50fac7(0x21d))[_0x50fac7(0x382)][_0x50fac7(0x1f3)]=_0x50fac7(0x1bf),document[_0x50fac7(0x365)]('at-cfg')[_0x50fac7(0x382)][_0x50fac7(0x1f3)]=_0x50fac7(0x1bf),document['getElementById'](_0x50fac7(0x269))['textContent']=_0x50fac7(0x258),await loadFullDataForAdmin(),loadCfgForm(),refreshAdmin(),toast(_0x50fac7(0x265));else{if(_0x257702===CFG[_0x50fac7(0x3b1)])unlocked=!![],jlMode=![],pinAttempts=0x0,document[_0x50fac7(0x365)](_0x50fac7(0x398))[_0x50fac7(0x382)]['display']=_0x50fac7(0x2b1),document[_0x50fac7(0x365)](_0x50fac7(0x21d))[_0x50fac7(0x382)][_0x50fac7(0x1f3)]=_0x50fac7(0x1bf),document['getElementById'](_0x50fac7(0x2e0))['style'][_0x50fac7(0x1f3)]=_0x50fac7(0x2b1),document[_0x50fac7(0x365)](_0x50fac7(0x269))[_0x50fac7(0x299)]=_0x50fac7(0x2c1),await loadFullDataForAdmin(),refreshAdmin();else{pinAttempts++,document[_0x50fac7(0x365)](_0x50fac7(0x36f))['value']='';if(pinAttempts>=0x5)pinLockUntil=Date['now']()+0xea60,toast(_0x50fac7(0x2b0)),pinAttempts=0x0;else toast(_0x50fac7(0x385)+pinAttempts+_0x50fac7(0x27a));}}}async function checkExistingSubmission(_0x2809cd,_0x424d93){const _0x42064a=a0_0x2a861e;try{const _0x1e1e25=encodeURIComponent(_0x42064a(0x1de)+GH_OWNER+'/'+GH_REPO+'\x20in:title\x20\x22'+_0x2809cd+'동\x20'+_0x424d93+_0x42064a(0x268)),_0x1c96f7=await fetch(_0x42064a(0x153)+_0x1e1e25);if(!_0x1c96f7['ok'])return null;const _0x5c060c=await _0x1c96f7[_0x42064a(0x213)]();if(_0x5c060c['items']&&_0x5c060c[_0x42064a(0x2bc)][_0x42064a(0x19e)]>0x0){const _0x5399e0=_0x5c060c[_0x42064a(0x2bc)][0x0][_0x42064a(0x3f3)]||'',_0x2f7d00=_0x5399e0[_0x42064a(0x386)](/·\s*(.+)$/);return{'name':_0x2f7d00?_0x2f7d00[0x1]['trim']():''};}return null;}catch(_0x3d94c9){return console[_0x42064a(0x3ef)](_0x42064a(0x330),_0x3d94c9),null;}}async function fetchVoteTallies(){const _0x5e5336=a0_0x2a861e,_0x181221={};try{let _0x53159e=0x1,_0x38c13c=[];while(_0x53159e<=0x5){const _0x2acc3b=await fetch(GH_API+_0x5e5336(0x28a)+_0x53159e);if(!_0x2acc3b['ok'])break;const _0x18af98=await _0x2acc3b[_0x5e5336(0x213)]();_0x38c13c=_0x38c13c['concat'](_0x18af98);if(_0x18af98[_0x5e5336(0x19e)]<0x64)break;_0x53159e++;}for(const _0xb6d638 of _0x38c13c){const _0x133cde=(_0xb6d638[_0x5e5336(0x3a4)]||'')[_0x5e5336(0x386)](/\*\*투표:\*\*\s*(.+?)\n\*\*선택:\*\*\s*(.+?)\n/);if(!_0x133cde)continue;const _0x4a4145=_0x133cde[0x1]['trim'](),_0x450e3d=_0x133cde[0x2][_0x5e5336(0x16b)]();if(!_0x181221[_0x4a4145])_0x181221[_0x4a4145]={};_0x181221[_0x4a4145][_0x450e3d]=(_0x181221[_0x4a4145][_0x450e3d]||0x0)+0x1;}}catch(_0x20c2df){console[_0x5e5336(0x3ef)](_0x5e5336(0x377),_0x20c2df);}return _0x181221;}function applyTalliesToVotes(_0x4d9756){VOTES['forEach'](_0x4cbbe4=>{const _0x466191=a0_0x30f7,_0x3670b3=_0x4d9756[_0x4cbbe4[_0x466191(0x3f3)]];if(!_0x3670b3)return;const _0xaf9a37={};_0x4cbbe4[_0x466191(0x31e)]['forEach']((_0x4bfed3,_0x4055f6)=>{if(_0x3670b3[_0x4bfed3]!==undefined)_0xaf9a37[_0x4055f6]=_0x3670b3[_0x4bfed3];}),_0x4cbbe4[_0x466191(0x18e)]=_0xaf9a37;});}function aTab(_0x58b329){const _0x53dde3=a0_0x2a861e;if(_0x58b329===_0x53dde3(0x3cd)&&!jlMode){toast('설정은\x20법무법인\x20제이엘만\x20접근\x20가능합니다');return;}curTab=_0x58b329,[_0x53dde3(0x229),_0x53dde3(0x17c),_0x53dde3(0x3bd),_0x53dde3(0x35b),_0x53dde3(0x19b),_0x53dde3(0x238),'org','cfg'][_0x53dde3(0x271)](_0x152395=>{const _0x17127d=_0x53dde3,_0x2b8fdb=document[_0x17127d(0x365)](_0x17127d(0x156)+_0x152395);if(_0x2b8fdb)_0x2b8fdb[_0x17127d(0x382)][_0x17127d(0x1f3)]=_0x152395===_0x58b329?_0x17127d(0x1bf):_0x17127d(0x2b1);const _0x1a8286=document[_0x17127d(0x365)](_0x17127d(0x237)+_0x152395);if(_0x1a8286)_0x1a8286[_0x17127d(0x199)][_0x17127d(0x163)]('on',_0x152395===_0x58b329);});if(_0x58b329===_0x53dde3(0x229))refreshMap();if(_0x58b329===_0x53dde3(0x17c))renderList();_0x58b329==='vote'&&(renderVoteMgmt(),fetchVoteTallies()[_0x53dde3(0x2f8)](_0x110379=>{applyTalliesToVotes(_0x110379),renderVoteMgmt();}));if(_0x58b329==='notice')renderNoticeMgmt();if(_0x58b329===_0x53dde3(0x19b))renderSchedMgmt();if(_0x58b329===_0x53dde3(0x37b))renderOrgMgmt();}function refreshAdmin(){const _0x588072=a0_0x2a861e;updateStats();if(curTab===_0x588072(0x229))refreshMap();if(curTab===_0x588072(0x17c))renderList();}function refreshMap(){renderDongTabs(),renderUnitGrid();}function renderDongTabs(){const _0x455566=a0_0x2a861e;document[_0x455566(0x365)](_0x455566(0x35c))[_0x455566(0x246)]=CFG[_0x455566(0x1a2)][_0x455566(0x229)](_0x3ac922=>{const _0x31d6e8=_0x455566,_0x6b4b64=Object['values'](DATA)[_0x31d6e8(0x2a8)](_0x3dfe4c=>_0x3dfe4c[_0x31d6e8(0x1b6)]===_0x3ac922['n'])[_0x31d6e8(0x19e)];return _0x31d6e8(0x19a)+_0x3ac922['n']+_0x31d6e8(0x1ad)+(_0x3ac922['n']===curDong?_0x31d6e8(0x364):_0x31d6e8(0x1f7))+_0x31d6e8(0x1da)+(_0x3ac922['n']===curDong?_0x31d6e8(0x364):'var(--surface2)')+_0x31d6e8(0x3b8)+(_0x3ac922['n']===curDong?_0x31d6e8(0x2fb):'var(--ink3)')+_0x31d6e8(0x291)+_0x3ac922['n']+_0x31d6e8(0x20f)+_0x6b4b64+'/'+_0x3ac922['f']*_0x3ac922['l']+_0x31d6e8(0x301);})[_0x455566(0x231)]('');}function renderUnitGrid(){const _0x4324fc=a0_0x2a861e,_0x4ce2d3=CFG[_0x4324fc(0x1a2)][_0x4324fc(0x2d5)](_0x5ccdfc=>_0x5ccdfc['n']===curDong),_0x5ea4ba=document['getElementById'](_0x4324fc(0x15f));if(!_0x4ce2d3){_0x5ea4ba[_0x4324fc(0x246)]='';return;}_0x5ea4ba[_0x4324fc(0x382)][_0x4324fc(0x326)]='34px\x20repeat('+_0x4ce2d3['l']+_0x4324fc(0x1b9);let _0xdf0998='';for(let _0x86f178=_0x4ce2d3['f'];_0x86f178>=0x1;_0x86f178--){_0xdf0998+=_0x4324fc(0x18d)+_0x86f178+_0x4324fc(0x260);for(let _0x2c9796=0x1;_0x2c9796<=_0x4ce2d3['l'];_0x2c9796++){const _0x48a32d=String(_0x86f178*0x64+_0x2c9796),_0x2c6eb9=_0x4ce2d3['n']+'-'+_0x48a32d,_0x581851=DATA[_0x2c6eb9],_0x2c546f=_0x581851?_0x581851['agree']==='동의'?_0x4324fc(0x364):_0x4324fc(0x2a2):'var(--surface2)',_0x1a8738=_0x581851?_0x4324fc(0x2fb):_0x4324fc(0x187),_0x175919=_0x581851?_0x2c546f:'var(--border)';_0xdf0998+=_0x4324fc(0x3f4)+_0x2c6eb9+'\x27)\x22\x20style=\x22min-width:44px;padding:6px\x202px;border-radius:5px;border:1px\x20solid\x20'+_0x175919+_0x4324fc(0x1da)+_0x2c546f+_0x4324fc(0x3b8)+_0x1a8738+_0x4324fc(0x236)+_0x48a32d+'</div>';}}_0x5ea4ba[_0x4324fc(0x246)]=_0xdf0998;}function unitInfo(_0x59bdf9){const _0x26f975=a0_0x2a861e,_0x2841df=DATA[_0x59bdf9];if(!_0x2841df){toast(_0x59bdf9[_0x26f975(0x29d)]('-','동\x20')+_0x26f975(0x25a));return;}if(confirm(_0x2841df['dong']+'동\x20'+_0x2841df['ho']+_0x26f975(0x2c9)+_0x2841df[_0x26f975(0x16a)]+_0x26f975(0x1b1)+_0x2841df[_0x26f975(0x23e)]+'\x0a위임:\x20'+_0x2841df['agree']+_0x26f975(0x3d0)+_0x2841df[_0x26f975(0x1b2)]+'\x0a접수:\x20'+fmtTs(_0x2841df['ts'])+_0x26f975(0x24f)))printRecord(_0x59bdf9);}function renderList(){const _0x3cda34=a0_0x2a861e,_0x4ca5da=Object['entries'](DATA)[_0x3cda34(0x383)]((_0x3be75b,_0x14f221)=>_0x14f221[0x1]['ts'][_0x3cda34(0x3b2)](_0x3be75b[0x1]['ts']));document['getElementById'](_0x3cda34(0x22c))[_0x3cda34(0x382)][_0x3cda34(0x1f3)]=_0x4ca5da[_0x3cda34(0x19e)]?_0x3cda34(0x2b1):_0x3cda34(0x1bf),document[_0x3cda34(0x365)]('listBody')[_0x3cda34(0x246)]=_0x4ca5da['map'](([_0x5949f6,_0x56431c])=>'<tr><td><input\x20type=\x22checkbox\x22\x20class=\x22row-chk\x22\x20'+(SELECTED_KEYS[_0x3cda34(0x233)](_0x5949f6)?_0x3cda34(0x3e6):'')+_0x3cda34(0x1b8)+_0x5949f6+_0x3cda34(0x2bb)+fmtTs(_0x56431c['ts'])+(_0x56431c[_0x3cda34(0x1d5)]?'\x20<span\x20class=\x22tag\x20tag-a\x22\x20style=\x22margin-left:4px\x22>기기임시</span>':'')+_0x3cda34(0x3ba)+_0x56431c['dong']+'동\x20'+_0x56431c['ho']+_0x3cda34(0x309)+esc(_0x56431c[_0x3cda34(0x16a)])+(_0x56431c[_0x3cda34(0x180)]?'\x20<span\x20class=\x22tag\x20tag-b\x22\x20style=\x22margin-left:4px\x22>공동명의</span>':'')+_0x3cda34(0x321)+_0x56431c['phone']+'</td><td><span\x20class=\x22tag\x20'+(_0x56431c[_0x3cda34(0x1b0)]==='동의'?_0x3cda34(0x15e):_0x3cda34(0x1a4))+'\x22>'+_0x56431c[_0x3cda34(0x1b0)]+_0x3cda34(0x1e2)+(_0x56431c['priv']==='동의'?'tag-g':_0x3cda34(0x34f))+'\x22>'+_0x56431c[_0x3cda34(0x1b2)]+'</span></td><td><div\x20class=\x22racts\x22><button\x20onclick=\x22printRecord(\x27'+_0x5949f6+_0x3cda34(0x347)+_0x5949f6+'\x27)\x22>삭제</button></div></td></tr>')[_0x3cda34(0x231)](''),updateSelCount();}async function delRecord(_0xd499f1){const _0x348c9e=a0_0x2a861e,_0x1f80ed=DATA[_0xd499f1];if(!_0x1f80ed)return;if(!confirm(_0x1f80ed[_0x348c9e(0x1b6)]+'동\x20'+_0x1f80ed['ho']+'호\x20'+_0x1f80ed[_0x348c9e(0x16a)]+_0x348c9e(0x272)))return;delete DATA[_0xd499f1],SELECTED_KEYS['delete'](_0xd499f1);if(WORKER_URL)try{await fetch(WORKER_URL,{'method':_0x348c9e(0x1c7),'headers':{'Content-Type':_0x348c9e(0x230)},'body':JSON['stringify']({'type':_0x348c9e(0x15a),'dong':_0x1f80ed[_0x348c9e(0x1b6)],'ho':_0x1f80ed['ho']})});}catch(_0x36e382){console[_0x348c9e(0x3ef)](_0x36e382);}renderList(),refreshMap(),toast(_0x348c9e(0x1a6));}async function addVote(){const _0x38f632=a0_0x2a861e,_0x5869a9=gv(_0x38f632(0x2a1)),_0x5777f4=(gv('vtOpts')||'')[_0x38f632(0x372)]('\x0a')[_0x38f632(0x229)](_0x5d4568=>_0x5d4568[_0x38f632(0x16b)]())['filter'](Boolean);if(!_0x5869a9)return toast('투표\x20제목을\x20입력해\x20주세요');if(_0x5777f4[_0x38f632(0x19e)]<0x2)return toast('선택지를\x202개\x20이상\x20입력해\x20주세요');VOTES['push']({'id':Date[_0x38f632(0x3d3)]()[_0x38f632(0x1a8)](),'title':_0x5869a9,'options':_0x5777f4,'start':gv(_0x38f632(0x21b))||fmtDate(new Date()),'end':gv(_0x38f632(0x16e))||fmtDate(new Date(Date[_0x38f632(0x3d3)]()+0x7*0x5265c00)),'status':_0x38f632(0x37e),'votes':{}}),await S['s']('tp_votes',VOTES),document[_0x38f632(0x365)](_0x38f632(0x2a1))[_0x38f632(0x2f0)]='',document[_0x38f632(0x365)](_0x38f632(0x21a))['value']='',renderVoteMgmt(),renderVotes(),renderHome(),toast(_0x38f632(0x2c6));}function a0_0x4cbf(){const _0x58eff3=['7ikS7kce7kcq6RkaioYDVoYGLsdTMjhSNzG','7kgW6Rk97iUD7j6Sio2zLEYDUa','C2v0vhjHBNnMB3jT','CMvZB2X2zq','Cg9PBNrLCKLK','zM9JDxm','zg9JDw1LBNrfBgvTzw50','re9nq29UDgvUDeXVywrLza','DhbFy2zN','pc9ZCgfUpGOGicaGicaGidXZCgfUihn0EwXLpsjMBgv4oJe7zM9UDc1ZAxPLoJeZlJvWEdTMB250lxDLAwDODdO4mdaIpG','C2neyxrL','6RoG7jYG67ki7zI47kADioUWNoQ4Iq','DhbFA2v5CW','C2v0','7kca7j6LioYKKEkaPG','A2LUz2PPBJC3lxjNyG','BgLUzvDPzhrO','6Ro17kcv67oeioYYTo2bRoYcRo2vRq','pc9ZCgfUpJWVC3bHBJ48yNv0Dg9UignSyxnZpsjIDg4GyNrUlwCGyNrUlxnTigrLBciGC3r5Bgu9iMjVCMrLCI1JB2XVCJP2yxiOls1YzwqPo2nVBg9YoNzHCIGTlxjLzcKIig9Uy2XPy2S9iMrLBe9YzYG','ksi+7ikT7kcCpc9IDxr0B24+pc9KAxy+','jYKIpLberJWVyNv0Dg9UpJXIDxr0B24Gy2XHC3m9iMrLBciGB25JBgLJAZ0IzgvSuMvJB3jKkcC','Dg91y2HTB3zL','imk3ia','7isK7kcv7j20ioYGGoYEPEUqMoYxIoYkTEUlIoUlPa','pc90zd48l3rYpG','y2f0','ntNJJQfe','7kgW6Rk97isK66Qf7zQmioYALoYYRq','DgfNlwe','C3vIBwL0qNrU','7isX66Qf7j2eioYEHEUGPE2vTcdSO7ZSHlJSMPq','DgvYBxnmAxn0','ywn0AxzL','pc9ZCgfUpG','mJaYnc0Xms0Yoq','pc9ZCgfUpJXZCgfUignSyxnZpsjWBc1ZAwDUlwLTz2jVEci+pgLTzYbZCMm9iG','C2L6zq','C3rVCMfNzq','ywrKrxzLBNrmAxn0zw5LCG','nencEwrzCa','BM90AwnL','zg9Uz1rHyNm','iooaJoYEHEYJVoYyIoYGLEYEKo2yKEYDMo2AJooaJsdSNitSNOtSNQu8l2rPDJ4kicaGidXKAxyGy2XHC3m9iNbSlxmIpG','CMXmzwz0','C2v0qxr0CMLIDxrL','67cW6RsaioUWJYdSOjhSHkdQS7xSGQWSioQWGoYePoYGHoQ4ScdSNPhSL4u','7iUD7j6S6Ro17ikS','mJaYns0WnI0Yma','C2LN','DMfYkc0TyNjHBMqP','z2v0rwXLBwvUDej5swq','mZiYAgrfsvzJ','7ko87lcO7j6LioY4TEQZOcJTG53RSldSSkGG7kEe7j6fkq','Bwf4','jsa8C3bHBIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc13zwLNAhq6ntaWiJ4O','lNjVDY1JAgS','C3rbz3jLzq','C3reB25L','Dg9mB2nHBgvtDhjPBMC','BNrJlxnJAa','CgLUsw5WDxq','BgvMDa','z2GTzg90igvYCG','C3bSAxq','DhLWzq','DM90zu1NBxq','nxDfseLJqG','phnWyw4Gy2XHC3m9iMnIEci+4PIrpc9ZCgfUpIdRJ5NSNzGMBMjZCdSMBMjZCdSMBMjZCdS8C3bHBIbJBgfZCZ0Iy2j4iJ7IMja8l3nWyw4+ioUVUoUpMEYDMa','7yIS7zgCioYNKEQZHcdSOBdTMOWG7iUK7yYO','zKjPCNrO','6Ro17kEa7ikS7zwT','7j6f7ko87kEa7kcv6RIW6Rceio2yKEYDMa','B3jN','6RcC7j247kcv67o0ioUZTo2yUoULVcdSNitTLBqG7jYe7j6e7j6LioY2NoUGPEYDGcdSMRtSMihSP4tQS7WG67kv66Y067kv7j24ioYGNoYDToYxMoUNJcdQSidRIQxTLANRI4JRI6qUio2vHoYALoYlNcdTMjhSNzJTMOZSL5aG66Y47j2y7zwy7is47jQulG','C21VB3rO','BgL2zq','jsi+pc9KAxy+','pgrPDIbJBgfZCZ0IChjVzY1PDgvTiJ4','64+zpc9VChrPB24+','C3r5Bgu','C29YDa','CgfZC2vK','7kcr7iAnioY9LoUtNoQWGcdSMkZRSjtRPBtSP4aG7jwk7iQ164Ui64UKicG','Bwf0y2G','B3bLBG','7j6u7iAq7lky66AS','jMfTCdS','jMX0oW','6Rsa66AS7j6q','CM91BMq','Dg91y2HLCW','C2HPzNrlzxK','yK91Da','mJaYns0Woc0Ymq','7kEa7iob7lI1ioUWQEYiMa','Aw1N','pc9ZCgfUpJXZCgfUihn0EwXLpsjMBgv4oJe7zM9UDc1ZAxPLoJeZChGIpG','phnWyw4Gy2XHC3m9iNrSlwnOAxaGBM93iJ7SP4tTLONSPje8l3nWyw4+','BgLUzuPVAw4','DhbFCgvUzgLUzW','DMfSDwvZ','Bg9JAW','Ag9TzvjHDgvnzxrH','C2jsyxrL','7isK67Me7iUC7iQK7ywCioQYGo2gOa','7jEq7l2u64247yoa7iUC7yUWio2rUoULToYNGoYyPcdTIRJROiJTJiZTGAW','zw5K','7kEe7zAj7ksr','mta0','A2v5CW','6Ro164+z66Qf7j2y7j6qioYEKo2vHcdSHjZRQOxSNBqG7zwe7jQu7zwP64Ui64UK','C2vSzwn0qwXSq2HRmG','65cy66Mu7jQW6RIWioUlPoYNKcWG67cW7iIy66gCioYEKEYxHq','yM9KEq','7kEa7zwy7lI1ioUWQEYiMa','BgLZDejVzhK','C3rYB2TL','7yIS7zgCioYERoQWNa','7kcv7zQm7jUqio2zLEYGLq','7zIe7j6L7kcq6RkaioYALoYYRq','7j6f7ko87jIi7kcv7j6q7j2yioQ2JoUMRmk37j207j217jEqioUmGo2vNcdSL4xRRltSTPtSP4tRSkNTLQuG7isK7kcvlcdSI5ZQS7xTLONSNiqG6Rcq66ASWRFQSjZSHkdSMPtQTAWG67cpioUQQoUtOcdTMzZRJ5KG67cpio2wIEYCHcdSTPtQTAWG7j287lk0','y2XLyxjszwn0','7j6q7zweioYeNoUQHEYDTcdTLytSMPtTLANRI4JRI6q','7zIe7j6Sio2zLoUPToYDMcdROzZSU6WG7lQq7iUC66EmioYNGoYBGEUlIoUlPc4Gr2L0shvIioYBKoUZUcdRJBdSNBtTHldRIPqG7jYG7kEa65cP64Ui64UKlIdQS4tSHO3TLAdQUyZSMPq/','z2v0rgf0zq','mJaYnc0WnY0YmG','CgLU','Bg9JywXLq29TCgfYzq','64weica','ih4G','yxb0Aw5MBW','ntNJJQfc','ChjPBNq','o2nVBg9YoG','7zwy7j6q67o06RoG7isCioYEKEYeSq','pc90zd48Dgq+pgi+','BMf0DxjHBfDPzhrO','7zQm67MeWRFSP4dSTPW','DM90zq','pc9KAxy+pgrPDIbJBgfZCZ0IB3jNlxaIpG','DhbFDM90zxm','phnWyw4Gy2XHC3m9iMiIpJWVC3bHBJ4','BKnHDa','z2v0q29UDgv4Da','ihbSlwnVBxbHy3q','7jwe7yYm7yQ4ioUlQoYNGcdSO7ZRS4aG7ko86RgWioUWJYdSO7ZRS4aG7zMy6Rk9ioQWNoYeOoYxKcdRJidTLzWG66QO65oGio2zNoUpMsdRSi8G7zAj7jYeioY2LoQ1RcdSNBZSSRtSMyaG7jM467AaioYEKoUSUoYALoYYRsdRSi8G7kEe7zAj','ls1ICMfUzc1TAwq','7j6f7ko87jIi7kcv7j6q7zIr7j2y7zQmioYAToYyGEYDHcdSNitTLzWG7j6e7jUq7kEeioYeOoY2NcdRSi8G6Rsa66ASioQ3UoUMRoQZOcdTMOZSM5dQTidRPQWO6Rca7j6flcdRK7hQUiKSioYNLEQZHcWG7yoi7yE0ioUtSsK','7zI47iIy66w8ioYEHEUGPE2vTcdSO7ZSHlJSMPq','7j6f7jIi7zIrioYEHoYBKoYNHcdQTAZSHle','zerVBMu','Aw5WDxrBBMfTzt0','A2v5','pc9ZCgfUpJXZCgfUignSyxnZpsj0yI1JiJ4','y2zN','DMiTBgL2zq','zxjYB3i','ic8G6RcC7j247kcv67o0oIa','ChjVz01VzgfSqMC','DhbFC2nOzwrZ','BM93','phnWyw4Gy2XHC3m9iMnIEci+4PIqpc9ZCgfUpIdRJ5NSNzJTLANRI4JRI6qUjM5IC3a7jM5IC3a7phnWyw4Gy2XHC3m9iMnIEci+4PIrpc9ZCgfUpIdRJ5NSNzJTLzJSP4aG7jwk7iQ164Ui64UKlG','BM90AwnLrw1WDhK','7ioD64we7jUu7j287j2eioYEHEUGPE2vTcdSO7ZSHlJSMPq','pgrPDIbJBgfZCZ0IDM90zs1KB25NiJ48Aw5WDxqGy2XHC3m9iMzJiIbPzd0IDMq','ksi+phnWyw4Gy2XHC3m9iNbYB2CTzg90ia','7jYe7j6eioUpMEYDMa','64UO7kEaioYxHEQ3UoUGIoYDToUtNcdTMzxSNBG','pgrPDIbJBgfZCZ0IDM90zs1JiJ4kicaGicaGpgrPDIbZDhLSzt0IzgLZCgXHEtPMBgv4o2fSAwDUlwL0zw1ZoMnLBNrLCJTNyxa6ohb4iJ4kicaGicaGica8C3bHBIbJBgfZCZ0IDM90zs1IywrNzsa','64UO7kEaioQWNoYeOoYcRo2vRsdTMzxSNBG','pgrPDIbJBgfZCZ0IB3jNlwmIpJXKAxyGy2XHC3m9iM9YzY1HDIi+','7kcr7iIy7j287iUC','Dg91y2HJyw5JzwW','7j6f7jIi7zIrioYAToYyGEYNHcaX7lcOio2AJoYDMa','zK5HBwu','zKPVAw50qMLYDgG','jYKUy2XHC3nmAxn0lNrVz2DSzsGNB3bLBICPiJ48zgL2ignSyxnZpsjXys1UiJ4','7kgW6Rk97yQ57zMuio2zLEYDUa','phnWyw4GC3r5Bgu9iMzVBNqTC2L6ztOXmxb4o2nVBg9YoNzHCIGTlwjYyw5KktTMB250lxDLAwDODdO3mdaIpUkCKYdTIkZTKzWG7jMe66ompc9ZCgfUpG','y2HLy2TLza','pc90zd48l3rYpGOGicaGica','DgjeyxrL','7jYe7j6e7j6L7j2eioQ8RsdSOjZSTPZTLBtSLBWG7zwy64ky7jQupW','Aw5WDxrBBMfTzt1MuhjPDL0','zg93BMXVywq','DgHLBwvdB2XVCG','DhbFDM90zwq','BM90AwnLtgLZDa','D2fYBG','Dg9HC3q','CMvTB3zL','icSG7j20ioQ4SoQ4ScdSNOtSI5WG','DgL0Bgu','pgrPDIbVBMnSAwnRpsj1BML0sw5MBYGN','Aw5WDxq','BNrJlwLTCa','C3rHDhvZ','A2v5zg93BG','BM90AwnLtwDTDa','7kEa67cy7lI1ioUWSoYiMoQZHo2AJsdQSOdTHQa','yMfJA2vUzcbUB3qGy29UzMLNDxjLza','7jYe7j6e7j6LioYGNoY2NcdSHlJRJidSL5aG7zwC7zw0io2yKEYDMo2AJcdSP4dSOjuG67kv66Y064Ya66AS7j24ioYvIoUcTcdRRlJSNPdQSiaG67cC7iAH65cP64Ui64UKlIdSL7dRNB3SSPJRPBWG7kcv7zMv7z6iioYEHEUGPE2vTcdSO7ZSHlJSMPqU','z2v0tw9UDgG','iUYxKcdTIkZTKzZTLzJSI5ZQSQdSIRxRI4JQUyW/','64UO7jYe7is464YaioUlQoYxToYERcdQSOdTHQa','7j6f7ko87jIi7kcv7j6q7zIr7j2y7zQm7jEq7isCioYeOoYGLE2vNcdRSPxRRltRJidRPQZSNBJSL5aG67o47j247j2yioYgJoYCOoQ2JoYDToYGHoUtSEQ4ScdRSi8G6RE87kca64U56RAmioYePoYGLEUtSEQ4SoULVcdSNitSNOtTLzJRQBaG7zIr7j2y7zQmioYNGoYGLsdSNydTLOKG64U067o0koYELoQ4IcNRJidSTPWG7iob7zkiioYvIoUcToYxKcdRJidTLzWG66Y47j6qioUtSEYDMcdSIjJSI6aG64+z7j2y','7kcr7iIy65cCioYCHoYEHoYEPEYDTcdSL4BSIRxRI4JRI6q','7zgCktWVC3bHBJ48l3nWyw4+pc9KAxy+cIaGicaGicaGpgrPDIbZDhLSzt0IAgvPz2H0oJDWEdTIywnRz3jVDw5KoNzHCIGTlwLUAZuPo2jVCMrLCI1YywrPDxm6nhb4o292zxjMBg93oMHPzgrLBIi+pgrPDIbZDhLSzt0IAgvPz2H0oJeWmcu7D2LKDgG6','y2fUy2vSywjSzq','pc9ZCgfUpJXIDxr0B24Gy2XHC3m9iMj0BIbIDg4TzYbIDg4TC20GzgvSiIbZDhLSzt0IyM9YzgvYlwnVBg9YoNzHCIGTlxjLzcK7y29SB3i6DMfYkc0TCMvKksiGB25JBgLJAZ0IzgvStM90AwnLka','7ysW7yYm6RIWioYEKEYxHq','Ahr0Chm6lY9HCgKUz2L0AhvIlMnVBs9ZzwfYy2GVAxnZDwvZp3e9','7jEW65297lky66w8ioYGLE2zLE2EIcdSNOxROkxTLBqG7ko87is47jQu','7kEi7j2y7j2r64U1ioYEKEYeSq','yxaT','zgf0zq','64+zioQ1RoYeSsdTMjxSI53SNyqG7zMv7j247zw0ioYJVoYeUoYALa','CMfJzq','zgvSzxrL','6Rsa66AS7jEf7lk0io2zLEYDUa','6Rg07lAvioYzUoYEPEYERcdQSOdTHQa','7zI464QuioYDToUVUcdSOjhSIjJRKjJSLRqG7j6i7iQ164Ui64UKlIdQTzdSSRtTLAdQUyZSMPq/','DgfNlwC','Dw5PDeDYAwq','phrYpJX0zcbJB2XZCgfUpsi3iIbZDhLSzt0IDgv4Dc1HBgLNBJPJzw50zxi7CgfKzgLUzZOYmhb4o2nVBg9YoNzHCIGTlwLUAZqPiJ7RTOJRN6ZSMktRIPqG7ksr4OcMpc90zd48l3rYpG','7iUC7zAj7ikSlcdSI5ZQS7xSGQWSioQ0GoQZTEYeNcdRSi8G6Rsa6Roe67Aa7lkylcdRJidSMBGG6Rsa6Roe7j6qioUtSEQZVoYDMcdTMjhSG4eO7zIr7j2yksdRJ5NSNzGG65Iq64QuioQXSoYGIcdRSi8G7yIS7zgCioQYSoYGLEQ2JcdTLONSGQW','Ag9Tzq','Dg9Nz2XL','64sK7j2067cnioYePoUSUcdSNitSNOtSNQuG7iIy7lEOlcdRI6JSP4dTMitTMANSSRtTGAW','6RcC7isG7jQu6RwS7ikS7zwTioY3Qo2vQq','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChG7CgfKzgLUzZO4ChGGmci+65oX66gD65cCioYEHoYBKoYDTcdSL4BSIRxRI4JRI6qUpc9KAxy+','D2LKDgG','DgXfBa','pgXPpG','BMfTzq','DhjPBq','pc9KAxy+phnWyw4Gy2XHC3m9iNfHlwfYiJ7ILRW8l3nWyw4+pc9KAxy+pgrPDIbJBgfZCZ0ICweTysi+','y2fZDfzVDguO','DNrfBMq','AgvPz2H0','pc9ZCgfUpJXZCgfUignSyxnZpsj0ywCG','C2nYB2XSvg8','C2LNv3jHCa','DhbFBM90AwnLCW','7kgW6Rk96Roe7zQnioUWJYdTHQdSGQZRSjJSNOu','zezVCM0','pgrPDIbZDhLSzt0IzgLZCgXHEtPMBgv4o2fSAwDUlwL0zw1ZoMnLBNrLCJTNyxa6ohb4o3bHzgrPBMC6oxb4ida7yM9YzgvYlwjVDhrVBtOXChGGC29SAwqGDMfYkc0TyM9YzgvYksi+phnWyw4GC3r5Bgu9iMzVBNqTC2L6ztOXms41ChG7y29SB3i6DMfYkc0TAw5RncK7BwLUlxDPzhrOoJG2ChGIpG','C3rYB2TLlwrHC2HHCNjHEq','Dg9eyxrHvvjm','mtnjALDlzNu','pgrPDIbJBgfZCZ0IDgWTAsa','mZm2mta5mfn0t1vwrW','BgLZDa','mJaYnc0Wos0Yma','jNf1B3q7','B3jNtMfTzq','AM9PBNq','iIbHBhq9iUYeNoUQHsi+','6Ro164+z66Qf7j2y7j6qioYeSEUQHEYDHcdSNOxROkxTLBqG7ko87is47jQu','Cg9PBNrLCM1VDMu','zwDfCNi','yvjHDgvcyxi','ls1ICMfUzdm','DMfYkc0TAw5RncK','uMvZAxPLt2jZzxj2zxi','6RcC7j247kcv67o0ioUpMEYDMcdSL6ZRTOdRPBWG7isG7yoD7zw0ioYJVoYeUoYALa','zwDbChroyw1L','yNvKz2v0rw1WDhK','mJaYnc0Wos0Xoq','pgrPDIbZDhLSzt0IzgLZCgXHEtPMBgv4o2fSAwDUlwL0zw1ZoMnLBNrLCJTQDxn0Awz5lwnVBNrLBNq6y2vUDgvYo2zVBNqTC2L6ztO5lJvWEdTMB250lxDLAwDODdO3mda7y29SB3i6DMfYkc0TAw5RncKIpG','DM90zxm','z2v0qM91BMrPBMDdBgLLBNrszwn0','7zI4pc90zd48l3rYpGOGicaGica8Dhi+phrOpUYdNEUfHoYBLoYDVdWVDgG+phrKpG','7zIe7j6LidhSSkGG67cP66Y4','y2XPzw50wa','ioYeUoUmGa','DhjLCgfYAY1PChLLAhLLB3a','7j6e7jUq7kEeioY5To2gOEUWQsdQSjZSHkq','Aw5WDxrBBMfTzt1MqwDYzwvDw3zHBhvLpEUpMEYDMf0','y29Uy2f0','yK5HBwu','y2XHC3nmAxn0','pgj1DhrVBIbVBMnSAwnRpsjJDxjeB25NpsC','C2nOzwq','BMrcB2r5','pc9KAxy+cIaGicaGidXKAxyGy2XHC3m9iNzVDguTCgqIpVcFK4uG','BgvUz3rO','C3rsyxrLqMfY','8j+tSsdSNBqG6RIW6RIW7jEqioYEHoYlNcdSOidSNQxRKjJSL4JSIRxRI4JRI6q','B3zLCMXHEq','zg9Uz3m','7j6f7ko8ioYGHcdSNOxSO7ZRR7WG7isK66Qf7zQmioQWNoY1NoYxRoU2GcdRHBZSNzG','DgfNlxi','BwLU','7ikT7kcCioYYMoUMRoUqMoYxIoYkTEUlIoUlPa','ChjLDMvUDerLzMf1Bhq','Dg9tDhjPBMC','C2LNugG','C3rYAw5NAwz5','yNvKz2v0rwW','yMvNAw5qyxrO','jZTYzwzYzxnOtwfWkcKIihn0EwXLpsjWywrKAw5NoJvWEcaXmNb4o2jVCMrLCI1YywrPDxm6mJbWEdTMB250lxnPEMu6mtjWEdTMB250lxDLAwDODdO2mda7yM9YzgvYoJfWEcbZB2XPzca','mta1','C2nOzwr1Bgu','ywDYzwu','cUYxSoUDVEYYMdOG','ChjPDG','Bw92zvrV','zMXLEa','zLbOB25L','zg9UzW','CgfKu3rHCNq','ig9Uy2HHBMDLpsj0B2DNBgvsB3DtzwXLy3qOjW','lg1PBM1HEcG0nhb4ldfMCIKP','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChG7CgfKzgLUzZO4ChGGmci+65oX66gD65cCioYDVoYGLEYDTcdSL4BSIRxRI4JRI6qUpc9KAxy+','CMv2zxjZzq','6Rg0ioYDUoYhHcdSPidRUyqG7ksr4OcMicJSHjZRQOuG66gC65sPkq','idXZCgfUihn0EwXLpsjMB250lxnPEMu6oc41Chq7y29SB3i6iZy2nIi+koQZTEUpMEUQHEYDMcK8l3nWyw4+','B3jPzw50yxrPB25JAgfUz2u','yMXVy2S','7ioiioY9LoUtNoULVcdSNOxROkxTLBqG7ko87is47jQu','64UO7jYe7is464YaioUcToU2GoUlQoYxToQZTEYcRcdSI5ZSNPe','6Ro17jQP67AaioYiMoYvLCk367o07jIOioYYTo2bRcWG7kcv7zMu7kgWioYEKEYxHq','7zMv7j2467Ai6Rca','B05HBwu','zgLZywjSzwq','CMvKDwnL','ue9tva','C2v0uhjVCgvYDhK','Ag9TzufWDe5HBwu','cIaGicaGidWVzgL2pGOGicaGica8zgL2ignSyxnZpsj2B3rLlxqIpG','CNbbz3jLzq','ioQ3GoYKKtWVzgL2pG','DgfYz2v0','yKLU','67Me67ca67ki7zI46RcaioYyRoUWLoULToYNGcdSLyRSIRxRI4JRI6q','7iQS652867ImWRFSOBdSOieG67cW6RsaioYEKEYxHq','jtWVC3bHBJ48l2j1DhrVBJ4','6Ro17kEa6RcaioUtSEUHNEUqMoYxIoYkTEUlIoUlPa','Dgv4Dc9JC3y','7kgW6Rk97iUC7isKioUWLoUlPEQZTEYcRa','x3bLBMrPBMC','7is464Ya67cW6RsalcdQS7xSMQNRTOaG7kce6RIWlcbfl1yG7j6r7jEf','7ikS7kce7kcq6RkaioYNHo2wIq','7j6f7jIi7zIrioYGLEQ4So2AJoYDMcdSMPtSSQ0','pgrPDIbZDhLSzt0IzgLZCgXHEtPMBgv4o2fSAwDUlwL0zw1ZoMnLBNrLCJTNyxa6ohb4o3bHzgrPBMC6oxb4ida7yM9YzgvYlwjVDhrVBtOXChGGC29SAwqGDMfYkc0TyM9YzgvYksi+phnWyw4Gy2XHC3m9iM50lwnHDca','o2jHy2TNCM91BMq6','7is464Ya6Rca7iQKWRFSL5dSLRtSU6GG7j6r7jEflcdQS7xSMQNRTOaG7isK67Me7j6r7jEf','z2v0sg91CNm','pc9KAxy+','CMvWBZO','6RoO7kgW66Ei6RcqicJSLB0GnJaLioYlNoYGKcK','zciGCgXHy2vOB2XKzxi9iUUpMsaO7jIioIaXmdePiIbTyxHSzw5NDgG9iJmIihn0EwXLpsjMB250lxnPEMu6mtnWEci+pgLUChv0ignSyxnZpsjMyYiGAwq9iNzK','C2LKzwjHCG','pc9ZCgfUpJWVDgq+phrKpJXZCgfUignSyxnZpsj0ywCG','B2jZzxj2zq','4PYfioYeNoUYHca','DhbFyNvKz2v0CW','mtaX','7yIS7zgCWRFSHktRRlG','y2fMzufKzhi','cIJSNBqG6RIW6RIW7jEqioYEHoYlNcdSOidSNQxRKkGG4OcuioYeNoUYHcdSL7dQSRaG7zUeioYEKoUpMsdRJ5NQUldTMzqG7jIi7kcvkq','y2zNtMfTzq','7jQ07jIb7kEeioY9LoUtNoQWGcdRS4dQSR3RKjJSL4JSIRxRI4JRI6q','z2HeB3q','odqXnKvHCgnRCW','7kEa67cy7lI1ioUWQEYiMa','z2v0','zw50CNLhyxrL','7lwC7iob7lI1ioUlQoYxToQZTEYcRa','xhXCCYO','zgLZCgXHEq','ywrK','iIbVBMnSAwnRpsi','6RcC7j247kcv67o0','DMfYkc0TyM9YzgvYkq','mta2','7kEa7zwy7lI1ioYEKEYxHq','BLrPDgXL','ksi+7ikT7kcCpc9IDxr0B24+cIaGicaGidWVzgL2pGOGicaGpc9KAxy+','7jQ07jIb7kEeioYGLEQ4So2AJoYDMa','pc9IDxr0B24+cIaGicaGicaGpgj1DhrVBIbJBgfZCZ0IyNrUigj0BI1Nigj0BI1ZBsbKzwWIihn0EwXLpsjIB3jKzxiTy29SB3i6DMfYkc0TCMvKktTJB2XVCJP2yxiOls1YzwqPiIbVBMnSAwnRpsjKzwXwB3rLka','pc90zd48l3rYpJX0CJ48DgG+7lM07y6yioYJVoYgJdWVDgG+phrKpG','pc9IpIdcTYa8C3bHBIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncKIpG','zg9Uzu1ZzW','Cg9Z','Aw1Hz2uVCg5N','pc9VBd48l2rPDJ4kicaGidXKAxyGy2XHC3m9iNbSlw5VDguIpUYdGEQ4ScdSNitSNOqG7ikS7zwT7jEqioUmGo2vMoYxRcdSNOxSO7ZSMiJSOjxSNPdTMjhSNzJTMOWG7j6e7jUq7kEe65oK7j2aioYJVo2dNEUYLsdSI5ZTLONROlKG67cpioQ3UcdSMBGG6Rsa66cOioUYLEUGUEYDHcdSPidSIjJTLzJQS6aG67Me7jQP7lky66ASioUWJYdSGQZSMQKG7kAD67Mz7j2eioYYOoYGGo2EIcdTLzJSL6WG7jYK66AS7kcb7jY866gCio2iRoUQHE2vMoQYJcdSMRtSMihTLzJQUldROzWG7zwy66MWlcdSNitSNOtSGQZTLA3SL5aG64Ya7zwCioU2GoYDMoYvIoQXToQZVcdSNzJQSRdRGRtSMQKG67cpioU5HoYAQEYYMoUMRcdRGRtSL63RK6tSNyaG7j6f7ko87jIi7kcv7j6q7zIr7j2y7zQmioY5To2oMcdRGRqG6Rkm7iUC7zwy6RIW66gCio2vNoUlPc48l2rPDJ4kicaGidXKAxyGy2XHC3m9iNbSlxbYAxyIpJXIpUkjQIdQSjZSNBJSOjxRS7tSIjJSP5eGWRCG7j207jQPimk3ioYGNoQZTsdRJ5NSNzJSHjWG4OMRpc9IpUUZUoYDUoYDGcdSNOxSO7ZSMiJSOjxSNPdTMjhSNzJTMOZSL5aG6RcC7j247kcv67o0ioYiMoYNKs/SNBtSMQKSioYGNdpSNPaG7kcC6Ro17jEqioUmGo2vMoYxRca','DhbFC3rHDhm','pc9KAxy+pc9KAxy+pgrPDIbJBgfZCZ0IyMCTysa','DMiTzw5K','ChjVz01VzgfSugn0','pc9ZCgfUpJXIDxr0B24Gy2XHC3m9iMj0BIbIDg4TzYbIDg4TC20GzgvSiIbZDhLSzt0IyM9YzgvYlwnVBg9YoNzHCIGTlxjLzcK7y29SB3i6DMfYkc0TCMvKksiGB25JBgLJAZ0IzgvSu2nOzwqO','7is464Ya7yA17iUGlcdSMkxSMBGG7kce6RIW7j6r7jEf','7jYe7j6e7j6LioUVUoUpMEYDMcJRR7JSOjZSTPWPioYeUoUmGcJSNitSNOtSNPaP7jEqioUmGo2vMoYxRoUkLcdQSjZSNBJSOieG66QO65oGioYcRo2vREYxKcdRJidTLzJSL6WG66+8WRFTMjxSGQZSG4eG66QO65oGioYNHo2wIEYcRo2vREYDGcdSOitSOihSNlZROzWG6RcC7j247j20ioU2GoUlTo2vMoUPScdSNOxSO7ZSMiJSOjxSNPdTMjhSNzJTMOZRIPqG7j207jEqioQWNoYDMoY5McdSLytRI4JTLzZRI6qU','zKfNCMvL','pc90zd48l3rYpGOGicaGpc90ywjSzt4kicaGidXKAxyGy2XHC3m9iNbSlxnLyYi+4Oc7ioYiMoYEHoYEKcJRI6JSSRqPpc9KAxy+cIaGica8DgfIBguGy2XHC3m9iNbSlxrIiJ48Dhi+phrOpUUlQcdSSRqG66Qfpc90Ad48Dgq+','7ioi66gC6RoG7lMO65cy7jEi7iQ164Ui64UK','7kEa7iob7lI1ioYEKEYxHsdSI5ZSNPe','64+zphnWyw4GC3r5Bgu9iMzVBNqTC2L6ztOXmhb4o21HCMDPBI1Szwz0oJnWEdTVCgfJAxr5oI43iJ4','pc9KAxy+pgrPDIbZDhLSzt0IzM9UDc1ZAxPLoJeXChG7y29SB3i6DMfYkc0TAw5RncKIpVcFK4uG','iIbHBhq9iUQZTEUpMEUQHEYDMoYEKcdSHjZRQOuIpJWVC3bHBJ48C3bHBIbJBgfZCZ0ICgWTC2LNBI1ZDwzMAxGIpIJSHjZRQOuPpc9ZCgfUpJWVzgL2pG','6Rk96Rsa7kgW6Rk9ioUWJYbcsCk3q0KG7iUC7jwiio2zLEYDUa','ANnVBG','y2zNrg9Uz3m','7ksr67o1ioYGKEYiMcdTMzxSNBGG7ksr4OcM','zLbYAxy','z2HtDgf0Dxm','Ahr0Chm6lY9JywzLlM5HDMvYlMnVBs9YzwrWmNLNEG','7jQW7jIK7iIy67cW6RsaWRFQSR3QS4tSHj3cT+YHSoQYVEQ1RoYHSoUSVcdSNPhSL4u','DNrpChrZ','DNrtDgfYDa','mty3ndK1n2PPD1bfAq','ywrTAw5qyw5LBa','pc9KAxy+cIaGicaGia','yK5VDgu','y2zNt3jN','B0vTB2PP','y3jLyxrLt2jQzwn0vvjm','ksi+phnWyw4Gy2XHC3m9iM50lwnHDca','pgrPDIbJBgfZCZ0ICweIigLKpsjXyq','ndiXmJe1m3rfru1Xuq','pgrPDIbJBgfZCZ0ICgWTC2LNBI1YB3CIpJXZCgfUignSyxnZpsjWBc1ZAwDUlwXHyMvSiJ7QS7xRJ5NRQOxSNzJSNBGGoIa','y2zNq29SB3i','cIaGica8zgL2ignSyxnZpsjWBc10iJ4','BwfW','7kce7j6q7isC66Qf67kvioYGNdpSOBdSL5aG65sW6528ioYEKo2vHoYeNoUQHsdSNBtRR7JSP4dRPBWG7y+S7zwO7zwCioYGHoYEKoUSUoYeNoUkLcdSHjZRQBtQS7WG64+z7j287zwCio2AQoUGPEYDHcdQSidSP5hRI4JRI6qU','pgj1DhrVBIbJBgfZCZ0IChjVzY1KB3qTyNrUiIbVBMnSAwnRpsjVCgvUuhjVz3jLC3nqB3b1CcG','BgLZDevTChr5','CgfYC2u','yLr5Cgu','6Ro17ikS7zIe7zMP','yxbWBgLJyxrPB24VANnVBG','AM9PBG','C2nuAxrSzq','AgfZ','Dg9ju09tDhjPBMC','DM90zsbZyxzLigzHAwW','o3rLEhqTywXPz246y2vUDgvYo2zVBNqTC2L6ztOXmc41ChG7zM9UDc13zwLNAhq6nZaWo2n1CNnVCJPWB2LUDgvYo3rYyw5ZAxrPB246lJfZiIbVBM1VDxnLB3zLCJ0IDgHPCY5ZDhLSzs50CMfUC2zVCM09j3nJywXLkdeUmsKNiIbVBM1VDxnLB3v0psj0AgLZlNn0EwXLlNrYyw5ZzM9YBt0NC2nHBguOmsKNiJ4','yxqT','yNvKz2v0','7jEW6RkWio2zLEYDUcdTLytSMPq','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChG7CgfKzgLUzZO4ChGGmci+7kEe7zAjioYKKEYDUcdTIkZTKzZQSiaG7jEg7iQ164Ui64UKlJWVzgL2pG','66QfioYWUoYxRdWVzgL2pJWVzgL2pG','BKrHDgu','ntNJJQfd','CgHVBMu','7jEW65297lky','7j6f7ko866+8ioY0NE2AJa','BM90AwnLrgv0ywLS','mtiZna','BNrJlw5VCG','iJ48l3nWyw4+phnWyw4Gy2XHC3m9iNbYB2CTzg90lwXIiJ4','DgfNlwi','Aw5Uzxjive1m','7zIe7j6LioYcRoYNHa','CMvZAxPL','C3jJ','8j+tIYa','AM9PBNrtAwDdyw52yxm','pgrPDIbJBgfZCZ0IDgiTCM93iJ48zgL2ignSyxnZpsjTiJ48C3bHBIbJBgfZCZ0IDgiTBIi+','pc90zd48DgG+6Roe7jw9ioUpMs/TMlJSIjG8l3rOpJX0zd4','DhbFB3jNCW','cGPB7zMv7j24xsdIHPiGuergioY2NoUGPq','pc9KAxy+cIaGica8zgL2ignSyxnZpsjWBc1KyxrLiJ4','C2nOzwrnz210','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChG7z3jPzc1JB2X1Bw46ms8Tmsi+6Rsa66AS7j6q7jEq7isCioYEHoYBKoYNHoYDHcdRK7hROz3TLBqG7ko87is47jQulJWVzgL2pG','mJaYns0Wnc0XnG','y2zNugLU','66Qfio2iRo2rNdWVC3bHBJ48l2rPDJ4kicaGidWVzgL2pG','kEYDTcdSOjhSIjJRKjJSL4JSIRxRI4JRI6qU','mtbZz2rqBgu','67kv66Y067kv7j24ioYGNoYDToYxMcdRP4JSIQtTHlaG66QO65oC','67cP7iIyioUZToYiMoQZTEYcRa','7zI4imk3ioUVUoYGKEYiMa','phrYpJX0Ad7QS7xRJ5NRQOxSNzJSNPa8l3rOpJX0zd4','mtfLshvKB1e','pc9KAxy+pgrPDIbJBgfZCZ0IyMCTBsi+','jtTIywnRz3jVDw5KoMXPBMvHCI1NCMfKAwvUDcG5mgrLzYX2yxiOls1ICMfUzcKSDMfYkc0TyNjHBMqZksK7yM9YzgvYlxjHzgL1CZO0ChG7DhjHBNnPDgLVBJP3Awr0AcaUnxmIpJWVzgL2pJWVzgL2pGOGicaGica8l2rPDJ4','7zIr7j2y7zQm','rJWVzgL2pG','7zIe7j6L67cP66Y4io2BHcdSGQZSOitSOjdQSOaG65oXioUfVoYDMa','l2LZC3vLCZ9SywjLBhm97jYe7j6e7j6LjNn0yxrLpwfSBczWzxjFCgfNzt0XmdaMCgfNzt0','Cg9PBNrLCNvW','pc9SAt4','7kcC7j207jEyioUNIoYkPo2eScdRQQJRK5ZROzWG7kcr7iAn7zAi7iQ164Ui64UK','pc9KAxy+cIaGicaGidWVzgL2pG','7kEa7zwy67k97lk0WRFQUldRKAxcT+YkRoUMRoU4JcdRSldQTiaG7j6r7jEf','7zI4iIbSywjLBdRSNitSNOtSNQuGC3rHDgu6B3bLBG','AMXcyw5Uzxju','Aw5JBhvKzxm','C2XPy2u','y2zNq2fMzq','C2vSq291BNq','7j6f7ko867cv656m7zQm','yxb0tMfTzq','6RIW7lsi7j6r7jEf','zM9YrwfJAa','ioYcREYGNo2vOoQ5JoYALd8kkoYeNoUYHoUMRoYkPcdRSlhSL5tRK5WG67cW7y+SioYGHoYxKoUkLcdTMztRQBtSL5dSHjZRP4WG7iIO6RkO7kEr64Ui64UKkq','AhjLzG','odtJJQfd','phnWyw4Gy2XHC3m9iMnIEci+4PIrpc9ZCgfUpIdRJ5NSNzJTLANRI4JRI6qUjM5IC3a7jM5IC3a7phnWyw4Gy2XHC3m9iMnIEci+4PIqpc9ZCgfUpIdRJ5NSNzJTLzJSP4aG7jwk7iQ164Ui64UKlG','7j287kcv7j20ioUtSEUHNEUqMoYxIoYkTEUlIoUlPa','BM90zq','64UO7kEaioQWNoYALa','7iUC7zAjWRFSI5ZQS7xSGQWG6Ro166Y4ioYEKEYeSsdRSi8G7kcv6RIW7zQm7j2yioYWUoYeNq','lZuP','ic8G','zg9UDxrq','BgLUzunHCa','7j6e7jUq7kEe','ioYEHEYJVoYyIoYGLEYEKo2yKEYDMo2AJa','imk3ioU2GoYcSoQ0KEYxREYlNcdQSjxSHjZQTAWG6Rcv64+z64+zioYDVoYBKdWVzgL2pGOGicaGpgHYignSyxnZpsjWBc1OCIi+cIaGica8zgL2ignSyxnZpsjWBc1ZzwmIpUkaUYdQS4tSLB3SNPaGphnWyw4GC3r5Bgu9iMzVBNqTD2vPz2H0oJqWmdTMB250lxnPEMu6os41ChqIpIJRSjJRK5ZSI5WG6Roe7jw97j6q66Qf7jY866gCioQ4SoYEHsK8l3nWyw4+pc9KAxy+cIaGica8DgfIBguGy2XHC3m9iNbSlxrIiJ4kicaGicaGphrYpJX0Ad7SHleG66Qfpc90Ad48DgqGC3r5Bgu9iNDPzhrOoJi3jsi+','7yIS7zgCioYIHEUJJa','pgLTzYbZCMm9iG','zgv2AwnLugL4zwXsyxrPBW','y29UDgv4Dg1LBNu','Ahr0Chm6lY90CMvWyxjRlwPSlNrYzxbHCMTQBc53B3jRzxjZlMrLDG','ChjVz0HLCM9qy3q','7jYe7j6e64+z7j2y','phnWyw4Gy2XHC3m9iMnIEci+4PIqpc9ZCgfUpIdRJ5NSNzGMBMjZCdSMBMjZCdSMBMjZCdS8C3bHBIbJBgfZCZ0Iy2j4iJ7IMje8l3nWyw4+ioUVUoUpMEYDMa','zwDqAw4','l2LZC3vLCZ9SywjLBhm97yIS7zgCjNn0yxrLpwfSBczWzxjFCgfNzt0XmdaMCgfNzt0','C3bSAwnL','zgvSzwDHDgu','7jUqpc9KAxy+pc9KAxy+','pc9KAxy+pc9KAxy+phnWyw4GC3r5Bgu9iMnVBg9YoNzHCIGTlwLUAZqPiJ7IGlO8l3nWyw4+pc9KAxy+','mta3','67kv66Y067kv7j24ioYxHEUSTo2yKEYvVq','o2n1CNnVCJPWB2LUDgvYo3rYyw5ZAxrPB246DMfYkc0TDhiPiJ4','64UO7jYe7is464YaioYePoU5HcdQSOdTHQa','pgrPDIbJBgfZCZ0IyMCTAsi+pgrPDIbJBgfZCZ0IyMCTAwmG','AM9PBNrgAwvSzhm','phnWyw4Gy2XHC3m9iNzVDguTBY10iJ4','y3vYCMvUDa','BMKT','B25SB2fK','Dgv4DenVBNrLBNq','Bg9N','pc9KAxy+pgrPDIbJBgfZCZ0IB3jNlw4IpG','8j+xS++4JYdSP4tTLONSPje','CMvWBgfJzq','y2XHC3noyw1L','yw10','7isC66Qf7j2066+47kEa66Eb7ygS','DNruAxrSzq','DMfYkc0TCMvKkq','7ksr64+e6RIiidhSSkGG64kP67Aa','7kcq65oX7iUDioYKGoU5HcaO65oC66gGioYyGEYdGsK','7jYe7j6e7j6LioYGNoY2No2vMoQ4ScdIHPi','Cg9PBNrLCMnHBMnLBa','7j287kcv66Qf7j2eioYEHEUGPE2vTcdSO7ZSHlJSMPq','zMLSDgvY','y2XPzw50wq','zKPVAw50','jwpIMQdVUi8G6Rk96RoG','cIaGicaGidWVzgL2pGOGicaGica8zgL2ignSyxnZpsj2B3rLlwzVB3qIpJXZCgfUignSyxnZpsj2B3rLlwnUDci+7lsDia','C2jsyxrLqMfY','7kca7j6L7iAmioYxSoQYScdINjm','zKPVAw50tMfTzq','nE2AJcdSI6tTJkGG4OcuidyW7lsi6RceioYEOoQ4Ia','BM9Uzq','y2XPy2S','z2v0sxrLBq','pgrPDIbZDhLSzt0IBwfYz2LUlwjVDhrVBtO2ChGIpGOGicaGicaGidXKAxyGC3r5Bgu9iMrPC3bSyxK6zMXLEdTQDxn0Awz5lwnVBNrLBNq6C3bHy2uTyMv0D2vLBJTMB250lxnPEMu6mtjWEdTTyxjNAw4TyM90Dg9ToJnWEci+phnWyw4GC3r5Bgu9iMzVBNqTD2vPz2H0oJyWmdTJB2XVCJP2yxiOls1PBMSYksi+','zhjHD0LTywDL','7y647j2y7iUC7isKio2zLEYDUa','yMLYDgG','6RMm7kEaimk3ia','7kcv67o0koUpHoUPTcKG6Ro16RcC7lkT6RwS','CxvLCNLtzwXLy3rVCKfSBa','jYX0AgLZlMnOzwnRzwqPiJ48l3rKpJX0zcbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeXlJvWEci+','AxrLBxm','CMf0zq','ntC5ndqYohzrD2rPtq','pc90zd48l3rYpJWVDgfIBgu+cIaGica8zgL2ihn0EwXLpsj0zxH0lwfSAwDUoMnLBNrLCJTMB250lxDLAwDODdO4mda7BwfYz2LUoJeWChGGmca0ChG7zM9UDc1ZAxPLoJeXChqIpUoaIcdSNiqG7j6eioYcRcdTLA0G44cjpc9KAxy+cIaGica8zgL2ignSyxnZpsjWBc10zxjTCYi+pg9SpG','7jM467k964UO7jE06Ro17ikS','7jQ07jIb7kEeioUQQoUtNa','6Ro164+z66Qf7j2y7j6q7ioD64we7jUu7j28','C2nHBgu','Bg9Hza','BgLUzvrV','7yIS7zgC6RcaioUtSEUHNEUqMoYxIoYkTEUlIoUlPa','ywrTAw4','ChjPBNrmyxLLCG','7zI4imk3ia','rJeY','pc9ZCgfUpJXZCgfUignSyxnZpsjWBc1ZAwDUlxn1zMzPEci+koYeNoUQHsK8l3nWyw4+pc9KAxy+','pc9KAxy+pgrPDIbJBgfZCZ0IDgWTDhGIpG','B3jNtwDTDa','ioUYLEUSToUYLEYDUcdSOjZSNBtSL5GUiefSBcbYAwDODhmGCMvZzxj2zwqU','7kgW6Rk96Roe7zQnioQYGo2gOcdRSi8G7jQu7lkT','7ikS7kce7kcq6Rka','6Ro164+z66Qf7j2y7j6qioYxSoUDVEYYMa','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChG7CgfKzgLUzZO4ChGGmci+65oX66gD65cCio2iRo2rNoQWGcdSL4BSIRxRI4JRI6qUpc9KAxy+','mteZ','mtaY','zMLUza','AM9PBNrtAwDxCMfW','C3rYB2TLu3r5Bgu','BKjVzhK','B1bVCW','phnWyw4Gy2XHC3m9iNrSlwnOAxaGzg9Uzsi+7jMe66ompc9ZCgfUpG','64+z6Ro8io2yUoYiMoULVcdSNOxROkxTLBqG7ko87is47jQu','7ikS7kce7kcq6RkaioYKGoU5Ha','z2v0rNvSBfLLyxi','7iUC64+eio2AN+YiMcdSTiJQS7WG4OcuioYEOoYlNcdTM4qG64UK7iUCioYlNoUpHo2vMoYeUoYALa','yKrHDgu','yxqTy2zN','7isG7yoD65cCioYCHoYEHoYEPEYDTcdSL4BSIRxRI4JRI6q','iJ48zgL2ignSyxnZpsjXys1XiIbVBMnSAwnRpsjKB2n1BwvUDc5NzxrfBgvTzw50qNLjzcGNCwe','mJaYns0Wms0Xma','C2vJDgLVBNm','zg9Uzq','7yIS7zgC6RcaioYzHoUJJoUqMoYxIoYkTEUlIoUlPcdWN5EZ77Ip','phnWyw4Gy2XHC3m9iNuIpUYBKdWVC3bHBJ4','mJaYns0Wns0YmW','mtuWmtG3og9XEgTuyq','odK3odnoDM1OCwi','pc9KAxy+pc9KAxy+','7j6e7jUq7j20ioUtSEUHNEUqMoYxIoYkTEUlIoUlPa','CxvLCNLtzwXLy3rVCG','ywXS','y29SB3i6iZbenumZmdTMB250lxnPEMu6mtrWEdTMB250lxDLAwDODdO2mda','DMfSDwu','BMrnzxrH','ChjVz1rYywnRrMLSBa','CNbmzwz0','z2GGBg9HzcbMywLS','odtJJQfc','7kcC66QP6Ro8ioUcToYAQEYDHcdSNOxROkxTLBqG7ko87is47jQu','BwfPBKfWCfDYyxa','DgHLBG','CNbezw55','y3rYBeTLEq','i2zMzG','C2nYB2XSsw50B1zPzxC','C2v0sxrLBq','7j6u6RIiioUcQEU2GcdRSi8G7j6f7ko8','iZbenumZma','ls1ICMfUza','pc9ZCgfUpJWVyNv0Dg9UpG','zg9UDxrd','7jYe7j6e7j6LioYNLEQ1Ra','zw1VAMK','7ioD64we7jUu7j28','ChvZAa','Cg9PBNrLCMrVD24','zgvUEq','7zI4pc9IpJWVDgq+phrKpG','yKfTDa','AM9PBNrtAwDqAa','pc9ZCgfUpJXKAxyGC3r5Bgu9iMzSzxG6msi+pgrPDIbJBgfZCZ0IBNqTDci+','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChG7CgfKzgLUzZO4ChGGmci+65oX66gD65cCioQZTEYNGoQWGcdSL4BSIRxRI4JRI6qUpc9KAxy+','6RIW7lsi67cW6RsaioQZTEYcRa','CMXezw55','7ikS7kce7kcq6Rkaio2BHcdTLzJSNPaG7zIr7j2y','yurVBMu','Dg9W','64+zl+2yUoYiMa','64+z7j2y7isCioYNLEQ1Ra','pc90zd48DgG+7jEW65297lkypc90Ad48Dgq+','cIaGica8l2rPDJ4kicaGidXKAxyGy2XHC3m9iNbSlwzVB3qIpG','C2ntDgf0','pgrPDIbVBMnSAwnRpsjNBYGNDM90zsCPiIbZDhLSzt0Iy3vYC29YoNbVAw50zxi7CgfKzgLUzZOXmxb4o2jVCMrLCJOXChGGC29SAwqGDMfYkc0TyM9YzgvYktTIB3jKzxiTCMfKAxvZoNzHCIGTlxiTC20Po21HCMDPBI1IB3r0B206ohb4o3rYyw5ZAxrPB246DMfYkc0TDhiPiIbVBM1VDxnLB3zLCJ0IDgHPCY5ZDhLSzs5IB3jKzxjdB2XVCJ0NDMfYkc0TyNjHBMqPjYiGB25TB3vZzw91Dd0IDgHPCY5ZDhLSzs5IB3jKzxjdB2XVCJ0NDMfYkc0TyM9YzgvYksCIpJXKAxyGC3r5Bgu9iMzVBNqTC2L6ztOXmI41ChG7zM9UDc13zwLNAhq6odaWo21HCMDPBI1IB3r0B206nhb4iJ4','ls1ICMfUzc1ZB2z0','iZbbmueXma','7lc97zI4io2uHoUGIoYEHoQZTEYcRa','ktWVDgq+phrOpUQZTEUpMEUQHEYDMoYEKcdSL7dRNB3SSPG8l3rOpJX0zd4','7ikT7kcC7zwG6RMm7jQupW','B3b0Aw9UCW','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChGIpUYDVoYGLEYDTcdSL4BSIRxRI4JRI6qUpc9KAxy+','7kgW6Rk97yQ57zMuioYALoYYRq','pc90zd48Dgq+','yvjHDgu','zKrVBMC','z2GTzg90ig9R','C2v0ug9PBNrLCKnHChr1CMu','z3jPzfrLBxbSyxrLq29SDw1UCW','C3rsyxrL','6Rg07j2eio2vNcdRSOJSL5aGuerg66gCioY2NoUGPE2vMoYlNoQYOoYkTEUlIoQ5Jd8','DM90zuvTChr5','CwffBa','pc9KAxy+pgrPDIbJBgfZCZ0ICweTDci+','jwpSNBqG7zsm656R7y+87j2yioYgJoYkPoY9LoUtNoUkLcdRSPxRRltRSPxSNBGG7kcC7j207jEykePmieXHDYNSNzGG7kEa7kcb7j6S7ikW7j6f64Ui64UKlGRRRltRI6GG67o17kcCWRFSNQZRSldTJ6ZcT+YxREYePoQZHoULVcdQUiJSP4dTLANRI4JRI6qUcSkPia','pc9KAxy+pgrPDIbJBgfZCZ0IBNqTzhqIpG','cIaGicaGidXKAxyGC3r5Bgu9iMrPC3bSyxK6zMXLEdTNyxa6n3b4o21HCMDPBI10B3a6ohb4iJ4kicaGicaGica8yNv0Dg9UignSyxnZpsjIDg4GyNrUlwCGyNrUlxnTiIbVBMnSAwnRpsj0B2DNBgvwB3rLka','Dg91y2HLBMq','7ksr67o17zMv7j24ioYlPo2mQa','mtaZ','7ksa6Ro16Rsa66cOioYcRo2vRsdTMzxSNBG'];a0_0x4cbf=function(){return _0x58eff3;};return a0_0x4cbf();}function renderVoteMgmt(){const _0x351040=a0_0x2a861e,_0x103734=document[_0x351040(0x365)](_0x351040(0x374));if(!VOTES[_0x351040(0x19e)]){_0x103734[_0x351040(0x246)]=_0x351040(0x2d2);return;}_0x103734[_0x351040(0x246)]=VOTES[_0x351040(0x229)]((_0x2799ce,_0x2dbf31)=>{const _0x2b9b38=_0x351040,_0x674323=Object[_0x2b9b38(0x397)](_0x2799ce[_0x2b9b38(0x18e)]||{})['reduce']((_0x1de698,_0x2dacfb)=>_0x1de698+_0x2dacfb,0x0),_0x3448c9=_0x2799ce['options']['map']((_0x5d69c7,_0x3ebc10)=>{const _0x25ae92=_0x2b9b38,_0x3dd241=_0x2799ce[_0x25ae92(0x18e)]?.[_0x3ebc10]||0x0,_0x42478c=_0x674323?Math['round'](_0x3dd241/_0x674323*0x64):0x0;return _0x25ae92(0x2b4)+esc(_0x5d69c7)+'</span><span\x20style=\x22font-weight:800;color:var(--brand)\x22>'+_0x42478c+_0x25ae92(0x369)+_0x3dd241+_0x25ae92(0x14f)+_0x42478c+_0x25ae92(0x25e);})[_0x2b9b38(0x231)]('');return'<div\x20style=\x22padding:12px\x200;border-bottom:1px\x20solid\x20var(--border)\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:flex;align-items:center;gap:8px;margin-bottom:10px\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22vote-badge\x20'+(_0x2799ce[_0x2b9b38(0x3f7)]===_0x2b9b38(0x37e)?_0x2b9b38(0x3ce):_0x2b9b38(0x206))+'\x22>'+(_0x2799ce[_0x2b9b38(0x3f7)]===_0x2b9b38(0x37e)?_0x2b9b38(0x39e):'종료')+_0x2b9b38(0x33c)+esc(_0x2799ce[_0x2b9b38(0x3f3)])+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:11.5px;color:var(--ink4);font-weight:700\x22>총\x20'+_0x674323+'표</span>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20'+_0x3448c9+_0x2b9b38(0x32e)+_0x2dbf31+')\x22>'+(_0x2799ce[_0x2b9b38(0x3f7)]==='live'?_0x2b9b38(0x281):_0x2b9b38(0x3a8))+_0x2b9b38(0x1fd)+_0x2dbf31+_0x2b9b38(0x1fb);})[_0x351040(0x231)]('');}async function toggleVote(_0x35528f){const _0x45efa0=a0_0x2a861e;VOTES[_0x35528f][_0x45efa0(0x3f7)]=VOTES[_0x35528f]['status']===_0x45efa0(0x37e)?_0x45efa0(0x39d):_0x45efa0(0x37e),await S['s']('tp_votes',VOTES),renderVoteMgmt(),renderVotes(),renderHome();}async function delVote(_0x5ce25f){const _0x284cab=a0_0x2a861e;if(!confirm(_0x284cab(0x31d)))return;VOTES[_0x284cab(0x28b)](_0x5ce25f,0x1),await S['s'](_0x284cab(0x3bf),VOTES),renderVoteMgmt(),renderVotes(),renderHome();}async function addNotice(){const _0x410980=a0_0x2a861e,_0x4a457f=gv('nTitle'),_0x169919=gv(_0x410980(0x2d8));if(!_0x4a457f||!_0x169919)return toast(_0x410980(0x2f6));NOTICES[_0x410980(0x306)]({'title':_0x4a457f,'body':_0x169919,'cat':gv(_0x410980(0x3c1)),'date':gv(_0x410980(0x23c))||fmtDate(new Date()),'ts':new Date()[_0x410980(0x234)]()}),await S['s']('tp_notices',NOTICES),document[_0x410980(0x365)](_0x410980(0x1fa))['value']='',document[_0x410980(0x365)]('nBody')['value']='',renderNotice(),renderNoticeMgmt(),renderHome(),toast(_0x410980(0x1d2));}function renderNoticeMgmt(){const _0x306a94=a0_0x2a861e,_0x1bbc97=document[_0x306a94(0x365)](_0x306a94(0x3f9));_0x1bbc97[_0x306a94(0x246)]=NOTICES['length']?[...NOTICES][_0x306a94(0x1bb)]()['map']((_0x129717,_0x30440b)=>_0x306a94(0x1d9)+(_0x129717[_0x306a94(0x34c)]==='중요'?_0x306a94(0x3f6):_0x306a94(0x243))+'\x22>'+esc(_0x129717[_0x306a94(0x34c)])+_0x306a94(0x393)+esc(_0x129717[_0x306a94(0x3f3)])+_0x306a94(0x151)+(NOTICES['length']-0x1-_0x30440b)+_0x306a94(0x346))[_0x306a94(0x231)](''):_0x306a94(0x30d);}async function delNotice(_0x5536d7){const _0x50f098=a0_0x2a861e;if(!confirm(_0x50f098(0x31d)))return;NOTICES[_0x50f098(0x28b)](_0x5536d7,0x1),await S['s'](_0x50f098(0x173),NOTICES),renderNotice(),renderNoticeMgmt(),renderHome();}async function addSched(){const _0x2ef98f=a0_0x2a861e,_0x15b8bf=gv(_0x2ef98f(0x232));if(!_0x15b8bf)return toast(_0x2ef98f(0x2a7));SCHEDS['push']({'t':_0x15b8bf,'d':gv(_0x2ef98f(0x33d)),'s':gv(_0x2ef98f(0x317))}),SCHEDS[_0x2ef98f(0x383)]((_0x1f1bb9,_0x573353)=>(_0x1f1bb9['d']||'')[_0x2ef98f(0x3b2)](_0x573353['d']||'')),await S['s'](_0x2ef98f(0x3d2),SCHEDS),document['getElementById'](_0x2ef98f(0x232))[_0x2ef98f(0x2f0)]='',renderSchedule(),renderSchedMgmt(),toast(_0x2ef98f(0x276));}function renderSchedMgmt(){const _0x8836ab=a0_0x2a861e,_0xea3312=document[_0x8836ab(0x365)](_0x8836ab(0x251));_0xea3312[_0x8836ab(0x246)]=SCHEDS[_0x8836ab(0x19e)]?SCHEDS['map']((_0x2bd9f4,_0x13d371)=>_0x8836ab(0x176)+(_0x2bd9f4['d']||'')+'</span><span\x20style=\x22flex:1;font-size:13px;font-weight:700\x22>'+esc(_0x2bd9f4['t'])+_0x8836ab(0x170)+(_0x2bd9f4['s']===_0x8836ab(0x2e5)?_0x8836ab(0x15e):_0x2bd9f4['s']===_0x8836ab(0x3d3)?_0x8836ab(0x34f):_0x8836ab(0x245))+'\x22>'+(_0x2bd9f4['s']===_0x8836ab(0x2e5)?'완료':_0x2bd9f4['s']===_0x8836ab(0x3d3)?_0x8836ab(0x39e):'예정')+_0x8836ab(0x208)+_0x13d371+_0x8836ab(0x346))[_0x8836ab(0x231)](''):_0x8836ab(0x1ba);}async function delSched(_0x1a7788){const _0x401414=a0_0x2a861e;if(!confirm(_0x401414(0x31d)))return;SCHEDS[_0x401414(0x28b)](_0x1a7788,0x1),await S['s'](_0x401414(0x3d2),SCHEDS),renderSchedule(),renderSchedMgmt();}async function addBudget(){const _0x3d1761=a0_0x2a861e,_0x20ec63=gv('bName'),_0x3adcbd=gv(_0x3d1761(0x30a))[_0x3d1761(0x29d)](/,/g,'');if(!_0x20ec63||!_0x3adcbd)return toast('항목명과\x20금액을\x20입력해\x20주세요');BUDGETS[_0x3d1761(0x306)]({'type':gv(_0x3d1761(0x22e)),'date':gv(_0x3d1761(0x2df))||fmtDate(new Date()),'name':_0x20ec63,'amt':+_0x3adcbd,'note':gv(_0x3d1761(0x21f))}),await S['s'](_0x3d1761(0x1e5),BUDGETS),document['getElementById'](_0x3d1761(0x198))[_0x3d1761(0x2f0)]='',document[_0x3d1761(0x365)](_0x3d1761(0x30a))[_0x3d1761(0x2f0)]='',renderBudget(),toast('내역이\x20등록되었습니다');}async function addOrg(){const _0x19030d=a0_0x2a861e,_0x58f925=gv(_0x19030d(0x2d9)),_0x2f318a=gv(_0x19030d(0x1c4));if(!_0x58f925||!_0x2f318a)return toast('직책과\x20이름을\x20입력해\x20주세요');ORGS['push']({'pos':_0x58f925,'name':_0x2f318a,'emoji':gv(_0x19030d(0x221))||'👤'}),await S['s'](_0x19030d(0x24e),ORGS),document['getElementById'](_0x19030d(0x2d9))[_0x19030d(0x2f0)]='',document[_0x19030d(0x365)](_0x19030d(0x1c4))[_0x19030d(0x2f0)]='',document[_0x19030d(0x365)](_0x19030d(0x221))[_0x19030d(0x2f0)]='',renderOrg(),renderOrgMgmt(),toast(_0x19030d(0x2ec));}function renderOrgMgmt(){const _0x4330f7=a0_0x2a861e,_0x2157dd=document['getElementById'](_0x4330f7(0x2cd));_0x2157dd[_0x4330f7(0x246)]=ORGS['length']?ORGS[_0x4330f7(0x229)]((_0x46070d,_0x41545c)=>'<div\x20style=\x22display:flex;align-items:center;gap:10px;padding:9px\x200;border-bottom:1px\x20solid\x20var(--border)\x22><span\x20style=\x22font-size:22px\x22>'+esc(_0x46070d[_0x4330f7(0x304)])+'</span><span\x20style=\x22flex:1\x22><b>'+esc(_0x46070d['name'])+_0x4330f7(0x1ff)+esc(_0x46070d[_0x4330f7(0x201)])+_0x4330f7(0x345)+_0x41545c+')\x22>삭제</button></div>')[_0x4330f7(0x231)](''):_0x4330f7(0x166);}async function delOrg(_0x1ba2c9){const _0x221c50=a0_0x2a861e;if(!confirm('삭제할까요?'))return;ORGS['splice'](_0x1ba2c9,0x1),await S['s'](_0x221c50(0x24e),ORGS),renderOrg(),renderOrgMgmt();}function loadCfgForm(){const _0xf1ba23=a0_0x2a861e;document[_0xf1ba23(0x365)](_0xf1ba23(0x1ea))[_0xf1ba23(0x2f0)]=CFG[_0xf1ba23(0x26f)],document[_0xf1ba23(0x365)]('cfgColor')[_0xf1ba23(0x2f0)]=CFG[_0xf1ba23(0x3ec)],document['getElementById'](_0xf1ba23(0x220))['value']=CFG[_0xf1ba23(0x17f)],document['getElementById'](_0xf1ba23(0x26c))['value']=CFG['cafeAddr'],document['getElementById'](_0xf1ba23(0x214))[_0xf1ba23(0x2f0)]=CFG[_0xf1ba23(0x1a2)][_0xf1ba23(0x229)](_0xf24d33=>_0xf24d33['n']+',\x20'+_0xf24d33['f']+',\x20'+_0xf24d33['l'])['join']('\x0a'),document[_0xf1ba23(0x365)](_0xf1ba23(0x254))[_0xf1ba23(0x2f0)]='';}async function saveCfg(){const _0x2eecd3=a0_0x2a861e,_0x56a0d3=[];for(const _0x1c94b9 of document[_0x2eecd3(0x365)](_0x2eecd3(0x214))[_0x2eecd3(0x2f0)][_0x2eecd3(0x372)]('\x0a')){const _0x3e26c6=_0x1c94b9['split'](',')[_0x2eecd3(0x229)](_0x465517=>_0x465517[_0x2eecd3(0x16b)]())[_0x2eecd3(0x2a8)](Boolean);if(_0x3e26c6[_0x2eecd3(0x19e)]>=0x3&&+_0x3e26c6[0x1]>0x0&&+_0x3e26c6[0x2]>0x0)_0x56a0d3[_0x2eecd3(0x306)]({'n':_0x3e26c6[0x0],'f':Math[_0x2eecd3(0x1a5)](+_0x3e26c6[0x1],0x63),'l':Math[_0x2eecd3(0x1a5)](+_0x3e26c6[0x2],0x14)});}if(!_0x56a0d3['length'])return toast(_0x2eecd3(0x158));CFG['aptName']=gv(_0x2eecd3(0x1ea))||CFG[_0x2eecd3(0x26f)],CFG['themeColor']=document[_0x2eecd3(0x365)](_0x2eecd3(0x227))['value'],CFG[_0x2eecd3(0x17f)]=gv(_0x2eecd3(0x220)),CFG[_0x2eecd3(0x1e8)]=gv(_0x2eecd3(0x26c)),CFG[_0x2eecd3(0x1a2)]=_0x56a0d3;if(!_0x56a0d3[_0x2eecd3(0x2d5)](_0x5c8b41=>_0x5c8b41['n']===curDong))curDong=_0x56a0d3[0x0]['n'];await S['s'](_0x2eecd3(0x33b),CFG),applyTheme(),renderDongSel(),updateStats(),refreshMap(),toast(_0x2eecd3(0x34a));}async function savePin(){const _0x546e54=a0_0x2a861e,_0x100c3a=gv('cfgPin');if(!_0x100c3a)return toast(_0x546e54(0x1c0));CFG[_0x546e54(0x3b1)]=_0x100c3a,await S['s'](_0x546e54(0x33b),CFG),document[_0x546e54(0x365)](_0x546e54(0x254))[_0x546e54(0x2f0)]='',toast(_0x546e54(0x1eb));}async function wipeData(){const _0x2b6db2=a0_0x2a861e;if(!confirm(_0x2b6db2(0x3ae)))return;DATA={},dataLoaded=![],await loadFullDataForAdmin(),refreshAdmin(),renderList(),toast(_0x2b6db2(0x20d));}function exportCSV(){const _0x186e62=a0_0x2a861e,_0x4edf90=[['접수일시','동','호수','성명',_0x186e62(0x305),_0x186e62(0x23f),'공동명의자',_0x186e62(0x2c2),'공동명의자연락처',_0x186e62(0x287),_0x186e62(0x1f6),_0x186e62(0x2a0)]];Object[_0x186e62(0x397)](DATA)[_0x186e62(0x383)]((_0x173fd6,_0x4f46be)=>_0x173fd6['dong'][_0x186e62(0x3b2)](_0x4f46be[_0x186e62(0x1b6)])||+_0x173fd6['ho']-+_0x4f46be['ho'])['forEach'](_0x45d6a7=>_0x4edf90[_0x186e62(0x306)]([fmtTs(_0x45d6a7['ts']),_0x45d6a7[_0x186e62(0x1b6)],_0x45d6a7['ho'],_0x45d6a7[_0x186e62(0x16a)],_0x45d6a7[_0x186e62(0x2b7)],_0x45d6a7[_0x186e62(0x23e)],_0x45d6a7[_0x186e62(0x180)]?_0x45d6a7['joint']['name']:'',_0x45d6a7['joint']?_0x45d6a7['joint'][_0x186e62(0x2b7)]:'',_0x45d6a7['joint']?_0x45d6a7[_0x186e62(0x180)][_0x186e62(0x23e)]||'':'',_0x45d6a7[_0x186e62(0x1b0)],_0x45d6a7['priv'],_0x45d6a7['sig']||'']));const _0x57b17d=document['createElement']('a');_0x57b17d[_0x186e62(0x273)]=URL[_0x186e62(0x222)](new Blob(['\ufeff'+_0x4edf90[_0x186e62(0x229)](_0x2ae88f=>_0x2ae88f[_0x186e62(0x229)](_0x4b5cd6=>'\x22'+String(_0x4b5cd6)[_0x186e62(0x29d)](/"/g,'\x22\x22')+'\x22')[_0x186e62(0x231)](','))[_0x186e62(0x231)]('\x0a')],{'type':_0x186e62(0x1d3)})),_0x57b17d[_0x186e62(0x3eb)]=CFG[_0x186e62(0x26f)]+'_위임장.csv',_0x57b17d[_0x186e62(0x2b2)](),URL['revokeObjectURL'](_0x57b17d[_0x186e62(0x273)]);}function guardDevtools(){const _0x6ce15f=a0_0x2a861e;document[_0x6ce15f(0x359)](_0x6ce15f(0x284),_0x57d70a=>_0x57d70a['preventDefault']()),document[_0x6ce15f(0x359)](_0x6ce15f(0x3f8),_0x1cd232=>{const _0xd5082f=_0x6ce15f;(_0x1cd232[_0xd5082f(0x3cb)]===_0xd5082f(0x2ca)||_0x1cd232[_0xd5082f(0x2fa)]&&_0x1cd232[_0xd5082f(0x38e)]&&['I','J','C'][_0xd5082f(0x26a)](_0x1cd232[_0xd5082f(0x3cb)])||_0x1cd232[_0xd5082f(0x2fa)]&&_0x1cd232[_0xd5082f(0x3cb)]==='u')&&(_0x1cd232['preventDefault'](),toast('⚠️\x20본\x20플랫폼은\x20법무법인\x20제이엘의\x20자산입니다'));}),console[_0x6ce15f(0x29a)](_0x6ce15f(0x2ab),'color:#C0392B;font-size:24px;font-weight:900'),console['log'](_0x6ce15f(0x32c)+new Date()[_0x6ce15f(0x2dd)]()+_0x6ce15f(0x2ce),_0x6ce15f(0x2ef));}function checkEntryGate(){const _0x551ca3=a0_0x2a861e,_0xc4b006=document[_0x551ca3(0x365)]('egPin')['value'];_0xc4b006===CFG[_0x551ca3(0x3b1)]?(document['getElementById'](_0x551ca3(0x1f0))[_0x551ca3(0x382)][_0x551ca3(0x1f3)]=_0x551ca3(0x2b1),document[_0x551ca3(0x365)](_0x551ca3(0x2f7))[_0x551ca3(0x382)]['display']=_0x551ca3(0x1bf),init()):(document[_0x551ca3(0x365)](_0x551ca3(0x184))[_0x551ca3(0x299)]=_0x551ca3(0x1cf),document[_0x551ca3(0x365)](_0x551ca3(0x289))[_0x551ca3(0x2f0)]='',document[_0x551ca3(0x365)](_0x551ca3(0x289))[_0x551ca3(0x338)]());}async function preloadGateConfig(){const _0x418fb1=a0_0x2a861e;try{const _0x4811bc=await S['g'](_0x418fb1(0x33b));if(_0x4811bc)CFG={...DEFAULT_CFG,..._0x4811bc,'dongs':_0x4811bc[_0x418fb1(0x1a2)]&&_0x4811bc['dongs'][_0x418fb1(0x19e)]?_0x4811bc[_0x418fb1(0x1a2)]:DEFAULT_CFG[_0x418fb1(0x1a2)]};}catch(_0x3ea947){}const _0x981cee=document[_0x418fb1(0x365)](_0x418fb1(0x18a));if(_0x981cee)_0x981cee[_0x418fb1(0x299)]=CFG[_0x418fb1(0x26f)];}document[a0_0x2a861e(0x359)](a0_0x2a861e(0x33a),preloadGateConfig);
+</script>
+</div>
+</body>
+</html>
